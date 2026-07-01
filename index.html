@@ -40,15 +40,41 @@
 
     <!-- ========== NAVIGATION ========== -->
     <nav id="navbar" class="navbar">
-        <a href="#hero" class="nav-logo">
-            <span class="nav-logo-text">SKYOM</span>
+        <a href="index.html" class="nav-logo">
+            <img src="assets/skyom logo.png" alt="SKYOM Logo" class="nav-logo-img">
         </a>
         <div class="nav-links">
-            <a href="#projects" class="nav-link" data-text="Projects">Projects</a>
-            <a href="#about" class="nav-link" data-text="About">About</a>
-            <a href="#vision" class="nav-link" data-text="Vision">Vision</a>
-            <a href="#contact" class="nav-link" data-text="Contact">Contact</a>
+            <a href="index.html" class="nav-link" data-text="Home">Home</a>
+            <div class="nav-dropdown-wrapper">
+                <a href="#" class="nav-link dropdown-trigger" data-text="Projects">Projects <span class="arrow-down">&#9662;</span></a>
+                <div class="dropdown-menu">
+                    <div class="dropdown-item has-submenu">
+                        <a href="#">Delivered Projects <span class="arrow-right">&#9656;</span></a>
+                        <div class="submenu">
+                            <a href="project-floors.html">Skyom Floors</a>
+                        </div>
+                    </div>
+                    <div class="dropdown-item has-submenu">
+                        <a href="#">Ongoing Projects <span class="arrow-right">&#9656;</span></a>
+                        <div class="submenu">
+                            <a href="project-city.html">Skyom City</a>
+                        </div>
+                    </div>
+                    <div class="dropdown-item has-submenu">
+                        <a href="#">The Future <span class="arrow-right">&#9656;</span></a>
+                        <div class="submenu">
+                            <a href="project-ayodhya.html">Ayodhya</a>
+                            <a href="project-dehradun.html">Dehradun</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <a href="about.html" class="nav-link" data-text="About Us">About Us</a>
+            <a href="#" class="nav-link" data-text="Blog">Blog</a>
+            <a href="#" class="nav-link" data-text="Careers">Careers</a>
+            <a href="contact.html" class="nav-link" data-text="Contact Us">Contact Us</a>
         </div>
+        <a href="contact.html" class="nav-cta-btn">GET IN TOUCH</a>
         <button id="nav-toggle" class="nav-toggle" aria-label="Toggle menu">
             <span></span>
             <span></span>
@@ -58,17 +84,17 @@
     <!-- Mobile Menu -->
     <div id="mobile-menu" class="mobile-menu">
         <div class="mobile-menu-links">
-            <a href="#projects" class="mobile-link">Projects</a>
-            <a href="#about" class="mobile-link">About</a>
-            <a href="#vision" class="mobile-link">Vision</a>
-            <a href="#contact" class="mobile-link">Contact</a>
+            <a href="projects.html" class="mobile-link">Projects</a>
+            <a href="about.html" class="mobile-link">About</a>
+            <a href="vision.html" class="mobile-link">Vision</a>
+            <a href="contact.html" class="mobile-link">Contact</a>
         </div>
     </div>
 
     <!-- ========== SECTION 1: HERO ========== -->
     <section id="hero" class="hero-section">
         <div class="hero-bg">
-            <img src="assets/hero.png" alt="Skyom luxury development at dusk" class="hero-bg-img">
+            <video src="assets/Banner.mp4" autoplay loop muted playsinline class="hero-bg-video"></video>
             <div class="hero-overlay"></div>
         </div>
         <div class="hero-content">
@@ -83,7 +109,7 @@
             <p class="hero-description">
                 Crafting luxury residences that stand as timeless landmarks across India's most coveted destinations.
             </p>
-            <a href="#projects" class="hero-cta">
+            <a href="projects.html" class="hero-cta">
                 <span class="hero-cta-text">Explore Projects</span>
                 <span class="hero-cta-arrow">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
@@ -147,7 +173,7 @@
         <!-- Project 1: Skyom Floors -->
         <div class="project-panel" data-project="floors" data-status="completed">
             <div class="project-bg">
-                <img src="assets/skyom-floors.png" alt="Skyom Floors — Premium residential complex" class="project-bg-img" loading="lazy">
+                <img src="assets/Skyom Floor/Skyom Floor-6.png" alt="Skyom Floors — Premium residential complex" class="project-bg-img" loading="lazy">
                 <div class="project-overlay"></div>
             </div>
             <div class="project-content">
@@ -174,7 +200,7 @@
                         <span class="detail-value">Prime Location</span>
                     </div>
                 </div>
-                <a href="#contact" class="project-cta magnetic-btn">
+                <a href="project-floors.html" class="project-cta magnetic-btn">
                     <span>View Gallery</span>
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                         <path d="M7 17L17 7M17 7H7M17 7V17"/>
@@ -186,7 +212,7 @@
         <!-- Project 2: Skyom City -->
         <div class="project-panel" data-project="city" data-status="ongoing">
             <div class="project-bg">
-                <img src="assets/skyom-city.png" alt="Skyom City — Luxury township development" class="project-bg-img" loading="lazy">
+                <video src="assets/Skyom%20City%20Entrance.mp4" autoplay loop muted playsinline class="project-bg-video"></video>
                 <div class="project-overlay"></div>
             </div>
             <div class="project-content">
@@ -198,7 +224,7 @@
                     </span>
                 </div>
                 <h2 class="project-title">Skyom <em>City</em></h2>
-                <p class="project-description">Our most ambitious undertaking — a self-sustaining township that reimagines urban living. Skyom City combines world-class amenities, green spaces, and architectural brilliance into one integrated community.</p>
+                <p class="project-description">Our most ambitious undertaking in Mohanlalganj, Lucknow — a self-sustaining township that reimagines urban living with 24+ landscaped parks. Skyom City combines world-class amenities, green spaces, and architectural brilliance into one integrated community.</p>
                 <div class="project-details">
                     <div class="project-detail">
                         <span class="detail-label">Type</span>
@@ -213,7 +239,7 @@
                         <span class="detail-value">Multi-Phase</span>
                     </div>
                 </div>
-                <a href="#contact" class="project-cta magnetic-btn">
+                <a href="project-city.html" class="project-cta magnetic-btn">
                     <span>Explore More</span>
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                         <path d="M7 17L17 7M17 7H7M17 7V17"/>
@@ -252,8 +278,8 @@
                         <span class="detail-value">Ayodhya, UP</span>
                     </div>
                 </div>
-                <a href="#contact" class="project-cta magnetic-btn">
-                    <span>Register Interest</span>
+                <a href="project-ayodhya.html" class="project-cta magnetic-btn">
+                    <span>Explore Project</span>
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                         <path d="M7 17L17 7M17 7H7M17 7V17"/>
                     </svg>
@@ -291,8 +317,8 @@
                         <span class="detail-value">Dehradun, UK</span>
                     </div>
                 </div>
-                <a href="#contact" class="project-cta magnetic-btn">
-                    <span>Register Interest</span>
+                <a href="project-dehradun.html" class="project-cta magnetic-btn">
+                    <span>Explore Project</span>
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                         <path d="M7 17L17 7M17 7H7M17 7V17"/>
                     </svg>
@@ -383,7 +409,7 @@
                                 <path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
                             </svg>
                         </span>
-                        <span>info@skyom.in</span>
+                        <span>info@skyomcity.in</span>
                     </div>
                     <div class="contact-detail-item">
                         <span class="contact-icon">
@@ -391,7 +417,7 @@
                                 <path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
                             </svg>
                         </span>
-                        <span>+91 98765 43210</span>
+                        <span>+91 999999 0320</span>
                     </div>
                     <div class="contact-detail-item">
                         <span class="contact-icon">
@@ -400,7 +426,7 @@
                                 <path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
                             </svg>
                         </span>
-                        <span>India</span>
+                        <span>Mohanlalganj, Lucknow</span>
                     </div>
                 </div>
             </div>
@@ -458,10 +484,10 @@
                 <p class="footer-tagline">Building Dreams. Shaping Futures.</p>
             </div>
             <div class="footer-links">
-                <a href="#projects">Projects</a>
-                <a href="#about">About</a>
-                <a href="#vision">Vision</a>
-                <a href="#contact">Contact</a>
+                <a href="projects.html">Projects</a>
+                <a href="about.html">About</a>
+                <a href="vision.html">Vision</a>
+                <a href="contact.html">Contact</a>
             </div>
             <div class="footer-social">
                 <a href="#" class="social-link" aria-label="Instagram">
@@ -488,6 +514,28 @@
             <p>&copy; 2026 SKYOM. All rights reserved. Crafted with passion.</p>
         </div>
     </footer>
+
+    <!-- ========== STICKY CONTACT WIDGET (SOBHA REALTY INSPIRED) ========== -->
+    <div class="sticky-contact-bar">
+        <a href="https://wa.me/919999990320" target="_blank" class="sticky-action-btn" aria-label="WhatsApp Chat">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/>
+            </svg>
+            <span class="sticky-action-label">WhatsApp Chat</span>
+        </a>
+        <a href="tel:+919999990320" class="sticky-action-btn" aria-label="Call Representative">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/>
+            </svg>
+            <span class="sticky-action-label">Call Now</span>
+        </a>
+        <a href="#contact" class="sticky-action-btn" aria-label="Quick Enquiry Form">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+            </svg>
+            <span class="sticky-action-label">Enquire Now</span>
+        </a>
+    </div>
 
     <!-- ========== SCRIPTS ========== -->
     <!-- Lenis Smooth Scroll -->

@@ -1,0 +1,14 @@
+https://skyomcity.in/xmlrpc.php
+https://skyomcity.in/feed/
+https://skyomcity.in/comments/feed/
+https://skyomcity.in/wp-json/
+https://skyomcity.in/wp-json/wp/v2/pages/2206
+https://skyomcity.in/xmlrpc.php?rsd
+https://skyomcity.in/
+https://skyomcity.in/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fskyomcity.in%2F
+https://skyomcity.in/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fskyomcity.in%2F&#038;format=xml
+https://skyomcity.in/wp-content/uploads/2025/06/SkyOm-Logo-Celurean-Tangerine-BW-Copy-100x100.png
+https://skyomcity.in/wp-content/uploads/2025/06/SkyOm-Logo-Celurean-Tangerine-BW-Copy.png
+https://skyomcity.in/explore/
+https://skyomcity.in/location/
+https://skyomcity.in/contact/

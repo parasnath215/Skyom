@@ -53,6 +53,7 @@
         initGSAPAnimations();
         initMagneticButtons();
         initContactForm();
+        initFloorPlans();
     }
 
     /* =================================================
@@ -189,19 +190,23 @@
 
     /* ---- Hero Section ---- */
     function animateHero() {
+        if (!document.querySelector('.hero-section')) return;
         const tl = gsap.timeline({ delay: 0.3 });
 
         // Hero background parallax
-        gsap.to('.hero-bg-img', {
-            y: '20%',
-            scale: 1,
-            scrollTrigger: {
-                trigger: '.hero-section',
-                start: 'top top',
-                end: 'bottom top',
-                scrub: 1.5,
-            }
-        });
+        const heroBg = document.querySelector('.hero-bg-img') || document.querySelector('.hero-bg-video');
+        if (heroBg) {
+            gsap.to(heroBg, {
+                y: '20%',
+                scale: 1,
+                scrollTrigger: {
+                    trigger: '.hero-section',
+                    start: 'top top',
+                    end: 'bottom top',
+                    scrub: 1.5,
+                }
+            });
+        }
 
         // Staggered word reveal
         tl.to('.hero-title-word', {
@@ -247,6 +252,8 @@
 
     /* ---- Timeline Section ---- */
     function animateTimeline() {
+        if (!document.querySelector('.timeline-section')) return;
+        
         // Header animation
         gsap.from('.timeline-header .section-tag', {
             opacity: 0,
@@ -301,10 +308,11 @@
 
     /* ---- Projects Showcase ---- */
     function animateProjects() {
+        if (!document.querySelector('.projects-section')) return;
         const panels = document.querySelectorAll('.project-panel');
 
         panels.forEach((panel, index) => {
-            const img = panel.querySelector('.project-bg-img');
+            const img = panel.querySelector('.project-bg-img') || panel.querySelector('.project-bg-video');
             const number = panel.querySelector('.project-number');
             const badge = panel.querySelector('.project-status-badge');
             const title = panel.querySelector('.project-title');
@@ -312,16 +320,18 @@
             const details = panel.querySelector('.project-details');
             const cta = panel.querySelector('.project-cta');
 
-            // Image parallax
-            gsap.to(img, {
-                y: '15%',
-                scrollTrigger: {
-                    trigger: panel,
-                    start: 'top bottom',
-                    end: 'bottom top',
-                    scrub: 1.5,
-                }
-            });
+            // Image/Video parallax
+            if (img) {
+                gsap.to(img, {
+                    y: '15%',
+                    scrollTrigger: {
+                        trigger: panel,
+                        start: 'top bottom',
+                        end: 'bottom top',
+                        scrub: 1.5,
+                    }
+                });
+            }
 
             // Content reveal timeline
             const tl = gsap.timeline({
@@ -371,6 +381,8 @@
 
     /* ---- About Section ---- */
     function animateAbout() {
+        if (!document.querySelector('.about-section')) return;
+
         // Image mask reveal
         gsap.to('.about-image-mask', {
             scaleY: 0,
@@ -442,6 +454,8 @@
 
     /* ---- Vision Section ---- */
     function animateVision() {
+        if (!document.querySelector('.vision-section')) return;
+
         // Parallax background
         gsap.to('.vision-bg-img', {
             y: '15%',
@@ -482,6 +496,8 @@
 
     /* ---- Contact Section ---- */
     function animateContact() {
+        if (!document.querySelector('.contact-section')) return;
+
         // Contact info animation
         gsap.from('.contact-info', {
             opacity: 0,
@@ -600,6 +616,40 @@
                         btn.style.color = '';
                         form.reset();
                     }, 3000);
+                }
+            });
+        });
+    }
+
+    /* =================================================
+       FLOOR PLAN INTERACTIVE SWITCHER
+       ================================================= */
+    function initFloorPlans() {
+        const tabs = document.querySelectorAll('.floorplan-tab');
+        const contents = document.querySelectorAll('.floorplan-content-item');
+        if (!tabs.length || !contents.length) return;
+
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                const target = tab.getAttribute('data-tab');
+
+                // Deactivate all tabs
+                tabs.forEach(t => t.classList.remove('active'));
+                // Hide all contents
+                contents.forEach(c => c.classList.remove('active'));
+
+                // Activate clicked tab
+                tab.classList.add('active');
+                
+                // Show matching content
+                const activeContent = document.getElementById(`floorplan-${target}`);
+                if (activeContent) {
+                    activeContent.classList.add('active');
+                    // Fade in smoothly using GSAP
+                    gsap.fromTo(activeContent, 
+                        { opacity: 0, y: 15 },
+                        { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out' }
+                    );
                 }
             });
         });
