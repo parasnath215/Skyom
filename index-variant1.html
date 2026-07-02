@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SKYOM — Building Dreams. Shaping Futures.</title>
+    <title>SKYOM — Variant 1 (Light & Asymmetrical)</title>
     <meta name="description" content="SKYOM is a premium real estate builder crafting luxury residences across India. Explore our legacy projects, ongoing developments, and future visions in Ayodhya and Dehradun.">
     <meta name="keywords" content="Skyom, luxury real estate, premium builder, Skyom Floors, Skyom City, Ayodhya, Dehradun, real estate India">
     
@@ -19,7 +19,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
     <!-- Stylesheet -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style-variant1.css">
 </head>
 <body>
 
@@ -108,27 +108,36 @@
         </div>
     </div>
 
-    <!-- ========== SECTION 1: HERO ========== -->
+    <!-- ========== SECTION 1: HERO (Asymmetric) ========== -->
     <section id="hero" class="hero-section">
-        <div class="hero-bg">
-            <video src="assets/Banner.mp4" autoplay loop muted playsinline class="hero-bg-video"></video>
-            <div class="hero-overlay"></div>
-        </div>
-        <div class="hero-content">
-            <div class="hero-subtitle">
-                <span class="hero-line"></span>
-                <span class="hero-subtitle-text">Est. 2004 — Premium Real Estate</span>
+        <div class="hero-grid">
+            <div class="hero-content">
+                <div class="hero-subtitle">
+                    <span class="hero-line"></span>
+                    <span class="hero-subtitle-text">Est. 2004 — Premium Real Estate</span>
+                </div>
+                <h1 class="hero-title">
+                    <span class="hero-title-line"><span class="hero-title-word">Building</span> <span class="hero-title-word">Dreams.</span></span>
+                    <span class="hero-title-line"><span class="hero-title-word">Shaping</span> <span class="hero-title-word">Futures.</span></span>
+                </h1>
+                <p class="hero-description">
+                    Crafting luxury residences that stand as timeless landmarks across India's most coveted destinations.
+                </p>
+                <a href="projects.html" class="hero-cta magnetic-btn">
+                    <span class="hero-cta-text">Explore Projects</span>
+                    <span class="hero-cta-arrow">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M7 17L17 7M17 7H7M17 7V17"/>
+                        </svg>
+                    </span>
+                </a>
             </div>
-            <h1 class="hero-title"><span class="hero-title-line"><span class="hero-title-word">Our</span></span><span class="hero-title-line"><span class="hero-title-word">Projects.</span></span></h1>
-            <p class="hero-description">Discover Skyom City in Mohanlalganj, Lucknow — offering Villa Land Options, Residential Plots, and 24+ Landscaped Parks.</p>
-            <a href="projects.html" class="hero-cta">
-                <span class="hero-cta-text">Explore Projects</span>
-                <span class="hero-cta-arrow">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                        <path d="M7 17L17 7M17 7H7M17 7V17"/>
-                    </svg>
-                </span>
-            </a>
+            <div class="hero-right">
+                <div class="hero-media-container">
+                    <video src="assets/Banner.mp4" autoplay loop muted playsinline></video>
+                </div>
+                <div class="hero-right-meta">SKYOM HQ / EST. 2004</div>
+            </div>
         </div>
         <div class="hero-scroll-indicator">
             <span class="scroll-text">Scroll</span>
@@ -138,7 +147,51 @@
         </div>
     </section>
 
-    <!-- ========== SECTION 3: PROJECTS SHOWCASE ========== -->
+    <!-- ========== SECTION 2: JOURNEY TIMELINE (Sticky) ========== -->
+    <section id="timeline" class="timeline-section">
+        <div class="timeline-grid">
+            <div class="timeline-sticky-col">
+                <div class="timeline-header">
+                    <span class="section-tag">Our Journey</span>
+                    <h2 class="section-title">A Legacy of <em>Excellence</em></h2>
+                </div>
+                <div class="timeline-active-year-box">
+                    <div class="timeline-active-year-slider">
+                        <span>2004</span>
+                        <span>2021</span>
+                        <span>2026</span>
+                    </div>
+                </div>
+            </div>
+            <div class="timeline-list">
+                <!-- Phase 1 -->
+                <div class="timeline-item timeline-card active">
+                    <div class="timeline-card-year">2004 — 2020</div>
+                    <h3 class="timeline-card-title">The Legacy</h3>
+                    <p class="timeline-card-text">From our first residential project, Skyom Floors, we established a reputation for uncompromising quality and architectural excellence. Every brick laid with precision, every space designed with purpose.</p>
+                    <span class="timeline-card-status completed">Completed</span>
+                </div>
+
+                <!-- Phase 2 -->
+                <div class="timeline-item timeline-card">
+                    <div class="timeline-card-year">2021 — Present</div>
+                    <h3 class="timeline-card-title">The Present</h3>
+                    <p class="timeline-card-text">Skyom City is our most ambitious project — a thriving township that redefines urban living. Currently under development, this landmark project is transforming the landscape.</p>
+                    <span class="timeline-card-status ongoing">Ongoing</span>
+                </div>
+
+                <!-- Phase 3 -->
+                <div class="timeline-item timeline-card">
+                    <div class="timeline-card-year">2026 — Beyond</div>
+                    <h3 class="timeline-card-title">The Future</h3>
+                    <p class="timeline-card-text">Our vision extends to the sacred city of Ayodhya and the serene hills of Dehradun. Two extraordinary projects that will blend tradition with modernity, nature with architecture.</p>
+                    <span class="timeline-card-status upcoming">Coming Soon</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== SECTION 3: PROJECTS SHOWCASE (Asymmetric Masonry) ========== -->
     <section id="projects" class="projects-section">
         
         <!-- Project 1: Skyom Floors -->
@@ -299,9 +352,163 @@
 
     </section>
 
+    <!-- ========== SECTION 4: ABOUT (Editorial) ========== -->
+    <section id="about" class="about-section">
+        <div class="about-inner">
+            <div class="about-image-col">
+                <div class="about-image-wrapper">
+                    <img src="assets/about.png" alt="Skyom premium office interior" class="about-image" loading="lazy">
+                </div>
+                <div class="about-experience">
+                    <span class="experience-number">20+</span>
+                    <span class="experience-text">Years of<br>Excellence</span>
+                </div>
+            </div>
+            <div class="about-text-col">
+                <span class="section-tag">About Skyom</span>
+                <h2 class="section-title about-title">Crafting Spaces That <em>Inspire</em></h2>
+                <div class="about-description">
+                    <p>Since 2004, Skyom has been at the forefront of premium real estate development. We don't merely construct buildings — we architect experiences, sculpt environments, and create homes that become the backdrop for life's most precious moments.</p>
+                    <p>Our philosophy is rooted in the belief that exceptional living spaces are born from a deep understanding of how people live, dream, and grow. Every project carries our signature commitment to quality, innovation, and timeless design.</p>
+                </div>
+                <div class="about-stats">
+                    <div class="stat-item">
+                        <div class="stat-num-wrapper">
+                            <span class="stat-number" data-target="500">0</span>
+                            <span class="stat-suffix">+</span>
+                        </div>
+                        <span class="stat-label">Happy Families</span>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-num-wrapper">
+                            <span class="stat-number" data-target="4">0</span>
+                            <span class="stat-suffix"></span>
+                        </div>
+                        <span class="stat-label">Landmark Projects</span>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-num-wrapper">
+                            <span class="stat-number" data-target="3">0</span>
+                            <span class="stat-suffix"></span>
+                        </div>
+                        <span class="stat-label">Cities</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== SECTION 5: VISION (Asymmetric Collage) ========== -->
+    <section id="vision" class="vision-section">
+        <div class="vision-inner">
+            <div class="vision-content">
+                <span class="section-tag">Our Philosophy</span>
+                <blockquote class="vision-quote">
+                    <span class="quote-word">We</span>
+                    <span class="quote-word">don't</span>
+                    <span class="quote-word">just</span>
+                    <span class="quote-word">build</span>
+                    <span class="quote-word">structures.</span>
+                    <br>
+                    <span class="quote-word">We</span>
+                    <span class="quote-word">craft</span>
+                    <span class="quote-word highlight">legacies.</span>
+                </blockquote>
+                <p class="vision-attribution">— The Skyom Promise</p>
+            </div>
+            <div class="vision-collage">
+                <div class="collage-img img-1">
+                    <img src="assets/hero.png" alt="Skyom vision visual concept">
+                </div>
+                <div class="collage-img img-2">
+                    <img src="assets/about.png" alt="Skyom architectural layout design">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== SECTION 6: CONTACT & FOOTER ========== -->
+    <section id="contact" class="contact-section">
+        <div class="contact-inner">
+            <div class="contact-info">
+                <span class="section-tag">Get In Touch</span>
+                <h2 class="section-title">Let's Build Your <em>Dream</em></h2>
+                <p class="contact-text">Ready to explore our projects or interested in upcoming developments? Reach out to us and let's start a conversation about your future home.</p>
+                <div class="contact-details">
+                    <div class="contact-detail-item">
+                        <span class="contact-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                            </svg>
+                        </span>
+                        <span>info@skyomcity.in</span>
+                    </div>
+                    <div class="contact-detail-item">
+                        <span class="contact-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+                            </svg>
+                        </span>
+                        <span>+91 999999 0320</span>
+                    </div>
+                    <div class="contact-detail-item">
+                        <span class="contact-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                                <path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                            </svg>
+                        </span>
+                        <span>Mohanlalganj, Lucknow</span>
+                    </div>
+                </div>
+            </div>
+            <div class="contact-form-wrapper">
+                <form id="contact-form" class="contact-form">
+                    <div class="form-group">
+                        <input type="text" id="form-name" class="form-input" required placeholder=" " autocomplete="name">
+                        <label for="form-name" class="form-label">Your Name</label>
+                        <div class="form-line"></div>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="form-email" class="form-input" required placeholder=" " autocomplete="email">
+                        <label for="form-email" class="form-label">Email Address</label>
+                        <div class="form-line"></div>
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" id="form-phone" class="form-input" placeholder=" " autocomplete="tel">
+                        <label for="form-phone" class="form-label">Phone Number</label>
+                        <div class="form-line"></div>
+                    </div>
+                    <div class="form-group">
+                        <select id="form-project" class="form-input form-select" required>
+                            <option value="" disabled selected></option>
+                            <option value="skyom-floors">Skyom Floors</option>
+                            <option value="skyom-city">Skyom City</option>
+                            <option value="ayodhya">Ayodhya Project</option>
+                            <option value="dehradun">Dehradun Project</option>
+                            <option value="general">General Inquiry</option>
+                        </select>
+                        <label for="form-project" class="form-label">Interested Project</label>
+                        <div class="form-line"></div>
+                    </div>
+                    <div class="form-group">
+                        <textarea id="form-message" class="form-input form-textarea" rows="3" placeholder=" "></textarea>
+                        <label for="form-message" class="form-label">Your Message</label>
+                        <div class="form-line"></div>
+                    </div>
+                    <button type="submit" class="form-submit magnetic-btn">
+                        <span>Send Message</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+                        </svg>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
     <!-- ========== FOOTER ========== -->
     <footer class="footer">
-        <div class="footer-gradient"></div>
         <div class="footer-inner">
             <div class="footer-brand">
                 <span class="footer-logo">SKYOM</span>
@@ -339,7 +546,7 @@
         </div>
     </footer>
 
-    <!-- ========== STICKY CONTACT WIDGET (SOBHA REALTY INSPIRED) ========== -->
+    <!-- ========== STICKY CONTACT WIDGET ========== -->
     <div class="sticky-contact-bar">
         <a href="https://wa.me/919999990320" target="_blank" class="sticky-action-btn" aria-label="WhatsApp Chat">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
@@ -362,13 +569,10 @@
     </div>
 
     <!-- ========== SCRIPTS ========== -->
-    <!-- Lenis Smooth Scroll -->
     <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
-    <!-- GSAP -->
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js"></script>
-    <!-- Main Script -->
-    <script src="script.js"></script>
+    <script src="script-variant1.js"></script>
 
 </body>
 </html>

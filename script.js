@@ -84,10 +84,17 @@
         // Handle anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', (e) => {
-                e.preventDefault();
-                const target = document.querySelector(anchor.getAttribute('href'));
-                if (target) {
-                    lenisInstance.scrollTo(target, { offset: -40, duration: 1.5 });
+                const href = anchor.getAttribute('href');
+                if (href && href !== '#') {
+                    e.preventDefault();
+                    try {
+                        const target = document.querySelector(href);
+                        if (target) {
+                            lenisInstance.scrollTo(target, { offset: -40, duration: 1.5 });
+                        }
+                    } catch (err) {
+                        console.error('Invalid selector:', href);
+                    }
                 }
                 // Close mobile menu if open
                 closeMobileMenu();
