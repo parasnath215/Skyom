@@ -26,7 +26,7 @@
     <!-- ========== PRELOADER ========== -->
     <div id="preloader" class="preloader">
         <div class="preloader-inner">
-            <div class="preloader-logo">SKYOM</div>
+            <div class="preloader-logo"><img src="assets/skyom logo.png" alt="SKYOM Logo" class="preloader-logo-img"></div>
             <div class="preloader-tagline">Building Dreams</div>
             <div class="preloader-bar">
                 <div class="preloader-bar-fill"></div>
@@ -39,7 +39,7 @@
     <div id="cursor-follower" class="custom-cursor-follower"></div>
 
     <!-- ========== NAVIGATION ========== -->
-    <nav id="navbar" class="navbar">
+        <nav id="navbar" class="navbar">
         <a href="index.html" class="nav-logo">
             <img src="assets/skyom logo.png" alt="SKYOM Logo" class="nav-logo-img">
         </a>
@@ -69,23 +69,9 @@
                     </div>
                 </div>
             </div>
-            
-            <!-- TEST SECTION DROPDOWN -->
-            <div class="nav-dropdown-wrapper">
-                <a href="#" class="nav-link dropdown-trigger" data-text="Test">Test <span class="arrow-down">&#9662;</span></a>
-                <div class="dropdown-menu">
-                    <div class="dropdown-item">
-                        <a href="index-variant1.html">Variant 1 (Asymmetrical)</a>
-                    </div>
-                    <div class="dropdown-item">
-                        <a href="index-variant2.html">Variant 2 (Interactive)</a>
-                    </div>
-                </div>
-            </div>
-
             <a href="about.html" class="nav-link" data-text="About Us">About Us</a>
-            <a href="#" class="nav-link" data-text="Blog">Blog</a>
-            <a href="#" class="nav-link" data-text="Careers">Careers</a>
+            <a href="blog.html" class="nav-link" data-text="Blog">Blog</a>
+            <a href="news.html" class="nav-link" data-text="News">News</a>
             <a href="contact.html" class="nav-link" data-text="Contact Us">Contact Us</a>
         </div>
         <a href="contact.html" class="nav-cta-btn">GET IN TOUCH</a>
@@ -103,15 +89,13 @@
             <a href="about.html" class="mobile-link">About</a>
             <a href="vision.html" class="mobile-link">Vision</a>
             <a href="contact.html" class="mobile-link">Contact</a>
-            <a href="index-variant1.html" class="mobile-link" style="font-size: 1.5rem; color: var(--color-gold);">Variant 1</a>
-            <a href="index-variant2.html" class="mobile-link" style="font-size: 1.5rem; color: var(--color-gold);">Variant 2</a>
         </div>
     </div>
 
     <!-- ========== HERO ========== -->
     <section id="hero" class="hero-section">
         <div class="hero-bg">
-            <img src="assets/Skyom Floor/Skyom Floor-6.png" alt="Skyom Floors residential complex" class="hero-bg-img">
+            <img src="assets/skyom-floors.png" alt="Skyom Floors residential complex" class="hero-bg-img">
             <div class="hero-overlay"></div>
         </div>
         <div class="hero-content">
@@ -141,12 +125,15 @@
         </div>
     </section>
 
+    
     <!-- ========== PROJECT DETAILS OVERVIEW ========== -->
     <section id="overview" class="project-details-grid">
         <div class="project-text-block">
-            <h3>Living Redefined</h3>
-            <p>Skyom Floors stands as our premier completed residential development. Designed for those who appreciate independence and privacy, each floor is an individual sanctuary featuring contemporary layout concepts, rich architectural finishes, and spacious interior drafts.</p>
-            <p>Every apartment offers open ventilation, luxury specifications, premium sanitaryware, modular kitchen designs, and large balconies to let in natural light. Residents enjoy dedicated parking spaces, modern elevators, and 24/7 security in a well-connected gated community.</p>
+            <h3>Say Hello to Delhi NCR's Finest Luxurious city living</h3>
+            <p>Experience the perfect blend of city convenience and private living with SKYOM Group’s exclusive limited time offering. Own a luxurious independent floor in the vibrant heart of Delhi—where urban energy meets personal space and elegance. Don’t miss this rare opportunity!</p>
+            <br>
+            <h3>Urban Living, Naturally Beautiful</h3>
+            <p>Nestled in the city’s heart yet never far from nature, your day begins with a serene walk under the golden sun. Wide boulevards and lush parks lie just steps away, offering calm amidst the city’s buzz. Within modern architecture, nature is thoughtfully preserved—and when the city calls, everything you need is just around the corner.</p>
         </div>
         <div class="project-sidebar">
             <h3 class="sidebar-title">Project Details</h3>
@@ -156,62 +143,91 @@
                     <span class="sidebar-val">Independent Floors</span>
                 </div>
                 <div class="sidebar-row">
+                    <span class="sidebar-label">Configurations</span>
+                    <span class="sidebar-val">3 BHK & 4 BHK</span>
+                </div>
+                <div class="sidebar-row">
+                    <span class="sidebar-label">Sizes Available</span>
+                    <span class="sidebar-val">1500, 1800 & 2100 Sq. Ft.</span>
+                </div>
+                <div class="sidebar-row">
                     <span class="sidebar-label">Status</span>
-                    <span class="sidebar-val">Completed / Delivered</span>
+                    <span class="sidebar-val">Delivered</span>
                 </div>
                 <div class="sidebar-row">
                     <span class="sidebar-label">Location</span>
-                    <span class="sidebar-val">Sushant Golf City, Lucknow</span>
-                </div>
-                <div class="sidebar-row">
-                    <span class="sidebar-label">Completed Year</span>
-                    <span class="sidebar-val">2021</span>
-                </div>
-                <div class="sidebar-row">
-                    <span class="sidebar-label">Total Units</span>
-                    <span class="sidebar-val">Exclusively Crafted Enclave</span>
+                    <span class="sidebar-val">Delhi NCR</span>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ========== AMENITIES ========== -->
-    <section class="project-amenities-section">
-        <span class="section-tag">Features</span>
+    <!-- ========== AMENITIES LIST ========== -->
+    <section class="project-amenities-section" style="padding-top: 2rem;">
+        <span class="section-tag">Amenities</span>
         <h2 class="section-title">Designed for <em>Excellence</em></h2>
         <div class="amenities-grid">
             <div class="amenity-card">
-                <div class="amenity-icon-wrapper">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                        <path d="M12 5v14M5 12h14"/>
-                    </svg>
-                </div>
-                <h4 class="amenity-title">Private Elevators</h4>
-                <p class="amenity-desc">Dedicated, secure, and modern elevator access for each individual floor residence.</p>
+                <h4 class="amenity-title">Smart Homes</h4>
             </div>
             <div class="amenity-card">
-                <div class="amenity-icon-wrapper">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
-                        <path d="M9 3v18m6-18v18"/>
-                    </svg>
-                </div>
                 <h4 class="amenity-title">Modular Kitchen</h4>
-                <p class="amenity-desc">Sleek, Italian-style kitchen layouts fitted with premium appliances and chimney exhausts.</p>
             </div>
             <div class="amenity-card">
-                <div class="amenity-icon-wrapper">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-                    </svg>
-                </div>
-                <h4 class="amenity-title">Gated Security</h4>
-                <p class="amenity-desc">Round-the-clock manual guard checkpoints, smart intercoms, and high-definition CCTV coverage.</p>
+                <h4 class="amenity-title">Vehicle Parking</h4>
+            </div>
+            <div class="amenity-card">
+                <h4 class="amenity-title">Power Backup</h4>
+            </div>
+            <div class="amenity-card">
+                <h4 class="amenity-title">Kid's Play Area</h4>
+            </div>
+            <div class="amenity-card">
+                <h4 class="amenity-title">Premium Flooring</h4>
+            </div>
+            <div class="amenity-card">
+                <h4 class="amenity-title">Air Conditioning</h4>
+            </div>
+            <div class="amenity-card">
+                <h4 class="amenity-title">Sprawling Greens</h4>
+            </div>
+            <div class="amenity-card">
+                <h4 class="amenity-title">Premium Interiors</h4>
             </div>
         </div>
     </section>
 
-    <!-- ========== GALLERY ========== -->
+    <!-- ========== FEATURES & HIGHLIGHTS ========== -->
+    <section class="project-details-grid" style="padding-top: 2rem; background: var(--color-bg);">
+        <div class="project-text-block" style="max-width: 100%;">
+            <h3>Architectural & Lifestyle Features</h3>
+            <ul style="color: var(--color-text-muted); font-size: 1.15rem; line-height: 1.9; padding-left: 1.5rem; margin-bottom: 2.5rem;">
+                <li>Independent Floors with exclusive entry and privacy</li>
+                <li>Spacious, well-ventilated layouts designed for maximum usability</li>
+                <li>Large balconies and windows for natural light and air circulation</li>
+                <li>Premium quality fittings and finishes for a modern living experience</li>
+                <li>Low-rise development ensuring fewer occupants and greater privacy</li>
+            </ul>
+
+            <h3>Safety & Security</h3>
+            <ul style="color: var(--color-text-muted); font-size: 1.15rem; line-height: 1.9; padding-left: 1.5rem; margin-bottom: 2.5rem;">
+                <li>CCTV surveillance in common areas including entrance and lobbies</li>
+                <li>Video door phones and secure access to floors</li>
+                <li>Fire safety systems in place as per regulatory norms</li>
+                <li>Stilt-level covered parking with secure gated entry</li>
+            </ul>
+
+            <h3>Urban Conveniences</h3>
+            <ul style="color: var(--color-text-muted); font-size: 1.15rem; line-height: 1.9; padding-left: 1.5rem;">
+                <li>Located in prime sectors of Delhi NCR with excellent connectivity</li>
+                <li>Proximity to metro stations, arterial roads, and major business hubs</li>
+                <li>Close to reputed schools, hospitals, malls, and entertainment zones</li>
+                <li>Retail stores, cafés, and essential services within a short drive or walk</li>
+            </ul>
+        </div>
+    </section>
+
+<!-- ========== GALLERY ========== -->
     <section class="project-gallery-section">
         <span class="section-tag">Gallery</span>
         <h2 class="section-title">Visual <em>Showcase</em></h2>
@@ -255,29 +271,68 @@
             <span class="section-tag">Premium Layouts</span>
             <h2 class="section-title">Architectural <em>Floor Plans</em></h2>
             <div class="floorplan-tabs">
-                <button class="floorplan-tab active" data-tab="suite">3 BHK Luxury Suite</button>
+                <button class="floorplan-tab active" data-tab="3bhk-1500">3 BHK (1,500 Sq. Ft.)</button>
+                <button class="floorplan-tab" data-tab="3bhk-1800">3 BHK (1,800 Sq. Ft.)</button>
+                <button class="floorplan-tab" data-tab="4bhk-2100">4 BHK (2,100 Sq. Ft.)</button>
                 <button class="floorplan-tab" data-tab="site">Community Master Plan</button>
             </div>
         </div>
 
         <div class="floorplan-container">
-            <!-- Suite Layout Tab -->
-            <div id="floorplan-suite" class="floorplan-content-item active">
+            <!-- 3 BHK 1500 Sq Ft Tab -->
+            <div id="floorplan-3bhk-1500" class="floorplan-content-item active">
                 <div class="floorplan-details-col">
-                    <h3 class="floorplan-subtitle">Luxury Suite Layout</h3>
-                    <p class="floorplan-desc">A meticulously engineered independent floor layout optimized for space, air circulation, and privacy. Features spacious double-height living areas, private elevator lobby, and premium Italian marble layouts.</p>
+                    <h3 class="floorplan-subtitle">3 BHK Independent Floor (1,500 Sq. Ft.)</h3>
+                    <p class="floorplan-desc">Optimized spatial layout crafted for urban families. Combines open-concept living, three spacious bedrooms, dedicated dining area, and wide private balconies.</p>
                     <div class="floorplan-specs-grid">
                         <div class="floorplan-spec-item">
                             <span class="floorplan-spec-label">Bedrooms</span>
-                            <span class="floorplan-spec-value">3 BHK + Lounge</span>
-                        </div>
-                        <div class="floorplan-spec-item">
-                            <span class="floorplan-spec-label">Bathrooms</span>
-                            <span class="floorplan-spec-value">3 Premium Baths</span>
+                            <span class="floorplan-spec-value">3 Bedrooms</span>
                         </div>
                         <div class="floorplan-spec-item">
                             <span class="floorplan-spec-label">Super Area</span>
-                            <span class="floorplan-spec-value">1,730 Sq. Ft.</span>
+                            <span class="floorplan-spec-value">1,500 Sq. Ft.</span>
+                        </div>
+                        <div class="floorplan-spec-item">
+                            <span class="floorplan-spec-label">Kitchen</span>
+                            <span class="floorplan-spec-value">Modular Kitchen</span>
+                        </div>
+                        <div class="floorplan-spec-item">
+                            <span class="floorplan-spec-label">Balconies</span>
+                            <span class="floorplan-spec-value">2 Wide Balconies</span>
+                        </div>
+                    </div>
+                    <a href="#contact" class="floorplan-btn">
+                        <span>Enquire For Pricing</span>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </a>
+                </div>
+                <div class="floorplan-image-col">
+                    <div class="floorplan-image-wrapper">
+                        <img src="assets/Skyom Floor/Skyom Floor-2.png" alt="3 BHK 1500 Sq Ft Floor Plan" class="floorplan-img">
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3 BHK 1800 Sq Ft Tab -->
+            <div id="floorplan-3bhk-1800" class="floorplan-content-item">
+                <div class="floorplan-details-col">
+                    <h3 class="floorplan-subtitle">3 BHK Luxury Suite (1,800 Sq. Ft.)</h3>
+                    <p class="floorplan-desc">Expanded luxury floor layout featuring a double-height living room, master suite with walk-in wardrobe area, three attached bathrooms, and panoramic balcony views.</p>
+                    <div class="floorplan-specs-grid">
+                        <div class="floorplan-spec-item">
+                            <span class="floorplan-spec-label">Bedrooms</span>
+                            <span class="floorplan-spec-value">3 BHK + Family Lounge</span>
+                        </div>
+                        <div class="floorplan-spec-item">
+                            <span class="floorplan-spec-label">Super Area</span>
+                            <span class="floorplan-spec-value">1,800 Sq. Ft.</span>
+                        </div>
+                        <div class="floorplan-spec-item">
+                            <span class="floorplan-spec-label">Bathrooms</span>
+                            <span class="floorplan-spec-value">3 Attached Baths</span>
                         </div>
                         <div class="floorplan-spec-item">
                             <span class="floorplan-spec-label">Balconies</span>
@@ -293,7 +348,44 @@
                 </div>
                 <div class="floorplan-image-col">
                     <div class="floorplan-image-wrapper">
-                        <img src="assets/Skyom Floor/Skyom Floor-2.png" alt="3 BHK Floor Layout Plan" class="floorplan-img">
+                        <img src="assets/Skyom Floor/Skyom Floor-2.png" alt="3 BHK 1800 Sq Ft Floor Plan" class="floorplan-img">
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4 BHK 2100 Sq Ft Tab -->
+            <div id="floorplan-4bhk-2100" class="floorplan-content-item">
+                <div class="floorplan-details-col">
+                    <h3 class="floorplan-subtitle">4 BHK Royal Residence (2,100 Sq. Ft.)</h3>
+                    <p class="floorplan-desc">Our flagship palatial layout designed for grand living. Features four grand bedrooms, servant/utility space, expansive formal dining, and private elevator lobby access.</p>
+                    <div class="floorplan-specs-grid">
+                        <div class="floorplan-spec-item">
+                            <span class="floorplan-spec-label">Bedrooms</span>
+                            <span class="floorplan-spec-value">4 BHK Royal Suite</span>
+                        </div>
+                        <div class="floorplan-spec-item">
+                            <span class="floorplan-spec-label">Super Area</span>
+                            <span class="floorplan-spec-value">2,100 Sq. Ft.</span>
+                        </div>
+                        <div class="floorplan-spec-item">
+                            <span class="floorplan-spec-label">Bathrooms</span>
+                            <span class="floorplan-spec-value">4 En-suite Baths</span>
+                        </div>
+                        <div class="floorplan-spec-item">
+                            <span class="floorplan-spec-label">Parking</span>
+                            <span class="floorplan-spec-value">2 Covered Bays</span>
+                        </div>
+                    </div>
+                    <a href="#contact" class="floorplan-btn">
+                        <span>Enquire For Pricing</span>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </a>
+                </div>
+                <div class="floorplan-image-col">
+                    <div class="floorplan-image-wrapper">
+                        <img src="assets/Skyom Floor/Skyom Floor-2.png" alt="4 BHK 2100 Sq Ft Floor Plan" class="floorplan-img">
                     </div>
                 </div>
             </div>
@@ -302,23 +394,23 @@
             <div id="floorplan-site" class="floorplan-content-item">
                 <div class="floorplan-details-col">
                     <h3 class="floorplan-subtitle">Community Master Plan</h3>
-                    <p class="floorplan-desc">The master planning of Skyom Floors emphasizes low-density living, lush landscape corridors, and wide asphalt access networks, establishing an elite private enclave within the township.</p>
+                    <p class="floorplan-desc">The master planning of Skyom Floors emphasizes low-density living, lush landscape corridors, and wide access networks, establishing an elite private enclave.</p>
                     <div class="floorplan-specs-grid">
                         <div class="floorplan-spec-item">
-                            <span class="floorplan-spec-label">Total Enclave Area</span>
-                            <span class="floorplan-spec-value">2.5 Exclusive Acres</span>
+                            <span class="floorplan-spec-label">Total Enclave</span>
+                            <span class="floorplan-spec-value">Exclusive Enclave</span>
                         </div>
                         <div class="floorplan-spec-item">
-                            <span class="floorplan-spec-label">Total Residences</span>
-                            <span class="floorplan-spec-value">24 Independent Floors</span>
+                            <span class="floorplan-spec-label">Configurations</span>
+                            <span class="floorplan-spec-value">3 BHK & 4 BHK</span>
                         </div>
                         <div class="floorplan-spec-item">
                             <span class="floorplan-spec-label">Green Space</span>
-                            <span class="floorplan-spec-value">Over 40% Landscaped</span>
+                            <span class="floorplan-spec-value">Landscaped Parks</span>
                         </div>
                         <div class="floorplan-spec-item">
                             <span class="floorplan-spec-label">Access Roads</span>
-                            <span class="floorplan-spec-value">30-Feet Wide Roads</span>
+                            <span class="floorplan-spec-value">Wide Roads & Security</span>
                         </div>
                     </div>
                     <a href="#contact" class="floorplan-btn">
@@ -337,7 +429,7 @@
         </div>
     </section>
 
-    <!-- ========== SECTION 6: CONTACT / FOOTER ========== -->
+<!-- ========== SECTION 6: CONTACT / FOOTER ========== -->
     <section id="contact" class="contact-section">
         <div class="contact-inner">
             <div class="contact-info">

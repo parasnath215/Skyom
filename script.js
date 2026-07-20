@@ -22,8 +22,11 @@
         
         // Wait for all critical images to load
         const heroImg = document.querySelector('.hero-bg-img');
+        let hasStarted = false;
         
         const startApp = () => {
+            if (hasStarted) return;
+            hasStarted = true;
             setTimeout(() => {
                 preloader.classList.add('hidden');
                 document.body.style.overflow = '';
@@ -193,6 +196,8 @@
         animateAbout();
         animateVision();
         animateContact();
+        animateOurVisionSection();
+        initProjectsHeadingReveal();
     }
 
     /* ---- Hero Section ---- */
@@ -660,6 +665,85 @@
                 }
             });
         });
+    }
+
+    /* ---- Our Vision Section ---- */
+    function animateOurVisionSection() {
+        if (!document.querySelector('.our-vision-section')) return;
+
+        gsap.from('.our-vision-text .section-tag', {
+            opacity: 0,
+            x: -30,
+            duration: 0.8,
+            ease: 'power3.out',
+            scrollTrigger: {
+                trigger: '.our-vision-section',
+                start: 'top 75%',
+                toggleActions: 'play none none reverse',
+            }
+        });
+
+        gsap.from('.our-vision-title', {
+            opacity: 0,
+            y: 50,
+            duration: 1.1,
+            ease: 'power4.out',
+            delay: 0.15,
+            scrollTrigger: {
+                trigger: '.our-vision-section',
+                start: 'top 75%',
+                toggleActions: 'play none none reverse',
+            }
+        });
+
+        gsap.from('.our-vision-body', {
+            opacity: 0,
+            y: 30,
+            duration: 0.9,
+            ease: 'power3.out',
+            delay: 0.3,
+            scrollTrigger: {
+                trigger: '.our-vision-section',
+                start: 'top 75%',
+                toggleActions: 'play none none reverse',
+            }
+        });
+
+        gsap.from('.emblem-ring', {
+            opacity: 0,
+            scale: 0.7,
+            duration: 1.2,
+            ease: 'power4.out',
+            delay: 0.2,
+            scrollTrigger: {
+                trigger: '.our-vision-emblem',
+                start: 'top 80%',
+                toggleActions: 'play none none reverse',
+            }
+        });
+    }
+
+    /* ---- Projects Heading Reveal ---- */
+    function initProjectsHeadingReveal() {
+        const wrap = document.querySelector('.projects-heading-wrap');
+        if (!wrap) return;
+
+        const tag = wrap.querySelector('.section-tag');
+        const title = wrap.querySelector('.projects-main-title');
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    if (tag) tag.classList.add('visible');
+                    setTimeout(() => {
+                        if (title) title.classList.add('visible');
+                    }, 120);
+                    observer.disconnect();
+                }
+            });
+        }, { threshold: 0.3 });
+
+        observer.observe(wrap);
     }
 
 })();
