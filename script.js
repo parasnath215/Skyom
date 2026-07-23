@@ -57,6 +57,10 @@
         initMagneticButtons();
         initContactForm();
         initFloorPlans();
+        initFloorPlansV2();
+        initLocationMapV2();
+        initFaqAccordion();
+        initContactV2Form();
     }
 
     /* =================================================
@@ -228,16 +232,11 @@
             ease: 'power4.out',
             stagger: 0.12,
         })
-        .to('.hero-subtitle', {
-            opacity: 1,
-            duration: 0.8,
-            ease: 'power3.out',
-        }, '-=0.5')
         .to('.hero-description', {
             opacity: 1,
             duration: 0.8,
             ease: 'power3.out',
-        }, '-=0.4')
+        }, '-=0.5')
         .to('.hero-cta', {
             opacity: 1,
             duration: 0.6,
@@ -708,19 +707,6 @@
                 toggleActions: 'play none none reverse',
             }
         });
-
-        gsap.from('.emblem-ring', {
-            opacity: 0,
-            scale: 0.7,
-            duration: 1.2,
-            ease: 'power4.out',
-            delay: 0.2,
-            scrollTrigger: {
-                trigger: '.our-vision-emblem',
-                start: 'top 80%',
-                toggleActions: 'play none none reverse',
-            }
-        });
     }
 
     /* ---- Projects Heading Reveal ---- */
@@ -746,4 +732,140 @@
         observer.observe(wrap);
     }
 
+    /* ---- Floor Plans V2 Tab & Arrow Control ---- */
+    function initFloorPlansV2() {
+        const tabs = document.querySelectorAll('.floorplan-v2-tab');
+        if (!tabs.length) return;
+
+        tabs.forEach((tab, index) => {
+            tab.addEventListener('click', () => {
+                const targetId = tab.getAttribute('data-tab');
+                switchFloorPlanV2(targetId, tab);
+            });
+        });
+
+        // Prev & Next arrow navigation
+        const prevBtns = document.querySelectorAll('.floorplan-nav-arrow.prev');
+        const nextBtns = document.querySelectorAll('.floorplan-nav-arrow.next');
+
+        prevBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const activeTab = document.querySelector('.floorplan-v2-tab.active');
+                const allTabs = Array.from(document.querySelectorAll('.floorplan-v2-tab'));
+                let currentIndex = allTabs.indexOf(activeTab);
+                let prevIndex = (currentIndex - 1 + allTabs.length) % allTabs.length;
+                switchFloorPlanV2(allTabs[prevIndex].getAttribute('data-tab'), allTabs[prevIndex]);
+            });
+        });
+
+        nextBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const activeTab = document.querySelector('.floorplan-v2-tab.active');
+                const allTabs = Array.from(document.querySelectorAll('.floorplan-v2-tab'));
+                let currentIndex = allTabs.indexOf(activeTab);
+                let nextIndex = (currentIndex + 1) % allTabs.length;
+                switchFloorPlanV2(allTabs[nextIndex].getAttribute('data-tab'), allTabs[nextIndex]);
+            });
+        });
+    }
+
+    function switchFloorPlanV2(targetId, activeTabElement) {
+        // Active tab styling
+        document.querySelectorAll('.floorplan-v2-tab').forEach(t => t.classList.remove('active'));
+        if (activeTabElement) activeTabElement.classList.add('active');
+
+        // Hide all floorplan contents
+        const contents = document.querySelectorAll('.floorplan-v2-item');
+        contents.forEach(c => {
+            c.style.display = 'none';
+            c.classList.remove('active');
+        });
+
+        // Show targeted content
+        const targetContent = document.getElementById(targetId);
+        if (targetContent) {
+            targetContent.style.display = 'grid';
+            targetContent.classList.add('active');
+            if (typeof gsap !== 'undefined') {
+                gsap.fromTo(targetContent, 
+                    { opacity: 0, y: 10 },
+                    { opacity: 1, y: 0, duration: 0.5, ease: 'power2.out' }
+                );
+            }
+        }
+    }
+
+    /* ---- Location Map V2 Category Filters ---- */
+    function initLocationMapV2() {
+        const catButtons = document.querySelectorAll('.location-cat-btn');
+        const mapFrame = document.querySelector('.location-map-frame');
+        if (!catButtons.length || !mapFrame) return;
+
+        catButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                catButtons.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                const category = btn.getAttribute('data-category');
+                
+                // Update map view with query parameter for selected amenity category
+                let currentSrc = mapFrame.getAttribute('src');
+                if (currentSrc) {
+                    let baseUrl = currentSrc.split('&q=')[0];
+                    if (category && category !== 'all') {
+                        mapFrame.setAttribute('src', `${baseUrl}&q=${encodeURIComponent(category + ' near Mohanlalganj Lucknow')}`);
+                    }
+                }
+            });
+        });
+    }
+
+    /* ---- FAQ Accordion Handler ---- */
+    function initFaqAccordion() {
+        const faqItems = document.querySelectorAll('.faq-v2-item');
+        if (!faqItems.length) return;
+
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-v2-question');
+            question.addEventListener('click', () => {
+                const isOpen = item.classList.contains('open');
+                
+                // Close other open items
+                faqItems.forEach(other => {
+                    if (other !== item) other.classList.remove('open');
+                });
+
+                // Toggle current item
+                if (isOpen) {
+                    item.classList.remove('open');
+                } else {
+                    item.classList.add('open');
+                }
+            });
+        });
+    }
+
+    /* ---- We Love To Hear From You Contact Form Handler ---- */
+    function initContactV2Form() {
+        const form = document.getElementById('contact-v2-form');
+        if (!form) return;
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const submitBtn = form.querySelector('.form-v2-submit');
+            const originalText = submitBtn.innerHTML;
+
+            submitBtn.innerHTML = `<span>Message Sent Successfully!</span>`;
+            submitBtn.style.background = '#28a745';
+            submitBtn.style.color = '#ffffff';
+
+            setTimeout(() => {
+                form.reset();
+                submitBtn.innerHTML = originalText;
+                submitBtn.style.background = '';
+                submitBtn.style.color = '';
+            }, 3500);
+        });
+    }
+
 })();
+
