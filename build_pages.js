@@ -23,14 +23,13 @@ let aboutHtml = indexHtml
     .replace(s5, '')
     .replace(s6, '');
     
-// Replace hero text
 aboutHtml = aboutHtml.replace(
-    /<h1 class="hero-title">[\s\S]*?<\/h1>/, 
-    '<h1 class="hero-title"><span class="hero-title-line"><span class="hero-title-word">About</span></span><span class="hero-title-line"><span class="hero-title-word">Skyom.</span></span></h1>'
+    /<h1 class="brand-heading">[\s\S]*?<\/h1>/, 
+    '<h1 class="brand-heading"><span class="heading-line"><span class="hero-title-word">About</span></span><span class="heading-line accent-gold"><span class="hero-title-word">Skyom.</span></span></h1>'
 );
 aboutHtml = aboutHtml.replace(
-    /<p class="hero-description">[\s\S]*?<\/p>/,
-    '<p class="hero-description">Welcome to Urban Luxurious Living. A visionary blueprint of the future that redefines urban living in Lucknow.</p>'
+    /<p class="brand-subheading">[\s\S]*?<\/p>/,
+    '<p class="brand-subheading">A luxury real estate builder crafting visionary residential townships and estate residences that redefine urban living across India.</p>'
 );
 fs.writeFileSync('about.html', aboutHtml);
 
@@ -42,12 +41,12 @@ let projectsHtml = indexHtml
     .replace(s6, '');
 
 projectsHtml = projectsHtml.replace(
-    /<h1 class="hero-title">[\s\S]*?<\/h1>/, 
-    '<h1 class="hero-title"><span class="hero-title-line"><span class="hero-title-word">Our</span></span><span class="hero-title-line"><span class="hero-title-word">Projects.</span></span></h1>'
+    /<h1 class="brand-heading">[\s\S]*?<\/h1>/, 
+    '<h1 class="brand-heading"><span class="heading-line"><span class="hero-title-word">Our</span></span><span class="heading-line accent-gold"><span class="hero-title-word">Projects.</span></span></h1>'
 );
 projectsHtml = projectsHtml.replace(
-    /<p class="hero-description">[\s\S]*?<\/p>/,
-    '<p class="hero-description">Discover Skyom City in Mohanlalganj, Lucknow — offering Villa Land Options, Residential Plots, and 24+ Landscaped Parks.</p>'
+    /<p class="brand-subheading">[\s\S]*?<\/p>/,
+    '<p class="brand-subheading">Discover Skyom City in Mohanlalganj, Lucknow — offering Villa Land Options, Residential Plots, and 24+ Landscaped Parks.</p>'
 );
 fs.writeFileSync('projects.html', projectsHtml);
 
@@ -59,12 +58,12 @@ let visionHtml = indexHtml
     .replace(s6, '');
 
 visionHtml = visionHtml.replace(
-    /<h1 class="hero-title">[\s\S]*?<\/h1>/, 
-    '<h1 class="hero-title"><span class="hero-title-line"><span class="hero-title-word">Our</span></span><span class="hero-title-line"><span class="hero-title-word">Vision.</span></span></h1>'
+    /<h1 class="brand-heading">[\s\S]*?<\/h1>/, 
+    '<h1 class="brand-heading"><span class="heading-line"><span class="hero-title-word">Our</span></span><span class="heading-line accent-gold"><span class="hero-title-word">Vision.</span></span></h1>'
 );
 visionHtml = visionHtml.replace(
-    /<p class="hero-description">[\s\S]*?<\/p>/,
-    '<p class="hero-description">Sustainable by design, creating future-ready homes where everything is within reach.</p>'
+    /<p class="brand-subheading">[\s\S]*?<\/p>/,
+    '<p class="brand-subheading">Sustainable by design, creating future-ready homes where everything is within reach.</p>'
 );
 fs.writeFileSync('vision.html', visionHtml);
 
@@ -76,12 +75,12 @@ let contactHtml = indexHtml
     .replace(s5, '');
 
 contactHtml = contactHtml.replace(
-    /<h1 class="hero-title">[\s\S]*?<\/h1>/, 
-    '<h1 class="hero-title"><span class="hero-title-line"><span class="hero-title-word">Contact</span></span><span class="hero-title-line"><span class="hero-title-word">Us.</span></span></h1>'
+    /<h1 class="brand-heading">[\s\S]*?<\/h1>/, 
+    '<h1 class="brand-heading"><span class="heading-line"><span class="hero-title-word">Contact</span></span><span class="heading-line accent-gold"><span class="hero-title-word">Us.</span></span></h1>'
 );
 contactHtml = contactHtml.replace(
-    /<p class="hero-description">[\s\S]*?<\/p>/,
-    '<p class="hero-description">Let\'s build your dream. Get in touch with us at our corporate office in Sushant Golf City or visit the site at Mohanlalganj.</p>'
+    /<p class="brand-subheading">[\s\S]*?<\/p>/,
+    '<p class="brand-subheading">Let\'s build your dream. Get in touch with us at our corporate office in Sushant Golf City or visit the site at Mohanlalganj.</p>'
 );
 fs.writeFileSync('contact.html', contactHtml);
 

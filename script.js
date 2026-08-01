@@ -207,7 +207,6 @@
     /* ---- Hero Section ---- */
     function animateHero() {
         if (!document.querySelector('.hero-section')) return;
-        const tl = gsap.timeline({ delay: 0.3 });
 
         // Hero background parallax
         const heroBg = document.querySelector('.hero-bg-img') || document.querySelector('.hero-bg-video');
@@ -224,41 +223,55 @@
             });
         }
 
-        // Staggered word reveal
-        tl.to('.hero-title-word', {
+        // Scroll indicator reveal
+        gsap.to('.hero-scroll-indicator', {
+            opacity: 1,
+            duration: 1,
+            delay: 0.4,
+            ease: 'power3.out',
+        });
+
+        // Staggered reveal for hero brand statement
+        const targetTrigger = document.querySelector('.hero-brand-statement') || document.querySelector('.hero-text-section') || '.hero-section';
+        const tl = gsap.timeline({
+            scrollTrigger: {
+                trigger: targetTrigger,
+                start: 'top 80%',
+                toggleActions: 'play none none reverse',
+            }
+        });
+
+        tl.from('.eyebrow-text', {
+            opacity: 0,
+            y: 20,
+            duration: 0.6,
+            ease: 'power3.out',
+        })
+        .to('.hero-title-word', {
             opacity: 1,
             y: 0,
             duration: 1,
             ease: 'power4.out',
             stagger: 0.12,
-        })
-        .to('.hero-description', {
-            opacity: 1,
+        }, '-=0.3')
+        .from('.brand-subheading', {
+            opacity: 0,
+            y: 30,
             duration: 0.8,
             ease: 'power3.out',
         }, '-=0.5')
+        .from('.highlight-item', {
+            opacity: 0,
+            y: 20,
+            duration: 0.6,
+            stagger: 0.15,
+            ease: 'power3.out',
+        }, '-=0.4')
         .to('.hero-cta', {
             opacity: 1,
             duration: 0.6,
             ease: 'power3.out',
-        }, '-=0.3')
-        .to('.hero-scroll-indicator', {
-            opacity: 1,
-            duration: 0.6,
-            ease: 'power3.out',
-        }, '-=0.2');
-
-        // Fade hero content on scroll
-        gsap.to('.hero-content', {
-            opacity: 0,
-            y: -50,
-            scrollTrigger: {
-                trigger: '.hero-section',
-                start: '60% top',
-                end: 'bottom top',
-                scrub: 1,
-            }
-        });
+        }, '-=0.3');
     }
 
     /* ---- Timeline Section ---- */
