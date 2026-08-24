@@ -1730,18 +1730,29 @@ body:has(button:hover) .custom-cursor-follower {
 }
 
 .footer-logo {
-    font-family: var(--font-display);
-    font-size: 1.5rem;
-    font-weight: 400;
-    letter-spacing: 0.25em;
-    color: var(--color-gold);
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+    transition: opacity var(--duration-fast), transform var(--duration-fast);
+}
+
+.footer-logo:hover {
+    opacity: 0.85;
+    transform: translateY(-2px);
+}
+
+.footer-logo-img {
+    height: 48px;
+    width: auto;
+    object-fit: contain;
+    display: block;
 }
 
 .footer-tagline {
     font-size: 0.8rem;
     font-weight: 300;
     color: var(--color-text-secondary);
-    margin-top: 0.25rem;
+    margin-top: 0.5rem;
 }
 
 .footer-links {
@@ -1984,6 +1995,13 @@ body:has(button:hover) .custom-cursor-follower {
     .footer-inner {
         flex-direction: column;
         text-align: center;
+        align-items: center;
+    }
+
+    .footer-brand {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 
     .footer-links {

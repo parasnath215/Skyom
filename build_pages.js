@@ -25,7 +25,7 @@ let aboutHtml = indexHtml
     
 aboutHtml = aboutHtml.replace(
     /<h1 class="brand-heading">[\s\S]*?<\/h1>/, 
-    '<h1 class="brand-heading"><span class="heading-line"><span class="hero-title-word">About</span></span><span class="heading-line accent-gold"><span class="hero-title-word">Skyom.</span></span></h1>'
+    '<h1 class="brand-heading"><span class="heading-line"><span class="hero-title-word">About</span></span><span class="heading-line accent-gold"><span class="hero-title-word">SKYOM.</span></span></h1>'
 );
 aboutHtml = aboutHtml.replace(
     /<p class="brand-subheading">[\s\S]*?<\/p>/,
