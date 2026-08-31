@@ -883,20 +883,30 @@
     }
 
     /* =================================================
-       BRAND LOGO 'S' FONT STYLING FOR SKYOM
-       Matches the 'S' font from the official logo
+       BRAND LOGO IMAGE REPLACEMENT FOR SKYOM
+       Replaces SKYOM text with Skyom.png image (excluding testimonials)
        ================================================= */
     function initBrandStyling() {
-        const skippedTags = new Set(['SCRIPT', 'STYLE', 'TEXTAREA', 'INPUT', 'SELECT', 'CODE', 'PRE', 'SVG', 'PATH', 'HEAD', 'TITLE', 'META']);
+        const skippedTags = new Set(['SCRIPT', 'STYLE', 'TEXTAREA', 'INPUT', 'SELECT', 'CODE', 'PRE', 'SVG', 'PATH', 'HEAD', 'TITLE', 'META', 'IMG', 'A']);
         
         function formatNode(node) {
             if (node.nodeType === Node.TEXT_NODE) {
                 const text = node.nodeValue;
                 if (text && /(SKYOM|Skyom)/.test(text)) {
                     const parent = node.parentNode;
-                    if (parent && !skippedTags.has(parent.nodeName) && !parent.classList.contains('skyom-s')) {
+                    if (
+                        parent &&
+                        !skippedTags.has(parent.nodeName) &&
+                        !parent.closest('a.nav-logo') &&
+                        !parent.closest('a.footer-logo') &&
+                        !parent.closest('.testimonials-section') &&
+                        !parent.closest('.testimonial-card') &&
+                        !parent.closest('.testimonial-content') &&
+                        !parent.closest('.testimonial-project-badge') &&
+                        !parent.classList.contains('skyom-brand-logo')
+                    ) {
                         const tempContainer = document.createElement('span');
-                        tempContainer.innerHTML = text.replace(/(S)(KYOM|kyom)/g, '<span class="skyom-s">$1</span>$2');
+                        tempContainer.innerHTML = text.replace(/SKYOM|Skyom/g, '<img src="assets/Skyom.png" alt="SKYOM" class="skyom-brand-logo">');
                         
                         while (tempContainer.firstChild) {
                             parent.insertBefore(tempContainer.firstChild, node);
@@ -905,7 +915,14 @@
                     }
                 }
             } else if (node.nodeType === Node.ELEMENT_NODE) {
-                if (!skippedTags.has(node.nodeName) && !node.classList.contains('skyom-s')) {
+                if (
+                    !skippedTags.has(node.nodeName) &&
+                    !node.classList.contains('skyom-brand-logo') &&
+                    !node.closest('a.nav-logo') &&
+                    !node.closest('a.footer-logo') &&
+                    !node.closest('.testimonials-section') &&
+                    !node.closest('.testimonial-card')
+                ) {
                     const children = Array.from(node.childNodes);
                     for (let i = 0; i < children.length; i++) {
                         formatNode(children[i]);

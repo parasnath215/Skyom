@@ -145,7 +145,18 @@ p {
     text-justify: inter-word;
 }
 
-/* ---- SKYOM Brand Logo "S" Styling ---- */
+/* ---- SKYOM Brand Logo Image & "S" Styling ---- */
+.skyom-brand-logo,
+.skyom-inline-logo {
+    display: inline-block;
+    height: 0.85em;
+    width: auto;
+    vertical-align: -0.06em;
+    margin: 0 0.12em;
+    object-fit: contain;
+    border-radius: 2px;
+}
+
 .skyom-s,
 .logo-s,
 .s-brand {
