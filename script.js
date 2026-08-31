@@ -11,6 +11,7 @@
     document.addEventListener('DOMContentLoaded', init);
 
     function init() {
+        initBrandStyling();
         initPreloader();
     }
 
@@ -61,6 +62,7 @@
         initLocationMapV2();
         initFaqAccordion();
         initContactV2Form();
+        initBrandStyling();
     }
 
     /* =================================================
@@ -878,6 +880,43 @@
                 submitBtn.style.color = '';
             }, 3500);
         });
+    }
+
+    /* =================================================
+       BRAND LOGO 'S' FONT STYLING FOR SKYOM
+       Matches the 'S' font from the official logo
+       ================================================= */
+    function initBrandStyling() {
+        const skippedTags = new Set(['SCRIPT', 'STYLE', 'TEXTAREA', 'INPUT', 'SELECT', 'CODE', 'PRE', 'SVG', 'PATH', 'HEAD', 'TITLE', 'META']);
+        
+        function formatNode(node) {
+            if (node.nodeType === Node.TEXT_NODE) {
+                const text = node.nodeValue;
+                if (text && /(SKYOM|Skyom)/.test(text)) {
+                    const parent = node.parentNode;
+                    if (parent && !skippedTags.has(parent.nodeName) && !parent.classList.contains('skyom-s')) {
+                        const tempContainer = document.createElement('span');
+                        tempContainer.innerHTML = text.replace(/(S)(KYOM|kyom)/g, '<span class="skyom-s">$1</span>$2');
+                        
+                        while (tempContainer.firstChild) {
+                            parent.insertBefore(tempContainer.firstChild, node);
+                        }
+                        parent.removeChild(node);
+                    }
+                }
+            } else if (node.nodeType === Node.ELEMENT_NODE) {
+                if (!skippedTags.has(node.nodeName) && !node.classList.contains('skyom-s')) {
+                    const children = Array.from(node.childNodes);
+                    for (let i = 0; i < children.length; i++) {
+                        formatNode(children[i]);
+                    }
+                }
+            }
+        }
+        
+        if (document.body) {
+            formatNode(document.body);
+        }
     }
 
 })();
