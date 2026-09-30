@@ -4,6 +4,7 @@
   "description": "",
   "main": "build_pages.js",
   "scripts": {
+    "build": "node build_pages.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
