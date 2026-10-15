@@ -1,0 +1,2 @@
+# Phusion Passenger restart trigger
+restart
