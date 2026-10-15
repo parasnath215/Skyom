@@ -18,22 +18,6 @@
 
     <!-- Stylesheet -->
     <link rel="stylesheet" href="style.css">
-    <style>
-        .hero-rera-overlay {
-            position: absolute;
-            top: max(100px, calc(var(--nav-height) + 20px));
-            left: max(20px, var(--container-padding));
-            z-index: 10;
-            max-width: min(90vw, 350px);
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-        }
-        @media (max-width: 768px) {
-            .hero-rera-overlay {
-                display: none;
-            }
-        }
-    </style>
 </head>
 
 <body>
@@ -115,7 +99,6 @@
             <video src="assets/Banner.mp4" autoplay="" loop="" muted="" playsinline="" class="hero-bg-video"></video>
             <div class="hero-overlay"></div>
         </div>
-        <img src="assets/rera-details.png" alt="RERA Registration Details" class="hero-rera-overlay">
         <div class="hero-scroll-indicator">
             <span class="scroll-text">Scroll</span>
             <div class="scroll-line">
