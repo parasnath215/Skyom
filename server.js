@@ -1,12 +1,17 @@
-const http = require('http');
-const fs = require('fs');
-const path = require('path');
+import http from 'http';
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const PORT = process.env.PORT || 3000;
 
 const mimeTypes = {
     '.html': 'text/html; charset=utf-8',
     '.js': 'text/javascript; charset=utf-8',
+    '.mjs': 'text/javascript; charset=utf-8',
     '.css': 'text/css; charset=utf-8',
     '.png': 'image/png',
     '.jpg': 'image/jpeg',
@@ -18,62 +23,101 @@ const mimeTypes = {
     '.woff': 'font/woff',
     '.woff2': 'font/woff2',
     '.ttf': 'font/ttf',
-    '.json': 'application/json'
+    '.otf': 'font/otf',
+    '.ico': 'image/x-icon',
+    '.json': 'application/json',
+    '.txt': 'text/plain; charset=utf-8',
+    '.xml': 'application/xml; charset=utf-8'
 };
 
 const server = http.createServer((req, res) => {
-    let reqPath;
     try {
-        reqPath = decodeURIComponent(req.url.split('?')[0]);
-    } catch (e) {
-        reqPath = req.url.split('?')[0];
-    }
-
-    if (reqPath === '/' || reqPath === '') {
-        reqPath = '/index.html';
-    }
-
-    let filePath = path.join(__dirname, reqPath);
-
-    // Prevent directory traversal
-    if (!filePath.startsWith(__dirname)) {
-        res.writeHead(403, { 'Content-Type': 'text/plain' });
-        return res.end('Forbidden');
-    }
-
-    // Alias / fallback for old video path with spaces
-    if (!fs.existsSync(filePath)) {
-        if (filePath.includes('Skyom City Entrance.mp4') || filePath.includes('Skyom%20City%20Entrance.mp4')) {
-            const fallbackPath = path.join(__dirname, 'assets', 'skyom-city-entrance.mp4');
-            if (fs.existsSync(fallbackPath)) {
-                filePath = fallbackPath;
-            }
-        }
-    }
-
-    fs.stat(filePath, (err, stats) => {
-        if (err) {
-            if (err.code === 'ENOENT') {
-                res.writeHead(404, { 'Content-Type': 'text/html; charset=utf-8' });
-                return res.end('<h1>404 Not Found</h1>');
-            }
-            res.writeHead(500, { 'Content-Type': 'text/plain' });
-            return res.end(`Server Error: ${err.code}`);
+        let reqPath;
+        try {
+            reqPath = decodeURIComponent(req.url.split('?')[0]);
+        } catch {
+            reqPath = req.url.split('?')[0];
         }
 
-        if (stats.isDirectory()) {
-            filePath = path.join(filePath, 'index.html');
-            return fs.stat(filePath, (dirErr, dirStats) => {
-                if (dirErr) {
-                    res.writeHead(404, { 'Content-Type': 'text/html; charset=utf-8' });
-                    return res.end('<h1>404 Not Found</h1>');
+        // Default route -> index.html
+        if (reqPath === '/' || reqPath === '') {
+            reqPath = '/index.html';
+        }
+
+        // Determine candidate file paths (check dist/ first for Vite build, then root __dirname)
+        let candidatePaths = [];
+
+        // Dist path
+        const distCandidate = path.join(__dirname, 'dist', reqPath.startsWith('/') ? reqPath.slice(1) : reqPath);
+        // Root path
+        const rootCandidate = path.join(__dirname, reqPath.startsWith('/') ? reqPath.slice(1) : reqPath);
+
+        candidatePaths.push(distCandidate);
+        candidatePaths.push(rootCandidate);
+
+        // Fallback for clean URLs without .html (e.g. /project-city -> project-city.html)
+        if (!path.extname(reqPath)) {
+            candidatePaths.push(path.join(__dirname, reqPath.startsWith('/') ? `${reqPath.slice(1)}.html` : `${reqPath}.html`));
+            candidatePaths.push(path.join(__dirname, 'dist', reqPath.startsWith('/') ? `${reqPath.slice(1)}.html` : `${reqPath}.html`));
+            // SPA fallback: serve dist/index.html
+            candidatePaths.push(path.join(__dirname, 'dist', 'index.html'));
+            candidatePaths.push(path.join(__dirname, 'legacy-index.html'));
+        }
+
+        // Alias for video with spaces
+        if (reqPath.includes('Skyom City Entrance.mp4') || reqPath.includes('Skyom%20City%20Entrance.mp4')) {
+            candidatePaths.unshift(path.join(__dirname, 'assets', 'skyom-city-entrance.mp4'));
+        }
+
+        // Find the first file that exists and is inside __dirname
+        let targetFilePath = null;
+        for (const p of candidatePaths) {
+            const normalized = path.resolve(p);
+            if (normalized.startsWith(__dirname) && fs.existsSync(normalized)) {
+                try {
+                    const s = fs.statSync(normalized);
+                    if (s.isFile()) {
+                        targetFilePath = normalized;
+                        break;
+                    } else if (s.isDirectory()) {
+                        const indexInDir = path.join(normalized, 'index.html');
+                        if (fs.existsSync(indexInDir) && fs.statSync(indexInDir).isFile()) {
+                            targetFilePath = indexInDir;
+                            break;
+                        }
+                    }
+                } catch {
+                    // Ignore stat errors and try next
                 }
-                serveFile(filePath, dirStats, req, res);
-            });
+            }
         }
 
-        serveFile(filePath, stats, req, res);
-    });
+        // If not found, fallback to dist/index.html (SPA) or legacy-index.html
+        if (!targetFilePath) {
+            const distIndex = path.join(__dirname, 'dist', 'index.html');
+            const legacyIndex = path.join(__dirname, 'legacy-index.html');
+            if (fs.existsSync(distIndex)) {
+                targetFilePath = distIndex;
+            } else if (fs.existsSync(legacyIndex)) {
+                targetFilePath = legacyIndex;
+            }
+        }
+
+        if (!targetFilePath) {
+            res.writeHead(404, { 'Content-Type': 'text/html; charset=utf-8' });
+            return res.end('<h1>404 Not Found</h1>');
+        }
+
+        const stats = fs.statSync(targetFilePath);
+        serveFile(targetFilePath, stats, req, res);
+
+    } catch (err) {
+        console.error('Server request error:', err);
+        if (!res.headersSent) {
+            res.writeHead(500, { 'Content-Type': 'text/plain; charset=utf-8' });
+            res.end('Server Error');
+        }
+    }
 });
 
 function serveFile(filePath, stats, req, res) {
@@ -81,6 +125,14 @@ function serveFile(filePath, stats, req, res) {
     const contentType = mimeTypes[extname] || 'application/octet-stream';
     const totalSize = stats.size;
     const range = req.headers.range;
+
+    // Cache headers
+    let cacheControl = 'public, max-age=86400';
+    if (extname === '.html') {
+        cacheControl = 'no-cache, must-revalidate';
+    } else if (extname === '.js' || extname === '.css' || extname === '.woff2' || extname === '.webp') {
+        cacheControl = 'public, max-age=31536000, immutable';
+    }
 
     // Support HTTP 206 Partial Content (Range requests) for video playback and streaming
     if (range) {
@@ -100,7 +152,8 @@ function serveFile(filePath, stats, req, res) {
             'Content-Range': `bytes ${start}-${end}/${totalSize}`,
             'Accept-Ranges': 'bytes',
             'Content-Length': chunkSize,
-            'Content-Type': contentType
+            'Content-Type': contentType,
+            'Cache-Control': cacheControl
         });
 
         fileStream.pipe(res);
@@ -108,13 +161,23 @@ function serveFile(filePath, stats, req, res) {
         res.writeHead(200, {
             'Content-Length': totalSize,
             'Content-Type': contentType,
-            'Accept-Ranges': 'bytes'
+            'Accept-Ranges': 'bytes',
+            'Cache-Control': cacheControl
         });
 
         fs.createReadStream(filePath).pipe(res);
     }
 }
 
+process.on('uncaughtException', (err) => {
+    console.error('Uncaught Exception:', err);
+});
+
+process.on('unhandledRejection', (reason, promise) => {
+    console.error('Unhandled Rejection at:', promise, 'reason:', reason);
+});
+
 server.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
 });
+

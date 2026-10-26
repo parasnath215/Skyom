@@ -1,5 +1,13 @@
 node_modules/
-dist/
+dist/assets/*.mp4
+dist/assets/*.webm
+dist/assets/*.webp
+dist/assets/*.png
+dist/assets/*.jpg
+dist/assets/*.jpeg
+dist/assets/Awards/
+dist/assets/fonts/
+dist/assets/Skyom Floor/
 .DS_Store
 *.local
 npm-debug.log*
@@ -8,3 +16,4 @@ yarn-error.log*
 pnpm-debug.log*
 .system_generated/
 public/assets
+
