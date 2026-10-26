@@ -247,8 +247,8 @@ export default function ProjectCityDetail({ onBack, onOpenLightbox }) {
               Official color code and area schedule as per approved layout plan for Sector 01 and Sector 02.
             </p>
 
-            <div style={{ overflowX: 'auto' }}>
-              <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left', minWidth: '600px' }}>
+            <div style={{ width: '100%', maxWidth: '100%', overflowX: 'auto', WebkitOverflowScrolling: 'touch', margin: '0 auto', boxSizing: 'border-box' }}>
+              <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left', minWidth: '540px' }}>
                 <thead>
                   <tr style={{ borderBottom: '2px solid var(--color-border)', background: 'rgba(255, 255, 255, 0.02)' }}>
                     <th style={{ padding: '1rem', fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--color-gold)' }}>Color Code</th>
