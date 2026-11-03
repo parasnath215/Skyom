@@ -26,11 +26,11 @@ export default function StickyActions({ onOpenEnquiry }) {
         <span className="sticky-action-tooltip">Call Representative</span>
       </a>
 
-      {/* Book VIP Visit / Enquiry */}
+      {/* Contact with our team */}
       <button
         onClick={() => onOpenEnquiry('Floating Action Widget')}
         className="sticky-action-circle"
-        aria-label="Book VIP Site Tour or Consultation"
+        aria-label="Contact with our team"
       >
         <Calendar size={20} />
         <span className="sticky-action-tooltip">Schedule Visit</span>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Clock, Trees, Sparkles, Building, Leaf, Compass } from 'lucide-react';
+import { Clock, Building, Leaf } from 'lucide-react';
 
 export default function WhyTrustSection() {
   const trustPoints = [
@@ -7,16 +7,6 @@ export default function WhyTrustSection() {
       title: 'Timely Execution',
       desc: 'Our word is our bond. We are uncompromisingly committed to executing our developments in the promised timeframe — without cutting corners on architectural excellence.',
       icon: Clock
-    },
-    {
-      title: 'Breathe Easy & Live Pure',
-      desc: 'Wake up to fresh air, lush botanical gardens, and serene views. 24+ landscaped parks, morning jogging trails, and shaded meditation zones designed for your holistic well-being.',
-      icon: Trees
-    },
-    {
-      title: 'Everyday Luxury Redefined',
-      desc: 'Signature multi-level clubhouse, Olympic-grade swimming pool, wellness spa, tennis & squash courts, and member lounges bring resort living straight to your doorstep.',
-      icon: Sparkles
     },
     {
       title: 'Future-Ready Architecture',
@@ -27,11 +17,6 @@ export default function WhyTrustSection() {
       title: 'Sustainable by Design',
       desc: 'Eco-conscious planning featuring rainwater harvesting reservoirs, solar-ready common spaces, EV rapid-charging networks, and indigenous botanical landscaping.',
       icon: Leaf
-    },
-    {
-      title: 'Strategic Connectivity',
-      desc: 'Engineered with wide 40ft & 60ft internal avenues with intelligent traffic flow, moments away from major expressways, international airports, hospitals, and educational hubs.',
-      icon: Compass
     }
   ];
 

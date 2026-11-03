@@ -117,7 +117,7 @@ export default function ContactSection() {
               <form onSubmit={handleSubmit}>
                 <div style={{ marginBottom: '1.75rem' }}>
                   <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.8rem', color: 'var(--color-ivory)', marginBottom: '0.35rem' }}>
-                    Request VIP Callback
+                    Contact With Our Team
                   </h3>
                   <p style={{ fontSize: '0.85rem', color: 'var(--color-text-dim)' }}>
                     Fill out the form below to receive exclusive brochures, pricing schedules, or book a site visit.
@@ -197,7 +197,7 @@ export default function ContactSection() {
                     <span>Transmitting Request...</span>
                   ) : (
                     <>
-                      <span>Transmit VIP Consultation Request</span>
+                      <span>Contact With Our Team</span>
                       <Send size={15} />
                     </>
                   )}

@@ -5,8 +5,7 @@ export default function BrandStatement({ onExploreProjects }) {
   const metrics = [
     { num: '20+', label: 'Years of Excellence', icon: Award },
     { num: '100%', label: 'Timely Execution', icon: Clock },
-    { num: '50+', label: 'Acres Master Planned', icon: ShieldCheck },
-    { num: '100+', label: 'Satisfied Families', icon: Users },
+    { num: '5000+', label: 'Satisfied Families', icon: Users },
   ];
 
   return (

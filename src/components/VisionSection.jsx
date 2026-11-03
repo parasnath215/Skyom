@@ -35,7 +35,7 @@ export default function VisionSection() {
           margin: '0 auto 4rem',
           fontWeight: 300
         }}>
-          At Skyom, our philosophy is written in our name. <strong style={{ color: 'var(--color-gold)', fontWeight: 600 }}>Sky</strong> represents our boundless vision and pursuit of innovation; <strong style={{ color: 'var(--color-gold)', fontWeight: 600 }}>Om</strong> grounds us in strength, peace, and purpose. Shaped by experience and driven by a global perspective, we craft state-of-the-art spaces that transform the way you live.
+          At SKYOM, our philosophy is written in our name. <strong style={{ color: 'var(--color-gold)', fontWeight: 600 }}>Sky</strong> represents our boundless vision and pursuit of innovation; <strong style={{ color: 'var(--color-gold)', fontWeight: 600 }}>Om</strong> grounds us in strength, peace, and purpose. Shaped by experience and driven by a global perspective, we craft state-of-the-art spaces that transform the way you live.
         </p>
 
         {/* 3 Pillars Grid */}

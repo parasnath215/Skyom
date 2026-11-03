@@ -47,7 +47,7 @@ export default function App() {
     }
   };
 
-  const openEnquiry = (topic = 'General VIP Enquiry') => {
+  const openEnquiry = (topic = 'Contact With Our Team') => {
     setEnquiryModal({ isOpen: true, topic });
   };
 

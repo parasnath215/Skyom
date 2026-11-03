@@ -75,9 +75,9 @@ export default function EnquiryModal({ isOpen, onClose, defaultTopic }) {
           </div>
         ) : (
           <div>
-            <div className="section-tag" style={{ marginBottom: '0.5rem' }}>VIP Appointment</div>
+            <div className="section-tag" style={{ marginBottom: '0.5rem' }}>Get in Touch</div>
             <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '2rem', color: 'var(--color-ivory)', marginBottom: '0.5rem' }}>
-              Schedule VIP Consultation
+              Contact with our team
             </h3>
             <p style={{ fontSize: '0.85rem', color: 'var(--color-text-dim)', marginBottom: '1.75rem' }}>
               Experience the craftsmanship firsthand. Receive private brochures, plot allocations, and scheduled site transfers.
@@ -134,7 +134,7 @@ export default function EnquiryModal({ isOpen, onClose, defaultTopic }) {
                   <option value="SKYOM Floors (Delhi)">SKYOM Floors — Independent Luxury Floors</option>
                   <option value="The Ayodhya Vision">The Ayodhya Vision — Sacred Residences</option>
                   <option value="The Dehradun Retreat">The Dehradun Retreat — Hillside Plots</option>
-                  <option value="Direct Sales Consultation">Direct VIP Leadership Consultation</option>
+                  <option value="Direct Sales Consultation">Direct Consultation with our team</option>
                 </select>
               </div>
 

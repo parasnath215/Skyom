@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { 
-  ArrowLeft, ArrowUpRight, Download, MapPin, 
-  ShieldCheck, Trees, Building2, Dumbbell, Waves, Zap, 
-  Smile, Compass, ChevronDown, ChevronUp, ZoomIn, Send, CheckCircle2
+import {
+  ArrowLeft, ArrowUpRight, Download, MapPin,
+  ShieldCheck, Trees, Building2, Dumbbell, Waves, Zap,
+  Smile, Compass, ChevronDown, ChevronUp, ZoomIn, Send, CheckCircle2,
+  X, Lock, FileText, Check
 } from 'lucide-react';
 
 export default function ProjectCityDetail({ onBack, onOpenLightbox }) {
@@ -17,20 +18,27 @@ export default function ProjectCityDetail({ onBack, onOpenLightbox }) {
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const plotTypes = [
-    { type: 'Type - 1', size: '9.75 x 21.0 m', areaSqm: '204.75 Sq.m', areaSqft: '~2,204 Sq.ft', color: '#fef08a' },
-    { type: 'Type - 2', size: '9.15 x 18.30 m', areaSqm: '167.45 Sq.m', areaSqft: '~1,802 Sq.ft', color: '#67e8f9' },
-    { type: 'Type - 2c', size: '12.15 x 18.30 m', areaSqm: '222.35 Sq.m', areaSqft: '~2,393 Sq.ft', color: '#06b6d4' },
-    { type: 'Type - 3', size: '8.50 x 16.00 m', areaSqm: '136.00 Sq.m', areaSqft: '~1,464 Sq.ft', color: '#f0abfc' },
-    { type: 'Type - 3a', size: '9.34 x 16.00 m', areaSqm: '149.44 Sq.m', areaSqft: '~1,608 Sq.ft', color: '#e879f9' },
-    { type: 'Type - 3c', size: '10.50 x 16.00 m', areaSqm: '168.00 Sq.m', areaSqft: '~1,808 Sq.ft', color: '#c084fc' },
-    { type: 'Type - 4', size: '7.32 x 16.50 m', areaSqm: '120.78 Sq.m', areaSqft: '~1,300 Sq.ft', color: '#fca5a5' },
-    { type: 'Type - 4c', size: '9.32 x 16.50 m', areaSqm: '153.78 Sq.m', areaSqft: '~1,655 Sq.ft', color: '#f87171' },
-    { type: 'Type - 5', size: '6.30 x 14.10 m', areaSqm: '88.83 Sq.m', areaSqft: '~956 Sq.ft', color: '#a5b4fc' },
-    { type: 'Type - 5c', size: '7.80 x 14.10 m', areaSqm: '110.00 Sq.m', areaSqft: '~1,184 Sq.ft', color: '#818cf8' },
-    { type: 'Type - 6', size: '6.45 x 10.48 m', areaSqm: '67.60 Sq.m', areaSqft: '~728 Sq.ft', color: '#38bdf8' },
-    { type: 'Type - 6c', size: '7.95 x 10.48 m', areaSqm: '83.32 Sq.m', areaSqft: '~897 Sq.ft', color: '#0284c7' },
-  ];
+  // Master Layout Blur & Unlock State
+  const [isLayoutUnlocked, setIsLayoutUnlocked] = useState(() => {
+    try {
+      return typeof window !== 'undefined' && sessionStorage.getItem('skyom_city_layout_unlocked') === 'true';
+    } catch {
+      return false;
+    }
+  });
+  const [layoutModalOpen, setLayoutModalOpen] = useState(false);
+  const [layoutForm, setLayoutForm] = useState({ name: '', phone: '' });
+  const [layoutLoading, setLayoutLoading] = useState(false);
+  const [layoutError, setLayoutError] = useState('');
+
+  // Brochure Download Modal State
+  const [brochureModalOpen, setBrochureModalOpen] = useState(false);
+  const [brochureForm, setBrochureForm] = useState({ name: '', phone: '' });
+  const [brochureAgreed, setBrochureAgreed] = useState(false);
+  const [brochureLoading, setBrochureLoading] = useState(false);
+  const [brochureDownloaded, setBrochureDownloaded] = useState(false);
+  const [brochureError, setBrochureError] = useState('');
+  const [showTermsDetail, setShowTermsDetail] = useState(false);
 
   const amenities = [
     {
@@ -87,21 +95,79 @@ export default function ProjectCityDetail({ onBack, onOpenLightbox }) {
   const faqs = [
     {
       q: 'Where is SKYOM City located?',
-      a: 'SKYOM City is situated on State Highway 173 to Unnao, near Raibareli Road, Mohanlalganj, Lucknow (PIN 226301). It connects seamlessly to Kisan Path, Shaheed Path, and the Lucknow-Varanasi corridor.'
+      a: 'SKYOM City is situated on State Highway 173 to Unnao, near Raibareli Road, Mohanlalganj, Lucknow (PIN 226301).'
     },
     {
-      q: 'Is the township RERA approved and legally clear?',
-      a: 'Yes, SKYOM City is fully registered under Uttar Pradesh RERA with official Registration Number UPRERAPRJ600292/06/2025. All land titles are 100% freehold and verified.'
+      q: 'Is the township RERA approved ?',
+      a: 'Yes, SKYOM City is fully registered under Uttar Pradesh RERA with official Registration Number UPRERAPRJ600292/06/2025. And the Project is Approved by UP-Awas Vikas.'
     },
     {
       q: 'What types of plots and configurations are available?',
-      a: 'The township features meticulously planned residential plot sizes ranging from 67.60 Sq.m (Type-6) up to 222.35 Sq.m (Type-2c), spread across Sector 01 and Sector 02.'
+      a: 'The township features meticulously planned residential plot sizes ranging from 728 Sq.ft up to 2400 Sq.ft.'
     },
     {
       q: 'Can I visit the township site for a physical inspection?',
-      a: 'Yes. Our corporate sales team organizes scheduled VIP site visits seven days a week with guided vehicle tours of the master layout and road network.'
+      a: 'Yes. Our corporate sales team organizes scheduled site visits.'
     }
   ];
+
+  const handleUnlockLayout = (e) => {
+    e.preventDefault();
+    if (!layoutForm.name.trim()) {
+      setLayoutError('Please enter your full name.');
+      return;
+    }
+    const cleanPhone = layoutForm.phone.replace(/[^0-9]/g, '');
+    if (cleanPhone.length < 10) {
+      setLayoutError('Please enter a valid 10-digit phone number.');
+      return;
+    }
+    setLayoutError('');
+    setLayoutLoading(true);
+    setTimeout(() => {
+      setLayoutLoading(false);
+      setIsLayoutUnlocked(true);
+      try {
+        sessionStorage.setItem('skyom_city_layout_unlocked', 'true');
+      } catch (err) {
+        // ignore storage error
+      }
+      setLayoutModalOpen(false);
+    }, 500);
+  };
+
+  const handleDownloadBrochure = (e) => {
+    e.preventDefault();
+    if (!brochureForm.name.trim()) {
+      setBrochureError('Please enter your full name.');
+      return;
+    }
+    const cleanPhone = brochureForm.phone.replace(/[^0-9]/g, '');
+    if (cleanPhone.length < 10) {
+      setBrochureError('Please enter a valid 10-digit phone number.');
+      return;
+    }
+    if (!brochureAgreed) {
+      setBrochureError('Please agree to the Terms and Conditions to proceed.');
+      return;
+    }
+    setBrochureError('');
+    setBrochureLoading(true);
+
+    setTimeout(() => {
+      setBrochureLoading(false);
+      setBrochureDownloaded(true);
+
+      // Trigger automatic file download
+      const link = document.createElement('a');
+      link.href = '/assets/SKYOM%20CITY%20E-BOOK.pdf';
+      link.setAttribute('download', 'SKYOM CITY E-BOOK.pdf');
+      link.target = '_blank';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }, 600);
+  };
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
@@ -117,9 +183,9 @@ export default function ProjectCityDetail({ onBack, onOpenLightbox }) {
       {/* Top Breadcrumb Bar */}
       <div style={{ borderBottom: '1px solid var(--color-border)', padding: '1rem 0', background: '#0e0e0e' }}>
         <div className="container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-          <button 
-            onClick={onBack} 
-            className="nav-link" 
+          <button
+            onClick={onBack}
+            className="nav-link"
             style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.85rem' }}
           >
             <ArrowLeft size={16} />
@@ -179,8 +245,20 @@ export default function ProjectCityDetail({ onBack, onOpenLightbox }) {
           </div>
 
           <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
-            <a 
-              href="#contact-form-section" 
+            <button
+              type="button"
+              onClick={() => {
+                setBrochureDownloaded(false);
+                setBrochureModalOpen(true);
+              }}
+              className="btn-outline-gold"
+              style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}
+            >
+              <Download size={15} />
+              <span>Download Brochure</span>
+            </button>
+            <a
+              href="#contact-form-section"
               className="btn-gold"
             >
               <span>Schedule Site Visit</span>
@@ -190,7 +268,79 @@ export default function ProjectCityDetail({ onBack, onOpenLightbox }) {
         </div>
       </section>
 
-      {/* Official Layout Plan Section (Image 1) */}
+      {/* Township Vision & Modern Living Showcase Section */}
+      <section style={{ padding: 'clamp(4.5rem, 7vw, 6.5rem) 0', background: 'var(--color-bg)', borderBottom: '1px solid var(--color-border)' }}>
+        <div className="container" style={{ maxWidth: '1000px', margin: '0 auto', textAlign: 'center' }}>
+          <div className="section-tag" style={{ justifyContent: 'center' }}>Township Showcase</div>
+          <h2 className="section-title" style={{ fontSize: 'clamp(2rem, 4.2vw, 3.2rem)', lineHeight: 1.25, marginBottom: '1.25rem' }}>
+            SKYOM CITY – A World of Luxury, <span className="accent-serif">Comfort & Modern Living</span>
+          </h2>
+          <p style={{
+            fontFamily: 'var(--font-serif, "Cormorant Garamond", serif)',
+            fontSize: 'clamp(1.2rem, 2vw, 1.55rem)',
+            color: 'var(--color-gold)',
+            fontStyle: 'italic',
+            marginBottom: '2rem',
+            letterSpacing: '0.02em'
+          }}>
+            Experience a Lifestyle Beyond Ordinary at SKYOM CITY, Mohanlalganj, Lucknow.
+          </p>
+
+          <div style={{
+            maxWidth: '900px',
+            margin: '0 auto',
+            textAlign: 'left',
+            background: 'var(--color-surface)',
+            border: '1px solid var(--color-border)',
+            borderRadius: '8px',
+            padding: 'clamp(2rem, 4vw, 3rem)'
+          }}>
+            <p style={{
+              fontSize: 'clamp(1rem, 1.2vw, 1.12rem)',
+              color: 'var(--color-ivory)',
+              lineHeight: 1.85,
+              marginBottom: '1.5rem',
+              fontWeight: 300
+            }}>
+              Welcome to <strong style={{ color: 'var(--color-gold)', fontWeight: 600 }}>SKYOM CITY</strong>, a thoughtfully planned 50-acre integrated township in the promising location of Mohanlalganj, Lucknow. Designed to redefine modern urban living, SKYOM CITY brings together contemporary infrastructure, world-class amenities, green open spaces and a vibrant community — all in one exceptional destination.
+            </p>
+            <p style={{
+              fontSize: 'clamp(1rem, 1.2vw, 1.12rem)',
+              color: 'var(--color-ivory-muted)',
+              lineHeight: 1.85,
+              fontWeight: 300,
+              marginBottom: '2rem'
+            }}>
+              More than just a residential address, SKYOM CITY is a place where life finds a new meaning. Every aspect of the township is envisioned to offer a perfect balance of comfort, convenience, recreation and well-being. With its UP Awas Vikas and RERA-approved status, the project aspires to provide residents with greater confidence and peace of mind.
+            </p>
+
+            <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', justifyContent: 'center' }}>
+              <button
+                type="button"
+                onClick={() => {
+                  setBrochureDownloaded(false);
+                  setBrochureModalOpen(true);
+                }}
+                className="btn-gold"
+                style={{ display: 'inline-flex', alignItems: 'center', gap: '0.6rem' }}
+              >
+                <Download size={16} />
+                <span>Download Brochure (PDF)</span>
+              </button>
+              <a
+                href="#layout-plan"
+                className="btn-outline-gold"
+                style={{ display: 'inline-flex', alignItems: 'center', gap: '0.6rem' }}
+              >
+                <span>View Master Layout</span>
+                <ArrowUpRight size={16} />
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Official Layout Plan Section */}
       <section className="floorplans-section" id="layout-plan" style={{ padding: 'clamp(5rem, 8vw, 8rem) 0' }}>
         <div className="container">
           <div style={{ textAlign: 'center', maxWidth: '800px', margin: '0 auto 3.5rem' }}>
@@ -203,89 +353,180 @@ export default function ProjectCityDetail({ onBack, onOpenLightbox }) {
             </p>
           </div>
 
-          {/* Layout Plan Visual with Zoom Modal Trigger */}
-          <div 
+          {/* Layout Plan Visual with Blur and Unlock Mechanism */}
+          <div
             style={{
               background: 'var(--color-surface)',
               border: '1px solid var(--color-border)',
-              borderRadius: '6px',
+              borderRadius: '8px',
               padding: 'clamp(1rem, 3vw, 2.5rem)',
               marginBottom: '3rem',
               position: 'relative',
-              textAlign: 'center'
+              textAlign: 'center',
+              overflow: 'hidden'
             }}
           >
-            <div 
-              style={{ position: 'relative', cursor: 'zoom-in', display: 'inline-block', maxWidth: '100%' }}
-              onClick={() => onOpenLightbox('/assets/skyom-city-layout-plan.png', 'SKYOM City — Official Master Layout Plan')}
-              title="Click to zoom high resolution blueprint"
+            <div
+              style={{
+                position: 'relative',
+                display: 'inline-block',
+                maxWidth: '100%',
+                cursor: isLayoutUnlocked ? 'zoom-in' : 'pointer'
+              }}
+              onClick={() => {
+                if (isLayoutUnlocked) {
+                  onOpenLightbox('/assets/skyom-city-layout-plan.png', 'SKYOM City — Official Master Layout Plan');
+                } else {
+                  setLayoutModalOpen(true);
+                }
+              }}
             >
-              <img 
-                src="/assets/skyom-city-layout-plan.webp" 
+              <img
+                src="/assets/skyom-city-layout-plan.webp"
                 alt="SKYOM City Master Layout Plan"
-                style={{ width: '100%', maxHeight: '680px', objectFit: 'contain', borderRadius: '4px' }}
+                style={{
+                  width: '100%',
+                  maxHeight: '680px',
+                  objectFit: 'contain',
+                  borderRadius: '4px',
+                  filter: isLayoutUnlocked ? 'none' : 'blur(16px)',
+                  transition: 'filter 0.6s cubic-bezier(0.16, 1, 0.3, 1)',
+                  userSelect: 'none'
+                }}
                 loading="eager"
               />
-              <div className="zoom-hint-badge" style={{ position: 'absolute', bottom: '1.25rem', right: '1.25rem' }}>
-                <ZoomIn size={14} />
-                <span>Click to Enlarge Layout Plan</span>
-              </div>
-            </div>
-          </div>
 
-          {/* Plot Specifications & Area Table */}
-          <div style={{
-            background: 'var(--color-surface)',
-            border: '1px solid var(--color-border)',
-            borderRadius: '6px',
-            padding: 'clamp(1.5rem, 4vw, 3rem)'
-          }}>
-            <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '2rem', color: 'var(--color-ivory)', marginBottom: '0.5rem' }}>
-              Residential Plot Schedule & Dimensions
-            </h3>
-            <p style={{ color: 'var(--color-ivory-muted)', fontSize: '0.9rem', marginBottom: '2rem' }}>
-              Official color code and area schedule as per approved layout plan for Sector 01 and Sector 02.
-            </p>
+              {/* Blurred Overlay with Load Layout Prompt */}
+              {!isLayoutUnlocked && (
+                <div
+                  style={{
+                    position: 'absolute',
+                    inset: 0,
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    background: 'rgba(6, 6, 6, 0.72)',
+                    backdropFilter: 'blur(4px)',
+                    borderRadius: '4px',
+                    padding: '1.5rem',
+                    zIndex: 2
+                  }}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setLayoutModalOpen(true);
+                  }}
+                >
+                  <div style={{
+                    maxWidth: '460px',
+                    width: '100%',
+                    background: '#121212',
+                    border: '1px solid var(--color-gold)',
+                    borderRadius: '8px',
+                    padding: 'clamp(1.75rem, 3.5vw, 2.5rem)',
+                    boxShadow: '0 20px 40px rgba(0,0,0,0.8)',
+                    textAlign: 'center'
+                  }}>
+                    <div style={{
+                      width: '52px',
+                      height: '52px',
+                      borderRadius: '50%',
+                      background: 'var(--color-gold-subtle)',
+                      border: '1px solid var(--color-border)',
+                      color: 'var(--color-gold)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      margin: '0 auto 1.25rem'
+                    }}>
+                      <Lock size={22} />
+                    </div>
 
-            <div style={{ width: '100%', maxWidth: '100%', overflowX: 'auto', WebkitOverflowScrolling: 'touch', margin: '0 auto', boxSizing: 'border-box' }}>
-              <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left', minWidth: '540px' }}>
-                <thead>
-                  <tr style={{ borderBottom: '2px solid var(--color-border)', background: 'rgba(255, 255, 255, 0.02)' }}>
-                    <th style={{ padding: '1rem', fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--color-gold)' }}>Color Code</th>
-                    <th style={{ padding: '1rem', fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--color-gold)' }}>Type of Plot</th>
-                    <th style={{ padding: '1rem', fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--color-gold)' }}>Plot Size (in Mts)</th>
-                    <th style={{ padding: '1rem', fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--color-gold)' }}>Plot Area (in Sqm)</th>
-                    <th style={{ padding: '1rem', fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--color-gold)' }}>Approx Area (Sq.ft)</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {plotTypes.map((row, idx) => (
-                    <tr 
-                      key={idx} 
-                      style={{ 
-                        borderBottom: '1px solid var(--color-border-subtle)',
-                        background: idx % 2 === 0 ? 'transparent' : 'rgba(255,255,255,0.01)'
+                    <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.6rem', color: 'var(--color-ivory)', marginBottom: '0.5rem' }}>
+                      Official Master Layout Plan
+                    </h3>
+                    <p style={{ color: 'var(--color-ivory-muted)', fontSize: '0.88rem', lineHeight: 1.6, marginBottom: '1.75rem' }}>
+                      To view the full high-resolution blueprint of Sector 01 & Sector 02, please click below and enter your contact details.
+                    </p>
+
+                    <button
+                      type="button"
+                      className="btn-gold"
+                      style={{ width: '100%', justifyContent: 'center' }}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setLayoutModalOpen(true);
                       }}
                     >
-                      <td style={{ padding: '1rem' }}>
-                        <span style={{
-                          display: 'inline-block',
-                          width: '26px',
-                          height: '16px',
-                          backgroundColor: row.color,
-                          borderRadius: '2px',
-                          border: '1px solid rgba(0,0,0,0.4)',
-                          verticalAlign: 'middle'
-                        }} />
-                      </td>
-                      <td style={{ padding: '1rem', fontWeight: 600, color: 'var(--color-ivory)' }}>{row.type}</td>
-                      <td style={{ padding: '1rem', color: 'var(--color-ivory-muted)' }}>{row.size}</td>
-                      <td style={{ padding: '1rem', color: 'var(--color-gold)', fontWeight: 600 }}>{row.areaSqm}</td>
-                      <td style={{ padding: '1rem', color: 'var(--color-ivory-muted)' }}>{row.areaSqft}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+                      <span>Load Layout</span>
+                      <ArrowUpRight size={16} />
+                    </button>
+                  </div>
+                </div>
+              )}
+
+              {/* Unlocked Zoom Hint Badge */}
+              {isLayoutUnlocked && (
+                <div className="zoom-hint-badge" style={{ position: 'absolute', bottom: '1.25rem', right: '1.25rem' }}>
+                  <ZoomIn size={14} />
+                  <span>Click to Enlarge Layout Plan</span>
+                </div>
+              )}
+            </div>
+
+            {isLayoutUnlocked && (
+              <div style={{
+                marginTop: '1.5rem',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.5rem',
+                color: 'var(--color-delivered)',
+                fontSize: '0.88rem'
+              }}>
+                <CheckCircle2 size={16} />
+                <span>Layout Unlocked — Click on the blueprint image to zoom in fullscreen</span>
+              </div>
+            )}
+          </div>
+        </div>
+      </section>
+
+      {/* Brochure Download Feature Section */}
+      <section style={{ padding: '3.5rem 0', background: 'linear-gradient(180deg, #100f0d 0%, #0a0a0a 100%)', borderBottom: '1px solid var(--color-border)' }}>
+        <div className="container" style={{ maxWidth: '960px' }}>
+          <div style={{
+            background: 'radial-gradient(ellipse at top right, rgba(200, 169, 126, 0.08), transparent 70%), var(--color-surface)',
+            border: '1px solid var(--color-border-subtle)',
+            borderRadius: '8px',
+            padding: 'clamp(2rem, 4vw, 3rem)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            flexWrap: 'wrap',
+            gap: '2rem'
+          }}>
+            <div style={{ maxWidth: '560px' }}>
+              <div className="section-tag" style={{ marginBottom: '0.5rem' }}>Official Documentation</div>
+              <h3 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(1.6rem, 2.5vw, 2.2rem)', color: 'var(--color-ivory)', marginBottom: '0.6rem' }}>
+                Download Official <span className="accent-serif">Project Brochure</span>
+              </h3>
+              <p style={{ color: 'var(--color-ivory-muted)', fontSize: '0.92rem', lineHeight: 1.7, margin: 0 }}>
+                Explore high-resolution master blueprints, park allocations, road networks, and development timelines in our official e-book.
+              </p>
+            </div>
+            <div>
+              <button
+                type="button"
+                onClick={() => {
+                  setBrochureDownloaded(false);
+                  setBrochureModalOpen(true);
+                }}
+                className="btn-gold"
+                style={{ display: 'inline-flex', alignItems: 'center', gap: '0.6rem', padding: '0.9rem 1.75rem' }}
+              >
+                <Download size={18} />
+                <span>Download Brochure</span>
+              </button>
             </div>
           </div>
         </div>
@@ -367,8 +608,8 @@ export default function ProjectCityDetail({ onBack, onOpenLightbox }) {
             {faqs.map((faq, idx) => {
               const isOpen = openFaq === idx;
               return (
-                <div 
-                  key={idx} 
+                <div
+                  key={idx}
                   style={{
                     background: 'var(--color-surface)',
                     border: '1px solid var(--color-border)',
@@ -428,7 +669,7 @@ export default function ProjectCityDetail({ onBack, onOpenLightbox }) {
                 <p style={{ color: 'var(--color-ivory-muted)', fontSize: '0.95rem', lineHeight: 1.7, marginBottom: '1.5rem' }}>
                   Thank you, <strong>{formData.name}</strong>. Our team will contact you at <strong>{formData.phone}</strong> regarding your site visit inquiry.
                 </p>
-                <button 
+                <button
                   className="btn-outline-gold"
                   onClick={() => {
                     setSubmitted(false);
@@ -498,9 +739,9 @@ export default function ProjectCityDetail({ onBack, onOpenLightbox }) {
                   />
                 </div>
 
-                <button 
-                  type="submit" 
-                  className="btn-gold" 
+                <button
+                  type="submit"
+                  className="btn-gold"
                   style={{ width: '100%', marginTop: '0.5rem' }}
                   disabled={loading}
                 >
@@ -518,6 +759,274 @@ export default function ProjectCityDetail({ onBack, onOpenLightbox }) {
           </div>
         </div>
       </section>
+
+      {/* 1. Modal: Load / Unlock Master Layout */}
+      {layoutModalOpen && (
+        <div
+          className="modal-overlay"
+          onClick={() => setLayoutModalOpen(false)}
+          style={{ zIndex: 1050 }}
+        >
+          <div
+            className="modal-content-box"
+            onClick={(e) => e.stopPropagation()}
+            style={{ maxWidth: '480px', padding: 'clamp(1.75rem, 3.5vw, 2.5rem)', position: 'relative' }}
+          >
+            <button
+              className="modal-close-btn"
+              onClick={() => setLayoutModalOpen(false)}
+              aria-label="Close"
+            >
+              <X size={18} />
+            </button>
+
+            <div className="section-tag" style={{ marginBottom: '0.5rem' }}>Township Blueprint</div>
+            <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.9rem', color: 'var(--color-ivory)', marginBottom: '0.5rem' }}>
+              Load Master Layout
+            </h3>
+            <p style={{ fontSize: '0.88rem', color: 'var(--color-text-dim)', marginBottom: '1.5rem', lineHeight: 1.6 }}>
+              Please enter your name and phone number to instantly view the official high-resolution approved layout plan for SKYOM City.
+            </p>
+
+            <form onSubmit={handleUnlockLayout}>
+              {layoutError && (
+                <div style={{ color: '#ef4444', fontSize: '0.85rem', marginBottom: '1rem', background: 'rgba(239,68,68,0.1)', padding: '0.6rem 0.8rem', borderRadius: '4px', border: '1px solid rgba(239,68,68,0.2)' }}>
+                  {layoutError}
+                </div>
+              )}
+
+              <div className="form-group-field">
+                <label className="form-field-label">Full Name *</label>
+                <input
+                  type="text"
+                  required
+                  placeholder="e.g. Ramesh Sharma"
+                  className="form-input-field"
+                  value={layoutForm.name}
+                  onChange={(e) => setLayoutForm({ ...layoutForm, name: e.target.value })}
+                />
+              </div>
+
+              <div className="form-group-field">
+                <label className="form-field-label">Phone Number *</label>
+                <input
+                  type="tel"
+                  required
+                  placeholder="+91 99999 99999"
+                  className="form-input-field"
+                  value={layoutForm.phone}
+                  onChange={(e) => setLayoutForm({ ...layoutForm, phone: e.target.value })}
+                />
+              </div>
+
+              <button
+                type="submit"
+                className="btn-gold"
+                style={{ width: '100%', marginTop: '1rem' }}
+                disabled={layoutLoading}
+              >
+                {layoutLoading ? (
+                  <span>Unlocking Layout...</span>
+                ) : (
+                  <>
+                    <span>Unlock & View Layout</span>
+                    <ArrowUpRight size={15} />
+                  </>
+                )}
+              </button>
+            </form>
+          </div>
+        </div>
+      )}
+
+      {/* 2. Modal: Download Brochure with Sales Terms & Conditions */}
+      {brochureModalOpen && (
+        <div
+          className="modal-overlay"
+          onClick={() => setBrochureModalOpen(false)}
+          style={{ zIndex: 1050 }}
+        >
+          <div
+            className="modal-content-box"
+            onClick={(e) => e.stopPropagation()}
+            style={{ maxWidth: '520px', padding: 'clamp(1.75rem, 3.5vw, 2.5rem)', position: 'relative' }}
+          >
+            <button
+              className="modal-close-btn"
+              onClick={() => setBrochureModalOpen(false)}
+              aria-label="Close"
+            >
+              <X size={18} />
+            </button>
+
+            {brochureDownloaded ? (
+              <div style={{ textAlign: 'center', padding: '1rem 0' }}>
+                <div style={{
+                  width: '60px',
+                  height: '60px',
+                  borderRadius: '50%',
+                  background: 'rgba(52, 211, 153, 0.12)',
+                  border: '1px solid var(--color-delivered)',
+                  color: 'var(--color-delivered)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  margin: '0 auto 1.25rem'
+                }}>
+                  <CheckCircle2 size={30} />
+                </div>
+                <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.85rem', color: 'var(--color-ivory)', marginBottom: '0.6rem' }}>
+                  Brochure Download Started
+                </h3>
+                <p style={{ color: 'var(--color-ivory-muted)', fontSize: '0.92rem', lineHeight: 1.7, marginBottom: '1.5rem' }}>
+                  Thank you, <strong>{brochureForm.name}</strong>. Your copy of <strong>SKYOM CITY E-BOOK</strong> is downloading.
+                </p>
+                <div style={{ marginBottom: '1.5rem' }}>
+                  <a
+                    href="/assets/SKYOM%20CITY%20E-BOOK.pdf"
+                    download="SKYOM CITY E-BOOK.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn-outline-gold"
+                    style={{ fontSize: '0.85rem', display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}
+                  >
+                    <Download size={14} />
+                    <span>Click here if download didn't start</span>
+                  </a>
+                </div>
+                <button
+                  className="btn-gold"
+                  onClick={() => setBrochureModalOpen(false)}
+                  style={{ width: '100%' }}
+                >
+                  <span>Close Window</span>
+                </button>
+              </div>
+            ) : (
+              <div>
+                <div className="section-tag" style={{ marginBottom: '0.5rem' }}>Official Documentation</div>
+                <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.85rem', color: 'var(--color-ivory)', marginBottom: '0.5rem' }}>
+                  Download SKYOM City E-Brochure
+                </h3>
+                <p style={{ fontSize: '0.88rem', color: 'var(--color-text-dim)', marginBottom: '1.5rem', lineHeight: 1.6 }}>
+                  Enter your contact details to instantly access the official 50-acre township master plan, sector maps, and project catalog.
+                </p>
+
+                <form onSubmit={handleDownloadBrochure}>
+                  {brochureError && (
+                    <div style={{ color: '#ef4444', fontSize: '0.85rem', marginBottom: '1rem', background: 'rgba(239,68,68,0.1)', padding: '0.6rem 0.8rem', borderRadius: '4px', border: '1px solid rgba(239,68,68,0.2)' }}>
+                      {brochureError}
+                    </div>
+                  )}
+
+                  <div className="form-group-field">
+                    <label className="form-field-label">Full Name *</label>
+                    <input
+                      type="text"
+                      required
+                      placeholder="e.g. Ananya Roy"
+                      className="form-input-field"
+                      value={brochureForm.name}
+                      onChange={(e) => setBrochureForm({ ...brochureForm, name: e.target.value })}
+                    />
+                  </div>
+
+                  <div className="form-group-field">
+                    <label className="form-field-label">Phone Number *</label>
+                    <input
+                      type="tel"
+                      required
+                      placeholder="+91 99999 99999"
+                      className="form-input-field"
+                      value={brochureForm.phone}
+                      onChange={(e) => setBrochureForm({ ...brochureForm, phone: e.target.value })}
+                    />
+                  </div>
+
+                  {/* Terms & Conditions Checkbox for Sales Purpose */}
+                  <div style={{ margin: '1.25rem 0 1rem' }}>
+                    <label
+                      style={{
+                        display: 'flex',
+                        alignItems: 'flex-start',
+                        gap: '0.75rem',
+                        cursor: 'pointer',
+                        userSelect: 'none'
+                      }}
+                    >
+                      <input
+                        type="checkbox"
+                        checked={brochureAgreed}
+                        onChange={(e) => setBrochureAgreed(e.target.checked)}
+                        style={{
+                          marginTop: '0.2rem',
+                          width: '18px',
+                          height: '18px',
+                          accentColor: 'var(--color-gold)',
+                          cursor: 'pointer'
+                        }}
+                      />
+                      <span style={{ fontSize: '0.88rem', color: 'var(--color-ivory)', lineHeight: 1.5 }}>
+                        I agree to the <strong>Terms &amp; Conditions</strong> for sales and communication purposes.
+                      </span>
+                    </label>
+                  </div>
+
+                  {/* Sales Terms & Conditions Card */}
+                  <div style={{
+                    background: 'rgba(255, 255, 255, 0.02)',
+                    border: '1px solid var(--color-border-subtle)',
+                    borderRadius: '6px',
+                    padding: '0.85rem 1rem',
+                    fontSize: '0.78rem',
+                    color: 'var(--color-ivory-muted)',
+                    lineHeight: 1.6,
+                    marginBottom: '1.5rem'
+                  }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.35rem' }}>
+                      <strong style={{ color: 'var(--color-gold)', fontSize: '0.8rem' }}>Sales Consent &amp; Privacy Policy:</strong>
+                      <button
+                        type="button"
+                        onClick={() => setShowTermsDetail(!showTermsDetail)}
+                        style={{ background: 'none', border: 'none', color: 'var(--color-gold)', cursor: 'pointer', fontSize: '0.75rem', textDecoration: 'underline', padding: 0 }}
+                      >
+                        {showTermsDetail ? 'Hide Details' : 'Read Full Terms'}
+                      </button>
+                    </div>
+                    <p style={{ margin: 0 }}>
+                      By checking the box above and submitting your details, you authorize SKYOM and its accredited representatives to contact you via Call, SMS, WhatsApp, and Email regarding plot inquiries, township developments, pricing schedules, and promotional offers. This consent expressly overrides any DNC / NDNC registry restrictions under TRAI guidelines.
+                    </p>
+                    {showTermsDetail && (
+                      <ul style={{ margin: '0.6rem 0 0', paddingLeft: '1.2rem', color: 'var(--color-text-dim)', lineHeight: 1.5 }}>
+                        <li>Your personal information will be strictly used for project consultation, site tour coordination, and transaction support.</li>
+                        <li>We respect your privacy: your contact information is stored securely and will never be sold or leased to third-party telemarketers.</li>
+                        <li>All project visuals, plans, and dimensions in the downloaded material are indicative and subject to statutory approvals by UP RERA and Awas Vikas Parishad.</li>
+                        <li>You retain the right to unsubscribe or opt out of communications at any time by notifying our official desk.</li>
+                      </ul>
+                    )}
+                  </div>
+
+                  <button
+                    type="submit"
+                    className="btn-gold"
+                    style={{ width: '100%' }}
+                    disabled={brochureLoading || !brochureAgreed}
+                  >
+                    {brochureLoading ? (
+                      <span>Preparing Download...</span>
+                    ) : (
+                      <>
+                        <Download size={16} />
+                        <span>Download Brochure (PDF)</span>
+                      </>
+                    )}
+                  </button>
+                </form>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
     </div>
   );
 }

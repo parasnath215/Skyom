@@ -5,19 +5,22 @@ export default function AwardsSection() {
   const awards = [
     {
       img: '/assets/Awards/Award-1.webp',
-      title: 'Excellence in Integrated Township Development',
+      heading: 'News18 - 2025 - National Real Estate Leadership Honors',
+      media: 'News18',
       org: 'National Real Estate Leadership Honors',
       year: '2025'
     },
     {
       img: '/assets/Awards/Award-2.webp',
-      title: 'Best Luxury Residential Floor Architecture',
+      heading: 'Danik Jagran Austriala - 2024 - India Design & Infrastructure Conclave',
+      media: 'Danik Jagran Austriala',
       org: 'India Design & Infrastructure Conclave',
       year: '2024'
     },
     {
       img: '/assets/Awards/Award-3.webp',
-      title: 'Fastest Execution & Timely Delivery Benchmark',
+      heading: 'Danik Jagran China - 2025 - Urban Builders Federation of India',
+      media: 'Danik Jagran China',
       org: 'Urban Builders Federation of India',
       year: '2025'
     }
@@ -42,7 +45,7 @@ export default function AwardsSection() {
               <div style={{ width: '100%', maxHeight: '220px', display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: '1.5rem' }}>
                 <img 
                   src={award.img} 
-                  alt={award.title} 
+                  alt={award.heading} 
                   loading="lazy" 
                   style={{ maxHeight: '180px', width: 'auto' }}
                 />
@@ -50,10 +53,10 @@ export default function AwardsSection() {
 
               <div style={{ textAlign: 'center', width: '100%', borderTop: '1px solid var(--color-border-subtle)', paddingTop: '1.25rem' }}>
                 <span style={{ fontSize: '0.72rem', color: 'var(--color-gold)', textTransform: 'uppercase', letterSpacing: '0.12em', fontWeight: 600 }}>
-                  {award.year} • {award.org}
+                  {award.media} • {award.year}
                 </span>
-                <h4 style={{ fontFamily: 'var(--font-display)', fontSize: '1.3rem', color: 'var(--color-ivory)', marginTop: '0.35rem' }}>
-                  {award.title}
+                <h4 style={{ fontFamily: 'var(--font-display)', fontSize: '1.25rem', color: 'var(--color-ivory)', marginTop: '0.4rem', lineHeight: 1.4 }}>
+                  {award.heading}
                 </h4>
               </div>
             </div>
