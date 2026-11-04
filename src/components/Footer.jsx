@@ -132,7 +132,7 @@ export default function Footer({ onNavigate }) {
                 <ShieldCheck size={18} />
                 <span>RERA Registered Project</span>
               </div>
-              <div style={{ fontSize: '0.78rem', color: 'var(--color-ivory)', fontFamily: 'var(--font-brand)', letterSpacing: '0.04em' }}>
+              <div style={{ fontSize: '0.82rem', color: 'var(--color-ivory)', fontFamily: 'var(--font-numbers)', fontVariantNumeric: 'lining-nums tabular-nums', fontWeight: 600, letterSpacing: '0.05em' }}>
                 UPRERAPRJ600292/06/2025
               </div>
               <div style={{ fontSize: '0.72rem', color: 'var(--color-text-dim)', marginTop: '0.4rem' }}>

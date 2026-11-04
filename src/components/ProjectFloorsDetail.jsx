@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ArrowLeft, ArrowUpRight, CheckCircle2, ZoomIn } from 'lucide-react';
+import { ArrowUpRight, ZoomIn } from 'lucide-react';
 
 export default function ProjectFloorsDetail({ onBack, onOpenEnquiry, onOpenLightbox }) {
   const [activeFloorIndex, setActiveFloorIndex] = useState(0);
@@ -66,25 +66,6 @@ export default function ProjectFloorsDetail({ onBack, onOpenEnquiry, onOpenLight
 
   return (
     <div style={{ paddingTop: 'var(--nav-height)', backgroundColor: 'var(--color-bg)' }}>
-      {/* Top Breadcrumb Bar */}
-      <div style={{ borderBottom: '1px solid var(--color-border)', padding: '1rem 0', background: '#0e0e0e' }}>
-        <div className="container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-          <button 
-            onClick={onBack} 
-            className="nav-link" 
-            style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.85rem' }}
-          >
-            <ArrowLeft size={16} />
-            <span>Back to All Projects</span>
-          </button>
-
-          <span className="badge-status delivered">
-            <CheckCircle2 size={13} style={{ marginRight: 2 }} />
-            Delivered Landmark • New Delhi
-          </span>
-        </div>
-      </div>
-
       {/* Hero Header */}
       <section style={{ position: 'relative', width: '100%', height: '60vh', minHeight: '400px', overflow: 'hidden' }}>
         <img

@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { 
-  ArrowLeft, 
   ArrowUpRight, 
   CheckCircle2, 
   ZoomIn, 
@@ -77,27 +76,6 @@ export default function ProjectNovaDetail({ onBack, onOpenEnquiry, onOpenLightbo
 
   return (
     <div style={{ paddingTop: 'var(--nav-height)', backgroundColor: 'var(--color-bg)', minHeight: '100vh' }}>
-      {/* Top Breadcrumb Bar */}
-      <div style={{ borderBottom: '1px solid var(--color-border)', padding: '1rem 0', background: '#0e0e0e' }}>
-        <div className="container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '1rem' }}>
-          <button 
-            onClick={onBack} 
-            className="nav-link" 
-            style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.85rem' }}
-          >
-            <ArrowLeft size={16} />
-            <span>Back to All Projects</span>
-          </button>
-
-          <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-            <span className="badge-status ongoing">
-              <span className="pulse-dot" />
-              Ongoing High-Rise Tower — UP RERA Approved
-            </span>
-          </div>
-        </div>
-      </div>
-
       {/* Hero Header */}
       <section style={{ position: 'relative', width: '100%', minHeight: '65vh', overflow: 'hidden', display: 'flex', alignItems: 'flex-end' }}>
         <img
@@ -151,7 +129,7 @@ export default function ProjectNovaDetail({ onBack, onOpenEnquiry, onOpenLightbo
             <span style={{ fontSize: '0.72rem', textTransform: 'uppercase', letterSpacing: '0.12em', color: 'var(--color-gold)', fontWeight: 600 }}>
               RERA Registration
             </span>
-            <div style={{ fontFamily: 'var(--font-brand)', fontSize: '0.92rem', fontWeight: 600, color: 'var(--color-gold)', marginTop: '0.2rem' }}>
+            <div style={{ fontFamily: 'var(--font-numbers)', fontVariantNumeric: 'lining-nums tabular-nums', fontSize: '0.92rem', fontWeight: 600, color: 'var(--color-gold)', marginTop: '0.2rem', letterSpacing: '0.04em' }}>
               UPRERAPRJ960284/10/2026
             </div>
           </div>
@@ -317,7 +295,7 @@ export default function ProjectNovaDetail({ onBack, onOpenEnquiry, onOpenLightbo
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
                   <div>
                     <span style={{ fontSize: '0.72rem', textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--color-gold)', display: 'block' }}>Project Reg. No:</span>
-                    <span style={{ fontSize: '0.95rem', color: 'var(--color-ivory)', fontWeight: 600, fontFamily: 'var(--font-brand)' }}>UPRERAPRJ960284/10/2026</span>
+                    <span style={{ fontSize: '0.95rem', color: 'var(--color-ivory)', fontWeight: 600, fontFamily: 'var(--font-numbers)', fontVariantNumeric: 'lining-nums tabular-nums', letterSpacing: '0.04em' }}>UPRERAPRJ960284/10/2026</span>
                   </div>
                   <div>
                     <span style={{ fontSize: '0.72rem', textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--color-gold)', display: 'block' }}>Form:</span>

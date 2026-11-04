@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { 
-  ArrowLeft, 
   ArrowUpRight, 
   CheckCircle2, 
   ZoomIn, 
@@ -151,27 +150,6 @@ export default function ProjectAuraDetail({ onBack, onOpenEnquiry, onOpenLightbo
 
   return (
     <div style={{ paddingTop: 'var(--nav-height)', backgroundColor: 'var(--color-bg)', minHeight: '100vh' }}>
-      {/* Top Breadcrumb Bar */}
-      <div style={{ borderBottom: '1px solid var(--color-border)', padding: '1rem 0', background: '#0e0e0e' }}>
-        <div className="container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '1rem' }}>
-          <button 
-            onClick={onBack} 
-            className="nav-link" 
-            style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.85rem' }}
-          >
-            <ArrowLeft size={16} />
-            <span>Back to All Projects</span>
-          </button>
-
-          <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-            <span className="badge-status ongoing">
-              <span className="pulse-dot" />
-              Ongoing Landmark — SKYOM City, Lucknow
-            </span>
-          </div>
-        </div>
-      </div>
-
       {/* Hero Header */}
       <section style={{ position: 'relative', width: '100%', minHeight: '62vh', overflow: 'hidden', display: 'flex', alignItems: 'flex-end' }}>
         <img

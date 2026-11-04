@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ArrowLeft, ArrowUpRight, MapPin, Trees, Send, CheckCircle2, ShieldCheck, Sun, Compass } from 'lucide-react';
+import { ArrowUpRight, MapPin, Trees, Send, CheckCircle2, ShieldCheck, Sun, Compass } from 'lucide-react';
 
 export default function ProjectDehradunDetail({ onBack }) {
   const [formData, setFormData] = useState({
@@ -55,25 +55,6 @@ export default function ProjectDehradunDetail({ onBack }) {
 
   return (
     <div style={{ paddingTop: 'var(--nav-height)', backgroundColor: 'var(--color-bg)' }}>
-      {/* Top Breadcrumb Bar */}
-      <div style={{ borderBottom: '1px solid var(--color-border)', padding: '1rem 0', background: '#0e0e0e' }}>
-        <div className="container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-          <button 
-            onClick={onBack} 
-            className="nav-link" 
-            style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.85rem' }}
-          >
-            <ArrowLeft size={16} />
-            <span>Back to All Projects</span>
-          </button>
-
-          <span className="badge-status upcoming">
-            <span className="pulse-dot" />
-            Coming Soon • Planning Phase • Dehradun, UK
-          </span>
-        </div>
-      </div>
-
       {/* Hero Header */}
       <section style={{ position: 'relative', width: '100%', height: '65vh', minHeight: '440px', overflow: 'hidden' }}>
         <img

@@ -46,7 +46,7 @@ export default function AboutSection({ onOpenEnquiry }) {
               alignItems: 'center',
               gap: '1rem'
             }}>
-              <div style={{ fontFamily: 'var(--font-display)', fontSize: '2.8rem', fontWeight: 700, lineHeight: 1 }}>
+              <div style={{ fontFamily: 'var(--font-numbers)', fontVariantNumeric: 'lining-nums tabular-nums', fontSize: '2.8rem', fontWeight: 700, lineHeight: 1, letterSpacing: '-0.02em' }}>
                 20+
               </div>
               <div style={{ fontSize: '0.75rem', fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', lineHeight: 1.3 }}>

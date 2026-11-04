@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import {
-  ArrowLeft, ArrowUpRight, Download, MapPin,
+  ArrowUpRight, Download, MapPin,
   ShieldCheck, Trees, Building2, Dumbbell, Waves, Zap,
   Smile, Compass, ChevronDown, ChevronUp, ZoomIn, Send, CheckCircle2,
   X, Lock, FileText, Check
@@ -180,25 +180,6 @@ export default function ProjectCityDetail({ onBack, onOpenLightbox }) {
 
   return (
     <div style={{ paddingTop: 'var(--nav-height)', backgroundColor: 'var(--color-bg)' }}>
-      {/* Top Breadcrumb Bar */}
-      <div style={{ borderBottom: '1px solid var(--color-border)', padding: '1rem 0', background: '#0e0e0e' }}>
-        <div className="container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-          <button
-            onClick={onBack}
-            className="nav-link"
-            style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.85rem' }}
-          >
-            <ArrowLeft size={16} />
-            <span>Back to All Projects</span>
-          </button>
-
-          <span className="badge-status ongoing">
-            <span className="pulse-dot" />
-            Ongoing Township • Mohanlalganj, Lucknow
-          </span>
-        </div>
-      </div>
-
       {/* Hero Showcase Video Banner */}
       <section style={{ position: 'relative', width: '100%', height: '65vh', minHeight: '440px', overflow: 'hidden' }}>
         <video
