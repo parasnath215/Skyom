@@ -21,14 +21,14 @@ export default function AboutSection({ onOpenEnquiry }) {
             }}>
               <img 
                 src="/assets/about.webp" 
-                alt="About SKYOM Luxury Builder" 
+                alt="SKYOM Luxury Corporate Headquarters & Grand Lobby" 
                 style={{ width: '100%', height: 'auto', display: 'block' }}
                 loading="lazy"
               />
               <div style={{
                 position: 'absolute',
                 inset: 0,
-                background: 'linear-gradient(180deg, transparent 60%, rgba(8,8,8,0.85) 100%)'
+                background: 'linear-gradient(180deg, transparent 75%, rgba(8,8,8,0.5) 100%)'
               }} />
             </div>
 
