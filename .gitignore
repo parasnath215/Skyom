@@ -5,6 +5,9 @@ dist/assets/*.webp
 dist/assets/*.png
 dist/assets/*.jpg
 dist/assets/*.jpeg
+dist/*.png
+dist/*.ico
+dist/assets/*.ico
 dist/assets/Awards/
 dist/assets/fonts/
 dist/assets/Skyom Floor/

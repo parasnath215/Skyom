@@ -12,15 +12,15 @@ export default function AwardsSection() {
     },
     {
       img: '/assets/Awards/Award-2.webp',
-      heading: 'Danik Jagran Austriala - 2024 - India Design & Infrastructure Conclave',
-      media: 'Danik Jagran Austriala',
+      heading: 'Dainik Jagran Australia - 2024 - India Design & Infrastructure Conclave',
+      media: 'Dainik Jagran Australia',
       org: 'India Design & Infrastructure Conclave',
       year: '2024'
     },
     {
       img: '/assets/Awards/Award-3.webp',
-      heading: 'Danik Jagran China - 2025 - Urban Builders Federation of India',
-      media: 'Danik Jagran China',
+      heading: 'Dainik Jagran China - 2025 - Urban Builders Federation of India',
+      media: 'Dainik Jagran China',
       org: 'Urban Builders Federation of India',
       year: '2025'
     }

@@ -27,9 +27,27 @@ export default function App() {
   const [enquiryModal, setEnquiryModal] = useState({ isOpen: false, topic: '' });
   const [lightbox, setLightbox] = useState({ isOpen: false, src: '', title: '' });
 
-  // Scroll to top on page switch
+  // Page titles dictionary for dynamic meta titles
+  const pageTitles = {
+    'home': 'SKYOM — Luxury Real Estate Builder | Integrated Townships & Residences',
+    'project-city': 'SKYOM City — 50-Acre Integrated Township in Mohanlalganj, Lucknow | SKYOM',
+    'project-aura': 'SKYOM Aura — Neo-Classical Arched Residences & Retail | SKYOM City Lucknow',
+    'project-nova': 'SKYOM Nova — G+9 Modern Classical High-Rise Tower | UP RERA Registered',
+    'project-floors': 'SKYOM Floors — Delivered Luxury Independent Floors in New Delhi | SKYOM',
+    'project-ayodhya': 'The Ayodhya Vision — Sacred Heritage Luxury Residences | SKYOM',
+    'project-dehradun': 'The Dehradun Retreat — Himalayan Foothill Luxury Villa Plots | SKYOM',
+    'about': 'About SKYOM — 20+ Years of Architectural Mastery & Luxury Building',
+    'blog': 'Articles & Architectural Insights | SKYOM Blog',
+    'news': 'Press & Media Recognition | SKYOM News',
+    'contact': 'Contact SKYOM — Corporate Office & Experience Center | Schedule a Visit'
+  };
+
+  // Scroll to top and update document title on page switch
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (pageTitles[activePage]) {
+      document.title = pageTitles[activePage];
+    }
   }, [activePage]);
 
   const handleNavigate = (pageId, sectionId = null) => {
