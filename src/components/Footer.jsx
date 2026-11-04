@@ -1,6 +1,9 @@
 import React from 'react';
 import { ShieldCheck } from 'lucide-react';
 
+// Toggle flag: Set to true to re-enable SKYOM Aura & Nova in footer
+const SHOW_AURA_AND_NOVA = false;
+
 export default function Footer({ onNavigate }) {
   return (
     <footer className="footer-section">
@@ -64,16 +67,20 @@ export default function Footer({ onNavigate }) {
                   SKYOM City, Lucknow
                 </button>
               </li>
-              <li>
-                <button type="button" className="nav-link" style={{ padding: '0.2rem 0', fontSize: '0.88rem' }} onClick={() => onNavigate('project-aura')}>
-                  SKYOM Aura, Lucknow
-                </button>
-              </li>
-              <li>
-                <button type="button" className="nav-link" style={{ padding: '0.2rem 0', fontSize: '0.88rem' }} onClick={() => onNavigate('project-nova')}>
-                  SKYOM Nova, Lucknow
-                </button>
-              </li>
+              {SHOW_AURA_AND_NOVA && (
+                <>
+                  <li>
+                    <button type="button" className="nav-link" style={{ padding: '0.2rem 0', fontSize: '0.88rem' }} onClick={() => onNavigate('project-aura')}>
+                      SKYOM Aura, Lucknow
+                    </button>
+                  </li>
+                  <li>
+                    <button type="button" className="nav-link" style={{ padding: '0.2rem 0', fontSize: '0.88rem' }} onClick={() => onNavigate('project-nova')}>
+                      SKYOM Nova, Lucknow
+                    </button>
+                  </li>
+                </>
+              )}
               <li>
                 <button type="button" className="nav-link" style={{ padding: '0.2rem 0', fontSize: '0.88rem' }} onClick={() => onNavigate('project-floors')}>
                   SKYOM Floors, Delhi
@@ -147,11 +154,6 @@ export default function Footer({ onNavigate }) {
           <div className="office-info-item">
             <span className="office-tag">Corporate Headquarters:</span>
             <span>5th Floor, ROMS Code, SKYOM Corporate Office, Sushant Golf City, Lucknow</span>
-          </div>
-
-          <div className="office-info-item">
-            <span className="office-tag">Township Site Office:</span>
-            <span>State Highway 173 to Unnao, Near Raibareli Road, Mohanlalganj, Lucknow 226301</span>
           </div>
         </div>
 

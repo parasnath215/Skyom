@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
-import { Phone, Mail, MapPin, Send, CheckCircle2, Clock } from 'lucide-react';
+import { Phone, Mail, MapPin, Send, CheckCircle2 } from 'lucide-react';
+
+// Toggle flag: Set to true to re-enable SKYOM Aura & Nova in contact form dropdown
+const SHOW_AURA_AND_NOVA = false;
 
 export default function ContactSection() {
   const [formData, setFormData] = useState({
@@ -72,19 +75,6 @@ export default function ContactSection() {
                 <p className="contact-row-value">
                   5th Floor, ROMS Code, SKYOM Corporate Office, <br />
                   Sushant Golf City, Lucknow, Uttar Pradesh
-                </p>
-              </div>
-            </div>
-
-            <div className="contact-detail-row">
-              <div className="contact-icon-bubble">
-                <Clock size={20} />
-              </div>
-              <div>
-                <h5 className="contact-row-title">Township Experience Center</h5>
-                <p className="contact-row-value">
-                  On State Highway 173 to Unnao, Near Raibareli Road, <br />
-                  Mohanlalganj, Lucknow 226301
                 </p>
               </div>
             </div>
@@ -167,8 +157,12 @@ export default function ContactSection() {
                     onChange={(e) => setFormData({ ...formData, project: e.target.value })}
                   >
                     <option value="SKYOM City (Lucknow)">SKYOM City — 50 Acres Township, Lucknow</option>
-                    <option value="SKYOM Aura (Lucknow)">SKYOM Aura — LIG Luxury Residences, Lucknow</option>
-                    <option value="SKYOM Nova (Lucknow)">SKYOM Nova — Modern High-Rise Tower, Lucknow</option>
+                    {SHOW_AURA_AND_NOVA && (
+                      <>
+                        <option value="SKYOM Aura (Lucknow)">SKYOM Aura — LIG Luxury Residences, Lucknow</option>
+                        <option value="SKYOM Nova (Lucknow)">SKYOM Nova — Modern High-Rise Tower, Lucknow</option>
+                      </>
+                    )}
                     <option value="SKYOM Floors (Delhi)">SKYOM Floors — Independent Floors, Delhi</option>
                     <option value="The Ayodhya Vision">The Ayodhya Vision — Sacred Residences</option>
                     <option value="The Dehradun Retreat">The Dehradun Retreat — Hillside Plots</option>

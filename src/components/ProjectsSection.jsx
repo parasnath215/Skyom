@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { ArrowUpRight, MapPin, Layers, CheckCircle2, Clock } from 'lucide-react';
 
+// Toggle flag: Set to true to re-enable SKYOM Aura & Nova in portfolio cards
+export const SHOW_AURA_AND_NOVA = false;
+
 export default function ProjectsSection({ onSelectProject }) {
   const [filter, setFilter] = useState('all');
 
@@ -92,9 +95,13 @@ export default function ProjectsSection({ onSelectProject }) {
     },
   ];
 
-  const filteredProjects = filter === 'all' 
+  const availableProjects = SHOW_AURA_AND_NOVA 
     ? projects 
-    : projects.filter((p) => p.status === filter);
+    : projects.filter((p) => p.id !== 'project-aura' && p.id !== 'project-nova');
+
+  const filteredProjects = filter === 'all' 
+    ? availableProjects 
+    : availableProjects.filter((p) => p.status === filter);
 
   return (
     <section className="projects-section" id="projects">

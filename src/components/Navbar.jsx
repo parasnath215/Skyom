@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
 
+// Toggle flag: Set to true to re-enable SKYOM Aura & Nova in navbar
+const SHOW_AURA_AND_NOVA = false;
+
 export default function Navbar({ onNavigate, activePage, onOpenEnquiry }) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -69,12 +72,16 @@ export default function Navbar({ onNavigate, activePage, onOpenEnquiry }) {
                   <button type="button" onClick={() => handleNavClick('project-city')}>
                     SKYOM City
                   </button>
-                  <button type="button" onClick={() => handleNavClick('project-aura')}>
-                    SKYOM Aura
-                  </button>
-                  <button type="button" onClick={() => handleNavClick('project-nova')}>
-                    SKYOM Nova
-                  </button>
+                  {SHOW_AURA_AND_NOVA && (
+                    <>
+                      <button type="button" onClick={() => handleNavClick('project-aura')}>
+                        SKYOM Aura
+                      </button>
+                      <button type="button" onClick={() => handleNavClick('project-nova')}>
+                        SKYOM Nova
+                      </button>
+                    </>
+                  )}
                 </div>
               </div>
 
@@ -149,8 +156,12 @@ export default function Navbar({ onNavigate, activePage, onOpenEnquiry }) {
         <div className="mobile-menu-links">
           <button className="mobile-link" onClick={() => handleNavClick('home')}>Home</button>
           <button className="mobile-link" onClick={() => handleNavClick('project-city')}>SKYOM City</button>
-          <button className="mobile-link" onClick={() => handleNavClick('project-aura')}>SKYOM Aura</button>
-          <button className="mobile-link" onClick={() => handleNavClick('project-nova')}>SKYOM Nova</button>
+          {SHOW_AURA_AND_NOVA && (
+            <>
+              <button className="mobile-link" onClick={() => handleNavClick('project-aura')}>SKYOM Aura</button>
+              <button className="mobile-link" onClick={() => handleNavClick('project-nova')}>SKYOM Nova</button>
+            </>
+          )}
           <button className="mobile-link" onClick={() => handleNavClick('project-floors')}>SKYOM Floors</button>
           <button className="mobile-link" onClick={() => handleNavClick('project-ayodhya')}>Ayodhya</button>
           <button className="mobile-link" onClick={() => handleNavClick('project-dehradun')}>Dehradun</button>

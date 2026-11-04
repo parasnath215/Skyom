@@ -23,11 +23,6 @@ import EnquiryModal from './components/EnquiryModal.jsx';
 import LightboxModal from './components/LightboxModal.jsx';
 
 export default function App() {
-  const [activePage, setActivePage] = useState('home');
-  const [enquiryModal, setEnquiryModal] = useState({ isOpen: false, topic: '' });
-  const [lightbox, setLightbox] = useState({ isOpen: false, src: '', title: '' });
-
-  // Page titles dictionary for dynamic meta titles
   const pageTitles = {
     'home': 'SKYOM — Luxury Real Estate Builder | Integrated Townships & Residences',
     'project-city': 'SKYOM City — 50-Acre Integrated Township in Mohanlalganj, Lucknow | SKYOM',
@@ -39,8 +34,20 @@ export default function App() {
     'about': 'About SKYOM — 20+ Years of Architectural Mastery & Luxury Building',
     'blog': 'Articles & Architectural Insights | SKYOM Blog',
     'news': 'Press & Media Recognition | SKYOM News',
-    'contact': 'Contact SKYOM — Corporate Office & Experience Center | Schedule a Visit'
+    'contact': 'Contact SKYOM — Corporate Office & Schedule a Visit'
   };
+
+  const getInitialPage = () => {
+    if (typeof window !== 'undefined') {
+      const hash = window.location.hash.replace('#', '').trim();
+      if (hash && pageTitles[hash]) return hash;
+    }
+    return 'home';
+  };
+
+  const [activePage, setActivePage] = useState(getInitialPage);
+  const [enquiryModal, setEnquiryModal] = useState({ isOpen: false, topic: '' });
+  const [lightbox, setLightbox] = useState({ isOpen: false, src: '', title: '' });
 
   // Scroll to top and update document title on page switch
   useEffect(() => {
@@ -50,10 +57,23 @@ export default function App() {
     }
   }, [activePage]);
 
+  // Listen for hash changes (e.g., #project-aura, #project-nova)
+  useEffect(() => {
+    const handleHash = () => {
+      const hash = window.location.hash.replace('#', '').trim();
+      if (hash && pageTitles[hash]) {
+        setActivePage(hash);
+      }
+    };
+    window.addEventListener('hashchange', handleHash);
+    return () => window.removeEventListener('hashchange', handleHash);
+  }, []);
+
   const handleNavigate = (pageId, sectionId = null) => {
     if (pageId === 'home' && sectionId) {
       if (activePage !== 'home') {
         setActivePage('home');
+        if (window.location.hash) window.location.hash = '';
         setTimeout(() => {
           const el = document.getElementById(sectionId);
           if (el) el.scrollIntoView({ behavior: 'smooth' });
@@ -64,6 +84,11 @@ export default function App() {
       }
     } else {
       setActivePage(pageId);
+      if (pageId !== 'home') {
+        window.location.hash = pageId;
+      } else if (window.location.hash) {
+        window.location.hash = '';
+      }
     }
   };
 

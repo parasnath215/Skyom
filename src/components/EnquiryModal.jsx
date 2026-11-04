@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { X, CheckCircle2, Send, Calendar, Phone, Mail, User } from 'lucide-react';
 
+// Toggle flag: Set to true to re-enable SKYOM Aura & Nova in enquiry modal
+const SHOW_AURA_AND_NOVA = false;
+
 export default function EnquiryModal({ isOpen, onClose, defaultTopic }) {
   const [formData, setFormData] = useState({
     name: '',
@@ -131,8 +134,12 @@ export default function EnquiryModal({ isOpen, onClose, defaultTopic }) {
                   onChange={(e) => setFormData({ ...formData, project: e.target.value })}
                 >
                   <option value="SKYOM City (Lucknow)">SKYOM City — 50 Acres Township, Lucknow</option>
-                  <option value="SKYOM Aura (Lucknow)">SKYOM Aura — LIG Luxury Residences, Lucknow</option>
-                  <option value="SKYOM Nova (Lucknow)">SKYOM Nova — Modern High-Rise Tower, Lucknow</option>
+                  {SHOW_AURA_AND_NOVA && (
+                    <>
+                      <option value="SKYOM Aura (Lucknow)">SKYOM Aura — LIG Luxury Residences, Lucknow</option>
+                      <option value="SKYOM Nova (Lucknow)">SKYOM Nova — Modern High-Rise Tower, Lucknow</option>
+                    </>
+                  )}
                   <option value="SKYOM Floors (Delhi)">SKYOM Floors — Independent Luxury Floors</option>
                   <option value="The Ayodhya Vision">The Ayodhya Vision — Sacred Residences</option>
                   <option value="The Dehradun Retreat">The Dehradun Retreat — Hillside Plots</option>
