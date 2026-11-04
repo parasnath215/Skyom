@@ -4,7 +4,7 @@ import { ArrowUpRight, MapPin, Layers, CheckCircle2, Clock } from 'lucide-react'
 export default function ProjectsSection({ onSelectProject }) {
   const [filter, setFilter] = useState('all');
 
-  const projects = [
+    const projects = [
     {
       id: 'project-city',
       num: '01',
@@ -21,8 +21,36 @@ export default function ProjectsSection({ onSelectProject }) {
       ctaText: 'Explore SKYOM City',
     },
     {
-      id: 'project-floors',
+      id: 'project-aura',
       num: '02',
+      title: 'SKYOM Aura',
+      tagline: 'Classical Arched Residences & Retail',
+      status: 'ongoing',
+      statusLabel: 'Ongoing',
+      location: 'SKYOM City, Lucknow',
+      type: '2 BHK Residences & Ground Retail',
+      desc: 'Mediterranean-inspired neo-classical mid-rise residences with grand arched colonnades, wide 1500 mm corridors, and dedicated ground-level boutique shopping.',
+      mediaType: 'image',
+      imageSrc: '/assets/Skyom Aura/skyom-aura-card.webp',
+      ctaText: 'Explore SKYOM Aura',
+    },
+    {
+      id: 'project-nova',
+      num: '03',
+      title: 'SKYOM Nova',
+      tagline: 'Modern High-Rise Classical Tower',
+      status: 'ongoing',
+      statusLabel: 'Ongoing',
+      location: 'SKYOM City, Lucknow',
+      type: 'G+9 High-Rise 1 BHK Homes',
+      desc: 'A majestic 9-story residential tower with illuminated facades, dual elevators, panoramic skyline balconies, and statutory UP RERA approval.',
+      mediaType: 'image',
+      imageSrc: '/assets/Skyom Nova/skyom-nova-card.webp',
+      ctaText: 'Explore SKYOM Nova',
+    },
+    {
+      id: 'project-floors',
+      num: '04',
       title: 'SKYOM Floors',
       tagline: 'Independent Builder Floors',
       status: 'delivered',
@@ -36,7 +64,7 @@ export default function ProjectsSection({ onSelectProject }) {
     },
     {
       id: 'project-ayodhya',
-      num: '03',
+      num: '05',
       title: 'The Ayodhya Vision',
       tagline: 'Sacred Heritage Residences',
       status: 'upcoming',
@@ -50,7 +78,7 @@ export default function ProjectsSection({ onSelectProject }) {
     },
     {
       id: 'project-dehradun',
-      num: '04',
+      num: '06',
       title: 'The Dehradun Retreat',
       tagline: 'Himalayan Foothill Villa Plots',
       status: 'upcoming',

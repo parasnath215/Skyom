@@ -65,6 +65,16 @@ export default function Footer({ onNavigate }) {
                 </button>
               </li>
               <li>
+                <button type="button" className="nav-link" style={{ padding: '0.2rem 0', fontSize: '0.88rem' }} onClick={() => onNavigate('project-aura')}>
+                  SKYOM Aura, Lucknow
+                </button>
+              </li>
+              <li>
+                <button type="button" className="nav-link" style={{ padding: '0.2rem 0', fontSize: '0.88rem' }} onClick={() => onNavigate('project-nova')}>
+                  SKYOM Nova, Lucknow
+                </button>
+              </li>
+              <li>
                 <button type="button" className="nav-link" style={{ padding: '0.2rem 0', fontSize: '0.88rem' }} onClick={() => onNavigate('project-floors')}>
                   SKYOM Floors, Delhi
                 </button>

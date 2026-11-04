@@ -131,6 +131,8 @@ export default function EnquiryModal({ isOpen, onClose, defaultTopic }) {
                   onChange={(e) => setFormData({ ...formData, project: e.target.value })}
                 >
                   <option value="SKYOM City (Lucknow)">SKYOM City — 50 Acres Township, Lucknow</option>
+                  <option value="SKYOM Aura (Lucknow)">SKYOM Aura — LIG Luxury Residences, Lucknow</option>
+                  <option value="SKYOM Nova (Lucknow)">SKYOM Nova — Modern High-Rise Tower, Lucknow</option>
                   <option value="SKYOM Floors (Delhi)">SKYOM Floors — Independent Luxury Floors</option>
                   <option value="The Ayodhya Vision">The Ayodhya Vision — Sacred Residences</option>
                   <option value="The Dehradun Retreat">The Dehradun Retreat — Hillside Plots</option>

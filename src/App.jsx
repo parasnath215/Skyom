@@ -5,6 +5,8 @@ import BrandStatement from './components/BrandStatement.jsx';
 import VisionSection from './components/VisionSection.jsx';
 import ProjectsSection from './components/ProjectsSection.jsx';
 import ProjectCityDetail from './components/ProjectCityDetail.jsx';
+import ProjectAuraDetail from './components/ProjectAuraDetail.jsx';
+import ProjectNovaDetail from './components/ProjectNovaDetail.jsx';
 import ProjectFloorsDetail from './components/ProjectFloorsDetail.jsx';
 import ProjectAyodhyaDetail from './components/ProjectAyodhyaDetail.jsx';
 import ProjectDehradunDetail from './components/ProjectDehradunDetail.jsx';
@@ -92,6 +94,24 @@ export default function App() {
         {activePage === 'project-city' && (
           <ProjectCityDetail 
             onBack={() => handleNavigate('home', 'projects')}
+            onOpenLightbox={openLightbox}
+          />
+        )}
+
+        {/* Individual Project: SKYOM Aura */}
+        {activePage === 'project-aura' && (
+          <ProjectAuraDetail 
+            onBack={() => handleNavigate('home', 'projects')}
+            onOpenEnquiry={openEnquiry}
+            onOpenLightbox={openLightbox}
+          />
+        )}
+
+        {/* Individual Project: SKYOM Nova */}
+        {activePage === 'project-nova' && (
+          <ProjectNovaDetail 
+            onBack={() => handleNavigate('home', 'projects')}
+            onOpenEnquiry={openEnquiry}
             onOpenLightbox={openLightbox}
           />
         )}

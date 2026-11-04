@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SKYOM Aura — Neo-Classical Arched Residences | SKYOM City Lucknow</title>
+    <meta name="description" content="Discover SKYOM Aura at SKYOM City, Mohanlalganj, Lucknow. Mediterranean neo-classical 2 BHK residences, streetfront retail suites, wide 1500 mm corridors, and integrated township amenities.">
+    <meta name="keywords" content="SKYOM Aura, Skyom City, LIG housing, 2 BHK apartments Lucknow, Mohanlalganj, Ar Nehareeka Mehindru, Ar Nimit Jain, luxury builder Lucknow">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="SKYOM Aura — Neo-Classical Arched Residences">
+    <meta property="og:description" content="Mediterranean neo-classical 2 BHK residences & retail suites in the prestigious 50-Acre SKYOM City township.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="assets/Skyom Aura/skyom-aura-card.webp">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Montserrat:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .option-card-wrap {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        .option-card {
+            background: #141311;
+            border: 1px solid var(--border-color, rgba(255,255,255,0.08));
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+        .option-card:hover {
+            transform: translateY(-4px);
+            border-color: #c9a063;
+        }
+        .option-card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            display: block;
+        }
+        .option-card-body {
+            padding: 1.25rem;
+        }
+        .option-card-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem;
+            color: #f7f6f2;
+            margin-bottom: 0.4rem;
+        }
+        .option-card-desc {
+            font-size: 0.85rem;
+            color: #b0ada6;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ========== PRELOADER ========== -->
+    <div id="preloader" class="preloader">
+        <div class="preloader-inner">
+            <div class="preloader-logo"><img src="assets/Skyom.webp" alt="SKYOM Logo" class="preloader-img"></div>
+            <div class="preloader-tagline">Building Dreams</div>
+            <div class="preloader-bar"><div class="preloader-bar-fill"></div></div>
+        </div>
+    </div>
+
+    <!-- ========== HEADER / NAVBAR ========== -->
+    <header id="header" class="header">
+        <nav id="navbar" class="navbar">
+            <a href="index.html" class="nav-logo">
+                <img src="assets/Skyom.webp" alt="SKYOM Logo" class="nav-logo-img">
+            </a>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link" data-text="Home">Home</a>
+                <div class="nav-dropdown-wrapper">
+                    <a href="projects.html" class="nav-link dropdown-trigger" data-text="Projects">Projects <span class="arrow-down">&#9662;</span></a>
+                    <div class="dropdown-menu">
+                        <div class="dropdown-item has-submenu">
+                            <a href="#">Ongoing Projects <span class="arrow-right">&#9656;</span></a>
+                            <div class="submenu">
+                                <a href="project-city.html">SKYOM City</a>
+                                <a href="project-aura.html">SKYOM Aura</a>
+                                <a href="project-nova.html">SKYOM Nova</a>
+                            </div>
+                        </div>
+                        <div class="dropdown-item has-submenu">
+                            <a href="#">Delivered Projects <span class="arrow-right">&#9656;</span></a>
+                            <div class="submenu">
+                                <a href="project-floors.html">SKYOM Floors</a>
+                            </div>
+                        </div>
+                        <div class="dropdown-item has-submenu">
+                            <a href="#">The Future <span class="arrow-right">&#9656;</span></a>
+                            <div class="submenu">
+                                <a href="project-ayodhya.html">Ayodhya</a>
+                                <a href="project-dehradun.html">Dehradun</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <a href="about.html" class="nav-link" data-text="About Us">About Us</a>
+                <a href="blog.html" class="nav-link" data-text="Blog">Blog</a>
+                <a href="news.html" class="nav-link" data-text="News">News</a>
+                <a href="contact.html" class="nav-link" data-text="Contact Us">Contact Us</a>
+            </div>
+            <a href="contact.html" class="nav-cta-btn">GET IN TOUCH</a>
+            <button id="nav-toggle" class="nav-toggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </nav>
+        <div id="mobile-menu" class="mobile-menu">
+            <div class="mobile-menu-links">
+                <a href="index.html" class="mobile-link">Home</a>
+                <a href="project-city.html" class="mobile-link">SKYOM City</a>
+                <a href="project-aura.html" class="mobile-link">SKYOM Aura</a>
+                <a href="project-nova.html" class="mobile-link">SKYOM Nova</a>
+                <a href="project-floors.html" class="mobile-link">SKYOM Floors</a>
+                <a href="project-ayodhya.html" class="mobile-link">Ayodhya</a>
+                <a href="project-dehradun.html" class="mobile-link">Dehradun</a>
+                <a href="about.html" class="mobile-link">About</a>
+                <a href="blog.html" class="mobile-link">Blog</a>
+                <a href="news.html" class="mobile-link">News</a>
+                <a href="contact.html" class="mobile-link">Contact</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ========== HERO BANNER ========== -->
+    <section id="banner" class="hero-banner-section" style="background-image: url('assets/Skyom Aura/skyom-aura-hero.webp'); background-size: cover; background-position: center;">
+        <div class="hero-banner-overlay" style="background: linear-gradient(180deg, rgba(8,8,8,0.2) 0%, rgba(8,8,8,0.85) 100%);"></div>
+        <div class="hero-scroll-indicator">
+            <span class="scroll-text">SCROLL DOWN</span>
+            <div class="scroll-line"><div class="scroll-line-fill"></div></div>
+        </div>
+    </section>
+
+    <!-- ========== HERO BRAND STATEMENT ========== -->
+    <section id="hero-text-section" class="hero-brand-statement">
+        <div class="hero-brand-container">
+            <div class="brand-eyebrow">
+                <span class="eyebrow-line"></span>
+                <span class="eyebrow-text">ONGOING RESIDENTIAL LANDMARK &bull; SKYOM CITY</span>
+                <span class="eyebrow-line"></span>
+            </div>
+            
+            <h1 class="brand-heading">
+                <span class="heading-line"><span class="hero-title-word">SKYOM</span></span>
+                <span class="heading-line accent-gold"><span class="hero-title-word">Aura.</span></span>
+            </h1>
+
+            <div class="brand-divider"></div>
+
+            <p class="brand-subheading">
+                Mediterranean Neo-Classical Residences Featuring Arched Colonnades, Streetfront Commercial Suites, and 1500 mm Wide Corridors within the 50-Acre SKYOM City Master Township.
+            </p>
+
+            <div class="brand-cta-wrapper" style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                <a href="#floor-plans" class="hero-cta">
+                    <span class="hero-cta-text">View Floor Plans</span>
+                    <span class="hero-cta-arrow">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M7 17L17 7M17 7H7M17 7V17"></path>
+                        </svg>
+                    </span>
+                </a>
+                <a href="assets/Skyom Aura/20261029-LIG COLOUR OPTIONS STAGE 2.pdf" target="_blank" class="hero-cta" style="border-color: rgba(255,255,255,0.2);">
+                    <span class="hero-cta-text">Download Lookbook PDF</span>
+                    <span class="hero-cta-arrow">&#8595;</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== OVERVIEW SECTION ========== -->
+    <section id="overview" class="project-overview-v2">
+        <div class="project-overview-v2-grid">
+            <div class="overview-v2-text">
+                <h2 class="overview-v2-title">CLASSICAL PROPORTIONS, CONTEMPORARY VIBRANCE</h2>
+                <p class="overview-v2-desc">SKYOM Aura brings timeless Mediterranean architecture to Mohanlalganj, Lucknow. Conceived by renowned architects Ar. Nehareeka Mehindru and Ar. Nimit Jain, the development features monumental lower arches, balanced pilasters, private sit-out balconies, and an optional classical balustrade roof terrace.</p>
+                <p class="overview-v2-desc">Situated within the gated sanctuary of SKYOM City, Aura homeowners enjoy instant access to 24+ themed parks, sports zones, wide boulevards, and dedicated doorstep commercial shops designed for modern convenience.</p>
+            </div>
+            <div class="cloud-masked-wrapper">
+                <img src="assets/Skyom Aura/skyom-aura-daylight.webp" alt="SKYOM Aura Neo-Classical Elevation" class="cloud-masked-img">
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== FAÇADE COLOR OPTIONS GALLERY ========== -->
+    <section class="section" style="padding: 5rem 0; background: #0c0b0a;">
+        <div style="max-width: 1200px; margin: 0 auto; padding: 0 1.5rem;">
+            <div style="text-align: center; max-width: 750px; margin: 0 auto 3rem;">
+                <span class="section-tag" style="color: #c9a063; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.15em;">Architectural Curation</span>
+                <h2 style="font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 4vw, 3rem); color: #f7f6f2; margin-top: 0.5rem;">
+                    Façade Colour <span style="font-style: italic; color: #c9a063;">Options</span>
+                </h2>
+                <p style="color: #a8a59d; font-size: 0.95rem; margin-top: 0.5rem; line-height: 1.6;">
+                    Curated Stage 2 architectural color studies showcasing both day and illuminated evening moods.
+                </p>
+            </div>
+
+            <div class="option-card-wrap">
+                <div class="option-card">
+                    <img src="assets/Skyom Aura/skyom-aura-hero.webp" alt="Option 3 Tans and Beiges">
+                    <div class="option-card-body">
+                        <div class="option-card-title">Option 03: Tans &amp; Beiges</div>
+                        <p class="option-card-desc">Signature Mediterranean palette with rich golden tans, light stone beiges, and warm ambient evening lighting.</p>
+                    </div>
+                </div>
+
+                <div class="option-card">
+                    <img src="assets/Skyom Aura/option-1-night.webp" alt="Option 1 Olives and Beiges">
+                    <div class="option-card-body">
+                        <div class="option-card-title">Option 01: Olives &amp; Beiges</div>
+                        <p class="option-card-desc">Natural harmony featuring earthy olive green accents, sand beige stucco, and terracotta tiles.</p>
+                    </div>
+                </div>
+
+                <div class="option-card">
+                    <img src="assets/Skyom Aura/option-2-night.webp" alt="Option 2 Creams and Greys">
+                    <div class="option-card-body">
+                        <div class="option-card-title">Option 02: Creams &amp; Greys</div>
+                        <p class="option-card-desc">Refined contemporary neoclassical contrast blending crisp ivory cream with soft urban grey arches.</p>
+                    </div>
+                </div>
+
+                <div class="option-card">
+                    <img src="assets/Skyom Aura/option-4-night.webp" alt="Option 4 Shades of Brown">
+                    <div class="option-card-body">
+                        <div class="option-card-title">Option 04: Shades of Brown</div>
+                        <p class="option-card-desc">Regal Tuscan aesthetic with deep espresso undertones, sun-baked clay, and arched porticos.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== FLOOR PLAN SECTION ========== -->
+    <section id="floor-plans" class="floorplan-v2-section">
+        <div class="floorplan-v2-header">
+            <h2 class="floorplan-v2-title">Floor Plans &amp; Blueprints</h2>
+            <div class="floorplan-v2-tabs">
+                <button class="floorplan-v2-tab active" data-tab="floor-ground">Ground Block Plan</button>
+                <button class="floorplan-v2-tab" data-tab="floor-2bhk">2 BHK Residence</button>
+                <button class="floorplan-v2-tab" data-tab="floor-retail">Retail Shops</button>
+            </div>
+        </div>
+
+        <div class="floorplan-v2-container">
+            <!-- Ground Block Tab -->
+            <div id="floor-ground" class="floorplan-v2-body floorplan-v2-item active" style="display: grid;">
+                <div class="floorplan-v2-info">
+                    <h3 class="floorplan-v2-subtitle">Ground Floor Master CAD Plan</h3>
+                    <div class="floorplan-v2-meta-block">
+                        <span class="floorplan-v2-meta-label">CONFIGURATION :</span>
+                        <p class="floorplan-v2-meta-val">2 BHK RESIDENCES &bull; 2 STREETFRONT SHOPS &bull; DUAL ELEVATORS &bull; 1500 MM CORRIDORS</p>
+                    </div>
+                    <div class="floorplan-v2-meta-block">
+                        <span class="floorplan-v2-meta-label">ACCESSIBILITY :</span>
+                        <p class="floorplan-v2-meta-val">1:10 SLOPE ENTRANCE RAMPS &bull; 1900 x 3050 MM SERVICE ELEVATOR</p>
+                    </div>
+                    <div class="floorplan-v2-meta-block">
+                        <span class="floorplan-v2-meta-label">DOWNLOAD :</span>
+                        <p class="floorplan-v2-meta-val"><a href="assets/Skyom Aura/LIG BLOCK GROUND FLOOR.pdf" target="_blank" style="color: #c9a063; text-decoration: underline;">Download Full CAD Blueprint (PDF)</a></p>
+                    </div>
+                </div>
+                <div class="floorplan-v2-graphic-col" style="background: #ffffff; padding: 1rem; border-radius: 6px;">
+                    <img src="assets/Skyom Aura/skyom-aura-ground-floor-plan.webp" alt="SKYOM Aura Ground Floor Plan" class="floorplan-v2-img" style="max-height: 520px; object-fit: contain;">
+                </div>
+            </div>
+
+            <!-- 2 BHK Residence Tab -->
+            <div id="floor-2bhk" class="floorplan-v2-body floorplan-v2-item" style="display: none;">
+                <div class="floorplan-v2-info">
+                    <h3 class="floorplan-v2-subtitle">2 BHK Premium Residence Unit</h3>
+                    <div class="floorplan-v2-meta-block">
+                        <span class="floorplan-v2-meta-label">LIVING &amp; BEDROOMS :</span>
+                        <p class="floorplan-v2-meta-val">DRAWING ROOM: 11'-11" x 9'-7.5" &bull; BEDROOM 1: 11'-10" x 9'-7.5" &bull; BEDROOM 2: 9'-0.5" x 9'-10"</p>
+                    </div>
+                    <div class="floorplan-v2-meta-block">
+                        <span class="floorplan-v2-meta-label">KITCHEN &amp; BATH :</span>
+                        <p class="floorplan-v2-meta-val">KITCHEN: 5'-3.5" x 7'-2.5" &bull; BATH: 4'-0" x 7'-2.5" &bull; W.C: 3'-6" x 4'-6.5"</p>
+                    </div>
+                    <div class="floorplan-v2-meta-block">
+                        <span class="floorplan-v2-meta-label">BALCONY :</span>
+                        <p class="floorplan-v2-meta-val">1050 MM WIDE PRIVATE SIT-OUT OVERLOOKING GREEN COURTYARD</p>
+                    </div>
+                </div>
+                <div class="floorplan-v2-graphic-col" style="background: #ffffff; padding: 1rem; border-radius: 6px;">
+                    <img src="assets/Skyom Aura/skyom-aura-ground-floor-plan.webp" alt="2 BHK Layout" class="floorplan-v2-img" style="max-height: 520px; object-fit: contain;">
+                </div>
+            </div>
+
+            <!-- Retail Tab -->
+            <div id="floor-retail" class="floorplan-v2-body floorplan-v2-item" style="display: none;">
+                <div class="floorplan-v2-info">
+                    <h3 class="floorplan-v2-subtitle">Ground Floor Commercial Retail Suites</h3>
+                    <div class="floorplan-v2-meta-block">
+                        <span class="floorplan-v2-meta-label">SHOP 1 &amp; SHOP 2 :</span>
+                        <p class="floorplan-v2-meta-val">11.42 SQM (9'-5" x 10'-10") EACH WITH HIGH VISIBILITY PROMENADE FRONTAGE</p>
+                    </div>
+                    <div class="floorplan-v2-meta-block">
+                        <span class="floorplan-v2-meta-label">SPECIFICATIONS :</span>
+                        <p class="floorplan-v2-meta-val">FULL ROLLING SHUTTERS (R.S) &bull; ADJACENT FIRE HYDRANT SHAFT &bull; DIRECT SERVICE FOYER</p>
+                    </div>
+                </div>
+                <div class="floorplan-v2-graphic-col" style="background: #ffffff; padding: 1rem; border-radius: 6px;">
+                    <img src="assets/Skyom Aura/skyom-aura-ground-floor-plan.webp" alt="Retail Shop Plans" class="floorplan-v2-img" style="max-height: 520px; object-fit: contain;">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== CONTACT / ENQUIRY SECTION ========== -->
+    <section id="contact" class="contact-section-v2">
+        <div class="contact-v2-container">
+            <div class="contact-v2-info">
+                <span class="contact-v2-tag">Direct Priority Allotment</span>
+                <h2 class="contact-v2-title">Inquire for SKYOM Aura</h2>
+                <p class="contact-v2-desc">Schedule a private consultation at our corporate office in Sushant Golf City or tour the ongoing construction at SKYOM City, Mohanlalganj.</p>
+                <div class="contact-v2-item">
+                    <span class="contact-v2-label">Phone:</span>
+                    <a href="tel:+919999990320" class="contact-v2-val">+91 999999 0320</a>
+                </div>
+                <div class="contact-v2-item">
+                    <span class="contact-v2-label">Email:</span>
+                    <a href="mailto:info@skyom.in" class="contact-v2-val">info@skyom.in</a>
+                </div>
+                <div class="contact-v2-item">
+                    <span class="contact-v2-label">Project Site:</span>
+                    <p class="contact-v2-val">SKYOM City, State Highway 173 to Unnao, Mohanlalganj, Lucknow</p>
+                </div>
+            </div>
+            <div class="contact-v2-form-box">
+                <form class="contact-v2-form" onsubmit="event.preventDefault(); alert('Thank you for inquiring about SKYOM Aura. Our advisor will call you within 2 hours.');">
+                    <div class="form-v2-group">
+                        <label class="form-v2-label">Your Name</label>
+                        <input type="text" class="form-v2-input" placeholder="e.g. Vikram Malhotra" required>
+                    </div>
+                    <div class="form-v2-group">
+                        <label class="form-v2-label">Phone Number</label>
+                        <input type="tel" class="form-v2-input" placeholder="+91 99999 99999" required>
+                    </div>
+                    <div class="form-v2-group">
+                        <label class="form-v2-label">Email Address</label>
+                        <input type="email" class="form-v2-input" placeholder="name@example.com" required>
+                    </div>
+                    <div class="form-v2-group">
+                        <label class="form-v2-label">Message / Preference</label>
+                        <textarea class="form-v2-textarea" rows="3" placeholder="Interested in 2 BHK residences / commercial retail shops..."></textarea>
+                    </div>
+                    <button type="submit" class="form-v2-submit">
+                        <span>Send Message</span>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"></path></svg>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="footer">
+        <div class="footer-gradient"></div>
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <a href="index.html" class="footer-logo">
+                    <img src="assets/Skyom.webp" alt="SKYOM Logo" class="footer-logo-img">
+                </a>
+                <p class="footer-tagline">Building Dreams. Shaping Futures.</p>
+            </div>
+            <div class="footer-links">
+                <a href="projects.html">Projects</a>
+                <a href="about.html">About</a>
+                <a href="vision.html">Vision</a>
+                <a href="contact.html">Contact</a>
+            </div>
+            <div class="footer-social">
+                <a href="#" class="social-link" aria-label="Instagram">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <rect x="2" y="2" width="20" height="20" rx="5"></rect>
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <circle cx="17.5" cy="6.5" r="1.5" fill="currentColor" stroke="none"></circle>
+                    </svg>
+                </a>
+                <a href="#" class="social-link" aria-label="Facebook">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path>
+                    </svg>
+                </a>
+                <a href="#" class="social-link" aria-label="LinkedIn">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"></path>
+                        <circle cx="4" cy="4" r="2"></circle>
+                    </svg>
+                </a>
+            </div>
+        </div>
+        <div class="footer-office-strip">
+            <div class="footer-office-item">
+                <span class="footer-office-label">Corporate Office:</span>
+                <span class="footer-office-text">5th Floor, ROMS Code, SKYOM Corporate Office, Sushant Golf City, Lucknow</span>
+            </div>
+            <div class="footer-office-item">
+                <span class="footer-office-label">Township Site:</span>
+                <span class="footer-office-text">On State Highway 173 to Unnao, Near Raibareli Road, Mohanlalganj, Lucknow 226301</span>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 SKYOM. All rights reserved. Official Contact: <a href="mailto:info@skyom.in" style="color: #c9a063;">info@skyom.in</a></p>
+        </div>
+    </footer>
+
+    <!-- ========== STICKY CONTACT WIDGET ========== -->
+    <div class="sticky-contact-bar">
+        <a href="https://wa.me/919999990320" target="_blank" class="sticky-action-btn" aria-label="WhatsApp Chat">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"></path>
+            </svg>
+            <span class="sticky-action-label">WhatsApp Chat</span>
+        </a>
+        <a href="tel:+919999990320" class="sticky-action-btn" aria-label="Call Representative">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"></path>
+            </svg>
+            <span class="sticky-action-label">Call Now</span>
+        </a>
+        <a href="#contact" class="sticky-action-btn" aria-label="Quick Enquiry Form">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+            </svg>
+            <span class="sticky-action-label">Enquire Now</span>
+        </a>
+    </div>
+
+    <!-- ========== SCRIPTS ========== -->
+    <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js"></script>
+    <script src="script.js"></script>
+    <script>
+        // Floor Plan Tab Switching
+        document.querySelectorAll('.floorplan-v2-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                document.querySelectorAll('.floorplan-v2-tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.floorplan-v2-item').forEach(item => {
+                    item.classList.remove('active');
+                    item.style.display = 'none';
+                });
+                tab.classList.add('active');
+                const target = document.getElementById(tab.getAttribute('data-tab'));
+                if (target) {
+                    target.classList.add('active');
+                    target.style.display = 'grid';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -56,12 +56,10 @@ export default function ContactSection() {
               </div>
               <div>
                 <h5 className="contact-row-title">Official Electronic Mail</h5>
-                <a href="mailto:info@skyomcity.in" className="contact-row-value" style={{ display: 'block' }}>
-                  info@skyomcity.in
+                <a href="mailto:info@skyom.in" className="contact-row-value" style={{ display: 'block', fontSize: '1.05rem', color: 'var(--color-ivory)', fontWeight: 500 }}>
+                  info@skyom.in
                 </a>
-                <a href="mailto:contact@skyom.in" className="contact-row-value" style={{ display: 'block', fontSize: '0.88rem', color: 'var(--color-text-dim)' }}>
-                  contact@skyom.in
-                </a>
+                <span style={{ fontSize: '0.78rem', color: 'var(--color-text-dim)' }}>Direct responses within 2 business hours</span>
               </div>
             </div>
 
@@ -169,6 +167,8 @@ export default function ContactSection() {
                     onChange={(e) => setFormData({ ...formData, project: e.target.value })}
                   >
                     <option value="SKYOM City (Lucknow)">SKYOM City — 50 Acres Township, Lucknow</option>
+                    <option value="SKYOM Aura (Lucknow)">SKYOM Aura — LIG Luxury Residences, Lucknow</option>
+                    <option value="SKYOM Nova (Lucknow)">SKYOM Nova — Modern High-Rise Tower, Lucknow</option>
                     <option value="SKYOM Floors (Delhi)">SKYOM Floors — Independent Floors, Delhi</option>
                     <option value="The Ayodhya Vision">The Ayodhya Vision — Sacred Residences</option>
                     <option value="The Dehradun Retreat">The Dehradun Retreat — Hillside Plots</option>

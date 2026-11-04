@@ -8,6 +8,8 @@ dist/assets/*.jpeg
 dist/assets/Awards/
 dist/assets/fonts/
 dist/assets/Skyom Floor/
+dist/assets/Skyom Aura/
+dist/assets/Skyom Nova/
 .DS_Store
 *.local
 npm-debug.log*

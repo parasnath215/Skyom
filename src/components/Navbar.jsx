@@ -69,6 +69,12 @@ export default function Navbar({ onNavigate, activePage, onOpenEnquiry }) {
                   <button type="button" onClick={() => handleNavClick('project-city')}>
                     SKYOM City
                   </button>
+                  <button type="button" onClick={() => handleNavClick('project-aura')}>
+                    SKYOM Aura
+                  </button>
+                  <button type="button" onClick={() => handleNavClick('project-nova')}>
+                    SKYOM Nova
+                  </button>
                 </div>
               </div>
 
@@ -143,6 +149,8 @@ export default function Navbar({ onNavigate, activePage, onOpenEnquiry }) {
         <div className="mobile-menu-links">
           <button className="mobile-link" onClick={() => handleNavClick('home')}>Home</button>
           <button className="mobile-link" onClick={() => handleNavClick('project-city')}>SKYOM City</button>
+          <button className="mobile-link" onClick={() => handleNavClick('project-aura')}>SKYOM Aura</button>
+          <button className="mobile-link" onClick={() => handleNavClick('project-nova')}>SKYOM Nova</button>
           <button className="mobile-link" onClick={() => handleNavClick('project-floors')}>SKYOM Floors</button>
           <button className="mobile-link" onClick={() => handleNavClick('project-ayodhya')}>Ayodhya</button>
           <button className="mobile-link" onClick={() => handleNavClick('project-dehradun')}>Dehradun</button>
