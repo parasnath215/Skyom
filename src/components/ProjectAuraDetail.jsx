@@ -14,12 +14,52 @@ import {
   Eye, 
   Sun, 
   Moon,
-  Send
+  Send,
+  Lock,
+  X
 } from 'lucide-react';
 
 export default function ProjectAuraDetail({ onBack, onOpenEnquiry, onOpenLightbox }) {
   const [viewMode, setViewMode] = useState('night'); // 'night' or 'day'
   const [activeFloorTab, setActiveFloorTab] = useState(0);
+
+  // Floor Plan Blur & Unlock State
+  const [isPlanUnlocked, setIsPlanUnlocked] = useState(() => {
+    try {
+      return typeof window !== 'undefined' && sessionStorage.getItem('skyom_aura_plan_unlocked') === 'true';
+    } catch {
+      return false;
+    }
+  });
+  const [planModalOpen, setPlanModalOpen] = useState(false);
+  const [planForm, setPlanForm] = useState({ name: '', phone: '' });
+  const [planLoading, setPlanLoading] = useState(false);
+  const [planError, setPlanError] = useState('');
+
+  const handleUnlockPlan = (e) => {
+    e.preventDefault();
+    if (!planForm.name.trim()) {
+      setPlanError('Please enter your full name.');
+      return;
+    }
+    const cleanPhone = planForm.phone.replace(/[^0-9]/g, '');
+    if (cleanPhone.length < 10) {
+      setPlanError('Please enter a valid 10-digit phone number.');
+      return;
+    }
+    setPlanError('');
+    setPlanLoading(true);
+    setTimeout(() => {
+      setPlanLoading(false);
+      setIsPlanUnlocked(true);
+      try {
+        sessionStorage.setItem('skyom_aura_plan_unlocked', 'true');
+      } catch (err) {
+        // ignore storage error
+      }
+      setPlanModalOpen(false);
+    }, 500);
+  };
 
   // Form state
   const [formData, setFormData] = useState({
@@ -55,7 +95,7 @@ export default function ProjectAuraDetail({ onBack, onOpenEnquiry, onOpenLightbo
         { label: 'Corridor Width', val: '1500 mm (5 Feet Clear)' },
         { label: 'Vertical Transport', val: 'Dual Passenger & Service Lifts' },
         { label: 'Accessibility', val: '1:10 Slope Ramps & Wide Entrances' },
-        { label: 'Architects', val: 'Ar. Nehareeka Mehindru & Ar. Nimit Jain' },
+        { label: 'Design Architecture', val: 'Mediterranean Neo-Classical' },
         { label: 'Township', val: 'SKYOM City, Mohanlalganj, Lucknow' }
       ]
     },
@@ -162,7 +202,7 @@ export default function ProjectAuraDetail({ onBack, onOpenEnquiry, onOpenLightbo
               Façade Design & <span className="accent-serif">Illumination</span>
             </h2>
             <p className="section-desc" style={{ margin: '1rem auto 0' }}>
-              Designed by Ar. Nehareeka Mehindru & Ar. Nimit Jain. Experience the signature Mediterranean palette in Tans & Beiges under natural daylight and dusk illumination.
+              Experience the signature Mediterranean palette in Tans & Beiges under natural daylight and dusk illumination.
             </p>
           </div>
 
@@ -316,20 +356,117 @@ export default function ProjectAuraDetail({ onBack, onOpenEnquiry, onOpenLightbo
           <div className="floorplan-display-grid">
             <div 
               className="floorplan-img-container"
-              onClick={() => onOpenLightbox(currentFloor.src, currentFloor.title)}
-              title="Click to zoom floor plan"
-              style={{ background: '#ffffff', borderRadius: '6px', padding: '1rem', minHeight: '440px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+              onClick={() => {
+                if (isPlanUnlocked) {
+                  onOpenLightbox(currentFloor.src, currentFloor.title);
+                } else {
+                  setPlanModalOpen(true);
+                }
+              }}
+              title={isPlanUnlocked ? "Click to zoom floor plan" : "Click to unlock floor plan"}
+              style={{
+                background: '#ffffff',
+                borderRadius: '6px',
+                padding: '1rem',
+                minHeight: '440px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                position: 'relative',
+                overflow: 'hidden',
+                cursor: isPlanUnlocked ? 'zoom-in' : 'pointer'
+              }}
             >
               <img 
                 src={currentFloor.src} 
                 alt={currentFloor.title} 
                 loading="lazy" 
-                style={{ maxHeight: '550px', width: 'auto', objectFit: 'contain' }}
+                style={{
+                  maxHeight: '550px',
+                  width: 'auto',
+                  objectFit: 'contain',
+                  filter: isPlanUnlocked ? 'none' : 'blur(16px)',
+                  transition: 'filter 0.6s cubic-bezier(0.16, 1, 0.3, 1)',
+                  userSelect: 'none'
+                }}
               />
-              <div className="zoom-hint-badge">
-                <ZoomIn size={13} />
-                <span>Click to Enlarge CAD Plan</span>
-              </div>
+
+              {/* Blurred Overlay with Unlock Prompt */}
+              {!isPlanUnlocked && (
+                <div
+                  style={{
+                    position: 'absolute',
+                    inset: 0,
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    background: 'rgba(6, 6, 6, 0.72)',
+                    backdropFilter: 'blur(4px)',
+                    borderRadius: '4px',
+                    padding: '1.5rem',
+                    zIndex: 2
+                  }}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setPlanModalOpen(true);
+                  }}
+                >
+                  <div style={{
+                    maxWidth: '420px',
+                    width: '100%',
+                    background: '#121212',
+                    border: '1px solid var(--color-gold)',
+                    borderRadius: '8px',
+                    padding: 'clamp(1.75rem, 3.5vw, 2.25rem)',
+                    boxShadow: '0 20px 40px rgba(0,0,0,0.8)',
+                    textAlign: 'center'
+                  }}>
+                    <div style={{
+                      width: '50px',
+                      height: '50px',
+                      borderRadius: '50%',
+                      background: 'var(--color-gold-subtle)',
+                      border: '1px solid var(--color-border)',
+                      color: 'var(--color-gold)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      margin: '0 auto 1.25rem'
+                    }}>
+                      <Lock size={22} />
+                    </div>
+
+                    <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.55rem', color: 'var(--color-ivory)', marginBottom: '0.4rem' }}>
+                      Unlock Detailed Floor Plan
+                    </h3>
+                    <p style={{ color: 'var(--color-ivory-muted)', fontSize: '0.88rem', lineHeight: 1.6, marginBottom: '1.5rem' }}>
+                      Enter your details to view clear room dimensions and download the high-resolution architectural CAD drawing.
+                    </p>
+
+                    <button
+                      type="button"
+                      className="btn-gold"
+                      style={{ width: '100%', justifyContent: 'center' }}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setPlanModalOpen(true);
+                      }}
+                    >
+                      <span>Unlock & View Plan</span>
+                      <ArrowUpRight size={16} />
+                    </button>
+                  </div>
+                </div>
+              )}
+
+              {/* Unlocked Zoom Hint Badge */}
+              {isPlanUnlocked && (
+                <div className="zoom-hint-badge" style={{ position: 'absolute', bottom: '1.25rem', right: '1.25rem' }}>
+                  <ZoomIn size={14} />
+                  <span>Click to Enlarge CAD Plan</span>
+                </div>
+              )}
             </div>
 
             <div className="floorplan-info-col">
@@ -346,20 +483,46 @@ export default function ProjectAuraDetail({ onBack, onOpenEnquiry, onOpenLightbo
                 ))}
               </div>
 
+              {isPlanUnlocked && (
+                <div style={{
+                  marginTop: '1.25rem',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '0.5rem',
+                  color: 'var(--color-delivered)',
+                  fontSize: '0.88rem'
+                }}>
+                  <CheckCircle2 size={16} />
+                  <span>Floor Plan Unlocked — Click image to view in fullscreen</span>
+                </div>
+              )}
+
               <div style={{ display: 'flex', gap: '0.75rem', marginTop: '1.5rem', flexWrap: 'wrap' }}>
                 <button 
                   className="btn-gold" 
                   style={{ flex: 1, minWidth: '180px' }}
-                  onClick={() => onOpenLightbox(currentFloor.src, currentFloor.title)}
+                  onClick={() => {
+                    if (isPlanUnlocked) {
+                      onOpenLightbox(currentFloor.src, currentFloor.title);
+                    } else {
+                      setPlanModalOpen(true);
+                    }
+                  }}
                 >
-                  <span>Enlarge Full Plan</span>
-                  <ZoomIn size={15} />
+                  <span>{isPlanUnlocked ? 'Enlarge Full Plan' : 'Unlock & View Plan'}</span>
+                  {isPlanUnlocked ? <ZoomIn size={15} /> : <Lock size={15} />}
                 </button>
                 <a 
-                  href={currentFloor.pdf} 
-                  target="_blank" 
-                  rel="noopener noreferrer"
+                  href={isPlanUnlocked ? currentFloor.pdf : '#'} 
+                  target={isPlanUnlocked ? "_blank" : undefined}
+                  rel={isPlanUnlocked ? "noopener noreferrer" : undefined}
                   className="btn-outline-gold"
+                  onClick={(e) => {
+                    if (!isPlanUnlocked) {
+                      e.preventDefault();
+                      setPlanModalOpen(true);
+                    }
+                  }}
                   style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', textDecoration: 'none' }}
                 >
                   <Download size={15} />
@@ -527,6 +690,85 @@ export default function ProjectAuraDetail({ onBack, onOpenEnquiry, onOpenLightbo
           </div>
         </div>
       </section>
+
+      {/* Modal: Unlock Floor Plan */}
+      {planModalOpen && (
+        <div
+          className="modal-overlay"
+          onClick={() => setPlanModalOpen(false)}
+          style={{ zIndex: 1050 }}
+        >
+          <div
+            className="modal-content-box"
+            onClick={(e) => e.stopPropagation()}
+            style={{ maxWidth: '480px', padding: 'clamp(1.75rem, 3.5vw, 2.5rem)', position: 'relative' }}
+          >
+            <button
+              className="modal-close-btn"
+              onClick={() => setPlanModalOpen(false)}
+              aria-label="Close"
+            >
+              <X size={18} />
+            </button>
+
+            <div className="section-tag" style={{ marginBottom: '0.5rem' }}>SKYOM Aura</div>
+            <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.9rem', color: 'var(--color-ivory)', marginBottom: '0.5rem' }}>
+              Unlock Floor Plan
+            </h3>
+            <p style={{ fontSize: '0.88rem', color: 'var(--color-text-dim)', marginBottom: '1.5rem', lineHeight: 1.6 }}>
+              Please enter your name and phone number to instantly view and download the high-resolution architectural layout.
+            </p>
+
+            <form onSubmit={handleUnlockPlan}>
+              {planError && (
+                <div style={{ color: '#ef4444', fontSize: '0.85rem', marginBottom: '1rem', background: 'rgba(239,68,68,0.1)', padding: '0.6rem 0.8rem', borderRadius: '4px', border: '1px solid rgba(239,68,68,0.2)' }}>
+                  {planError}
+                </div>
+              )}
+
+              <div className="form-group-field">
+                <label className="form-field-label">Full Name *</label>
+                <input
+                  type="text"
+                  required
+                  placeholder="e.g. Ramesh Sharma"
+                  className="form-input-field"
+                  value={planForm.name}
+                  onChange={(e) => setPlanForm({ ...planForm, name: e.target.value })}
+                />
+              </div>
+
+              <div className="form-group-field">
+                <label className="form-field-label">Phone Number *</label>
+                <input
+                  type="tel"
+                  required
+                  placeholder="+91 99999 99999"
+                  className="form-input-field"
+                  value={planForm.phone}
+                  onChange={(e) => setPlanForm({ ...planForm, phone: e.target.value })}
+                />
+              </div>
+
+              <button
+                type="submit"
+                className="btn-gold"
+                style={{ width: '100%', marginTop: '1rem' }}
+                disabled={planLoading}
+              >
+                {planLoading ? (
+                  <span>Unlocking Plan...</span>
+                ) : (
+                  <>
+                    <span>Unlock & View Plan</span>
+                    <ArrowUpRight size={15} />
+                  </>
+                )}
+              </button>
+            </form>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
