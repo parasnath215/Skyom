@@ -107,7 +107,7 @@ export default function ProjectNovaDetail({ onBack, onOpenEnquiry, onOpenLightbo
   return (
     <div style={{ paddingTop: 'var(--nav-height)', backgroundColor: 'var(--color-bg)', minHeight: '100vh' }}>
       {/* Hero Header */}
-      <section className="project-hero-clean">
+      <section className="project-hero-section">
         <img
           src="/assets/Skyom Nova/skyom-nova-tower.webp"
           alt="SKYOM Nova - Modern High-Rise Tower"
@@ -116,16 +116,41 @@ export default function ProjectNovaDetail({ onBack, onOpenEnquiry, onOpenLightbo
         <div className="project-hero-overlay" />
 
         <div className="container project-hero-container">
-          <div className="project-hero-title-box">
-            <h1 className="project-hero-title">
-              SKYOM <span className="accent-serif">Nova</span>
-            </h1>
-          </div>
-
-          <div className="project-hero-rera-box">
+          <div className="project-hero-top-row">
+            <div className="section-tag" style={{ color: 'var(--color-gold-light)', margin: 0 }}>
+              Ongoing High-Rise Landmark
+            </div>
             <span className="project-hero-rera-badge">
               UP RERA: UPRERAPRJ960284/10/2026
             </span>
+          </div>
+
+          <h1 className="project-hero-title">
+            SKYOM <span className="accent-serif">Nova</span>
+          </h1>
+
+          <p className="project-hero-desc">
+            A towering G+9 modern classical residential landmark rising gracefully in SKYOM City. Thoughtfully designed 1 BHK & studio residences with sweeping skyline vistas, dual elevators, and full UP RERA statutory backing.
+          </p>
+
+          <div className="project-hero-cta-row">
+            <button 
+              onClick={() => onOpenEnquiry && onOpenEnquiry('SKYOM Nova (Lucknow)')}
+              className="btn-gold"
+            >
+              <span>Schedule a Private Site Tour</span>
+              <ArrowUpRight size={15} />
+            </button>
+            <a 
+              href="/assets/Skyom Nova/Skyom Nova_RERA_Reg Cert.pdf" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="btn-outline-gold"
+              style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}
+            >
+              <Download size={15} />
+              <span>Download UP RERA Certificate (PDF)</span>
+            </a>
           </div>
         </div>
       </section>

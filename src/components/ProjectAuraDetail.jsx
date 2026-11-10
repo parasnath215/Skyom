@@ -18,8 +18,6 @@ import {
 } from 'lucide-react';
 
 export default function ProjectAuraDetail({ onBack, onOpenEnquiry, onOpenLightbox }) {
-  // Façade Color Options tabs
-  const [selectedOption, setSelectedOption] = useState(0);
   const [viewMode, setViewMode] = useState('night'); // 'night' or 'day'
   const [activeFloorTab, setActiveFloorTab] = useState(0);
 
@@ -33,61 +31,17 @@ export default function ProjectAuraDetail({ onBack, onOpenEnquiry, onOpenLightbo
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [formLoading, setFormLoading] = useState(false);
 
-  const colorOptions = [
-    {
-      id: 'opt-3',
-      name: 'Option 03: Tans & Beiges',
-      shortName: 'Tans & Beiges',
-      palette: ['#c9a063', '#d9c7af', '#4a3b2c'],
-      description: 'Signature Mediterranean palette with rich golden tans, light stone beiges, and classical nighttime illumination.',
-      dayImg: '/assets/Skyom Aura/option-3-day.webp',
-      nightImg: '/assets/Skyom Aura/skyom-aura-hero.webp',
-      badge: 'Signature Choice'
-    },
-    {
-      id: 'opt-1',
-      name: 'Option 01: Olives & Beiges',
-      shortName: 'Olives & Beiges',
-      palette: ['#7c7d62', '#d5cbbe', '#8c593e'],
-      description: 'Sophisticated natural harmony with subtle olive-green accents, warm beige stucco, and terracotta roof highlights.',
-      dayImg: '/assets/Skyom Aura/option-1-day.webp',
-      nightImg: '/assets/Skyom Aura/option-1-night.webp',
-      badge: 'Organic Warmth'
-    },
-    {
-      id: 'opt-2',
-      name: 'Option 02: Creams & Greys',
-      shortName: 'Creams & Greys',
-      palette: ['#e4ded4', '#8a8984', '#3d3c3a'],
-      description: 'Refined modern neoclassical elegance blending soft ivory cream stone with understated urban grey archways.',
-      dayImg: '/assets/Skyom Aura/option-2-day.webp',
-      nightImg: '/assets/Skyom Aura/option-2-night.webp',
-      badge: 'Contemporary Classic'
-    },
-    {
-      id: 'opt-4',
-      name: 'Option 04: Shades of Brown',
-      shortName: 'Shades of Brown',
-      palette: ['#593822', '#b39274', '#ecdcc9'],
-      description: 'Regal Tuscan masonry aesthetic featuring earthy espresso undertones, sun-baked clay, and warm arched porticos.',
-      dayImg: '/assets/Skyom Aura/option-4-day.webp',
-      nightImg: '/assets/Skyom Aura/option-4-night.webp',
-      badge: 'Tuscan Heritage'
-    },
-    {
-      id: 'opt-roof',
-      name: 'Alternate Balustrade Parapet',
-      shortName: 'Balustrade Roof',
-      palette: ['#e0d4c3', '#a8947f', '#ffffff'],
-      description: 'Classical European parapet crowning the entire structure with ornate stone balustrades and rooftop promenades.',
-      dayImg: '/assets/Skyom Aura/skyom-aura-daylight.webp',
-      nightImg: '/assets/Skyom Aura/skyom-aura-hero.webp',
-      badge: 'Classical Crown'
-    }
-  ];
+  // Single Curated Façade Option: Tans & Beiges
+  const facadeInfo = {
+    name: 'Option 03: Tans & Beiges',
+    title: 'Signature Mediterranean Façade (Tans & Beiges)',
+    description: 'Signature Mediterranean palette with rich golden tans, light stone beiges, and classical nighttime illumination.',
+    badge: 'Signature Choice',
+    dayImg: '/assets/Skyom Aura/option-3-day.webp',
+    nightImg: '/assets/Skyom Aura/skyom-aura-hero.webp'
+  };
 
-  const currentOption = colorOptions[selectedOption];
-  const currentOptionImg = viewMode === 'day' ? currentOption.dayImg : currentOption.nightImg;
+  const currentOptionImg = viewMode === 'day' ? facadeInfo.dayImg : facadeInfo.nightImg;
 
   const floorPlans = [
     {
@@ -151,7 +105,7 @@ export default function ProjectAuraDetail({ onBack, onOpenEnquiry, onOpenLightbo
   return (
     <div style={{ paddingTop: 'var(--nav-height)', backgroundColor: 'var(--color-bg)', minHeight: '100vh' }}>
       {/* Hero Header */}
-      <section className="project-hero-clean">
+      <section className="project-hero-section">
         <img
           src="/assets/Skyom Aura/skyom-aura-hero.webp"
           alt="SKYOM Aura - Neo-Classical Residences"
@@ -160,113 +114,56 @@ export default function ProjectAuraDetail({ onBack, onOpenEnquiry, onOpenLightbo
         <div className="project-hero-overlay" />
 
         <div className="container project-hero-container">
-          <div className="project-hero-title-box">
-            <h1 className="project-hero-title">
-              SKYOM <span className="accent-serif">Aura</span>
-            </h1>
-          </div>
-
-          <div className="project-hero-rera-box">
+          <div className="project-hero-top-row">
+            <div className="section-tag" style={{ color: 'var(--color-gold-light)', margin: 0 }}>
+              Ongoing Residential Landmark
+            </div>
             <span className="project-hero-rera-badge">
               UP RERA: UPRERAPRJ600292/06/2025
             </span>
           </div>
-        </div>
-      </section>
 
-      {/* Overview Specs Bar */}
-      <section style={{ borderBottom: '1px solid var(--color-border)', padding: '2rem 0', background: '#100f0d' }}>
-        <div className="container" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1.75rem' }}>
-          <div>
-            <span style={{ fontSize: '0.72rem', textTransform: 'uppercase', letterSpacing: '0.12em', color: 'var(--color-gold)', fontWeight: 600 }}>
-              Development Status
-            </span>
-            <div style={{ fontFamily: 'var(--font-body)', fontSize: '1.1rem', fontWeight: 600, color: 'var(--color-ongoing)', marginTop: '0.2rem', display: 'flex', alignItems: 'center', gap: 6 }}>
-              <span className="pulse-dot" /> Under Construction
-            </div>
-          </div>
+          <h1 className="project-hero-title">
+            SKYOM <span className="accent-serif">Aura</span>
+          </h1>
 
-          <div>
-            <span style={{ fontSize: '0.72rem', textTransform: 'uppercase', letterSpacing: '0.12em', color: 'var(--color-gold)', fontWeight: 600 }}>
-              Configuration
-            </span>
-            <div style={{ fontFamily: 'var(--font-body)', fontSize: '1.1rem', fontWeight: 600, color: 'var(--color-ivory)', marginTop: '0.2rem' }}>
-              2 BHK Luxury + Retail
-            </div>
-          </div>
+          <p className="project-hero-desc">
+            Mediterranean neo-classical residences blending arched colonnades, warm masonry finishes, and boutique commercial suites within the prestigious 50-acre SKYOM City integrated township.
+          </p>
 
-          <div>
-            <span style={{ fontSize: '0.72rem', textTransform: 'uppercase', letterSpacing: '0.12em', color: 'var(--color-gold)', fontWeight: 600 }}>
-              Architectural Concept
-            </span>
-            <div style={{ fontFamily: 'var(--font-body)', fontSize: '1.1rem', fontWeight: 600, color: 'var(--color-ivory)', marginTop: '0.2rem' }}>
-              Ar. Nehareeka & Ar. Nimit
-            </div>
-          </div>
-
-          <div>
-            <span style={{ fontSize: '0.72rem', textTransform: 'uppercase', letterSpacing: '0.12em', color: 'var(--color-gold)', fontWeight: 600 }}>
-              Location
-            </span>
-            <div style={{ fontFamily: 'var(--font-body)', fontSize: '1.1rem', fontWeight: 600, color: 'var(--color-ivory)', marginTop: '0.2rem' }}>
-              SKYOM City, Lucknow
-            </div>
+          <div className="project-hero-cta-row">
+            <button 
+              onClick={() => onOpenEnquiry && onOpenEnquiry('SKYOM Aura (Lucknow)')}
+              className="btn-gold"
+            >
+              <span>Enquire for Allotment</span>
+              <ArrowUpRight size={15} />
+            </button>
+            <a 
+              href="/assets/Skyom Aura/20261029-LIG COLOUR OPTIONS STAGE 2.pdf" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="btn-outline-gold"
+              style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}
+            >
+              <Download size={15} />
+              <span>Architectural Lookbook PDF</span>
+            </a>
           </div>
         </div>
       </section>
 
-      {/* Façade Design & Color Options (Stage 2 Lookbook) */}
+      {/* Façade Design Showcase - Tans & Beiges with Day / Night Toggle */}
       <section style={{ padding: 'clamp(4.5rem, 7vw, 7rem) 0', borderBottom: '1px solid var(--color-border)', background: 'linear-gradient(180deg, #0e0e0e 0%, #12110e 100%)' }}>
         <div className="container">
-          <div style={{ maxWidth: '800px', margin: '0 auto 3rem', textAlign: 'center' }}>
-            <div className="section-tag">Architectural Aesthetics</div>
+          <div style={{ maxWidth: '800px', margin: '0 auto 2.5rem', textAlign: 'center' }}>
+            <div className="section-tag" style={{ justifyContent: 'center' }}>Architectural Aesthetics</div>
             <h2 className="section-title">
-              Façade Palette & <span className="accent-serif">Design Options</span>
+              Façade Design & <span className="accent-serif">Illumination</span>
             </h2>
             <p className="section-desc" style={{ margin: '1rem auto 0' }}>
-              Directly from the Stage 2 architectural presentation by Ar. Nehareeka Mehindru & Ar. Nimit Jain. Explore four refined exterior palettes and the alternate classical balustrade roof option.
+              Designed by Ar. Nehareeka Mehindru & Ar. Nimit Jain. Experience the signature Mediterranean palette in Tans & Beiges under natural daylight and dusk illumination.
             </p>
-          </div>
-
-          {/* Palette Selector Tabs */}
-          <div style={{ display: 'flex', justifyContent: 'center', gap: '0.75rem', flexWrap: 'wrap', marginBottom: '2.5rem' }}>
-            {colorOptions.map((opt, idx) => (
-              <button
-                key={opt.id}
-                onClick={() => setSelectedOption(idx)}
-                style={{
-                  background: selectedOption === idx ? 'rgba(197, 160, 89, 0.15)' : '#161513',
-                  border: selectedOption === idx ? '1px solid var(--color-gold)' : '1px solid var(--color-border)',
-                  color: selectedOption === idx ? 'var(--color-gold)' : 'var(--color-ivory-muted)',
-                  padding: '0.75rem 1.25rem',
-                  borderRadius: '6px',
-                  cursor: 'pointer',
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: '0.65rem',
-                  transition: 'all 0.25s ease',
-                  fontSize: '0.88rem',
-                  fontWeight: 500
-                }}
-              >
-                {/* Mini Color Swatches */}
-                <div style={{ display: 'flex', gap: '3px' }}>
-                  {opt.palette.map((color, cIdx) => (
-                    <span 
-                      key={cIdx} 
-                      style={{ 
-                        width: '10px', 
-                        height: '10px', 
-                        borderRadius: '50%', 
-                        backgroundColor: color, 
-                        border: '1px solid rgba(255,255,255,0.2)' 
-                      }} 
-                    />
-                  ))}
-                </div>
-                <span>{opt.shortName}</span>
-              </button>
-            ))}
           </div>
 
           {/* Preview Card with Day / Night Toggle */}
@@ -275,14 +172,16 @@ export default function ProjectAuraDetail({ onBack, onOpenEnquiry, onOpenLightbo
             border: '1px solid var(--color-border)',
             borderRadius: '8px',
             overflow: 'hidden',
-            boxShadow: '0 20px 40px rgba(0,0,0,0.5)'
+            boxShadow: '0 20px 40px rgba(0,0,0,0.5)',
+            maxWidth: '1080px',
+            margin: '0 auto'
           }}>
             <div style={{ position: 'relative', width: '100%', minHeight: '480px', maxHeight: '680px', overflow: 'hidden', background: '#080808' }}>
               <img
                 src={currentOptionImg}
-                alt={currentOption.name}
+                alt={facadeInfo.name}
                 style={{ width: '100%', height: '100%', objectFit: 'contain', cursor: 'pointer', transition: 'transform 0.4s ease' }}
-                onClick={() => onOpenLightbox(currentOptionImg, currentOption.name)}
+                onClick={() => onOpenLightbox(currentOptionImg, facadeInfo.name)}
                 title="Click to view high-resolution"
               />
 
@@ -346,14 +245,14 @@ export default function ProjectAuraDetail({ onBack, onOpenEnquiry, onOpenLightbo
               <div style={{ position: 'absolute', bottom: '1.25rem', left: '1.25rem', zIndex: 3 }}>
                 <span className="badge-status ongoing" style={{ background: 'rgba(10,10,10,0.85)', backdropFilter: 'blur(6px)' }}>
                   <Sparkles size={12} style={{ marginRight: 4 }} />
-                  {currentOption.badge}
+                  {facadeInfo.badge}
                 </span>
               </div>
 
               {/* Zoom hint */}
               <div 
                 className="zoom-hint-badge"
-                onClick={() => onOpenLightbox(currentOptionImg, currentOption.name)}
+                onClick={() => onOpenLightbox(currentOptionImg, facadeInfo.name)}
                 style={{ bottom: '1.25rem', right: '1.25rem', top: 'auto' }}
               >
                 <ZoomIn size={13} />
@@ -365,17 +264,17 @@ export default function ProjectAuraDetail({ onBack, onOpenEnquiry, onOpenLightbo
             <div style={{ padding: '1.5rem 2rem', background: '#100f0d', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem' }}>
               <div>
                 <h4 style={{ fontFamily: 'var(--font-display)', fontSize: '1.35rem', color: 'var(--color-ivory)', marginBottom: '0.3rem' }}>
-                  {currentOption.name}
+                  {facadeInfo.title}
                 </h4>
                 <p style={{ color: 'var(--color-ivory-muted)', fontSize: '0.9rem', maxWidth: '700px', lineHeight: 1.6 }}>
-                  {currentOption.description}
+                  {facadeInfo.description}
                 </p>
               </div>
 
               <div style={{ display: 'flex', gap: '0.75rem' }}>
                 <button
                   className="btn-outline-gold"
-                  onClick={() => onOpenLightbox(currentOptionImg, currentOption.name)}
+                  onClick={() => onOpenLightbox(currentOptionImg, facadeInfo.name)}
                   style={{ fontSize: '0.85rem', padding: '0.65rem 1.25rem' }}
                 >
                   <ZoomIn size={14} />
