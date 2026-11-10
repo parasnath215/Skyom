@@ -179,16 +179,6 @@ export default function ProjectAuraDetail({ onBack, onOpenEnquiry, onOpenLightbo
               <span>Enquire for Allotment</span>
               <ArrowUpRight size={15} />
             </button>
-            <a 
-              href="/assets/Skyom Aura/20261029-LIG COLOUR OPTIONS STAGE 2.pdf" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="btn-outline-gold"
-              style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}
-            >
-              <Download size={15} />
-              <span>Architectural Lookbook PDF</span>
-            </a>
           </div>
         </div>
       </section>
