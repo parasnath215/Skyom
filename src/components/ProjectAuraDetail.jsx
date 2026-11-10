@@ -160,19 +160,17 @@ export default function ProjectAuraDetail({ onBack, onOpenEnquiry, onOpenLightbo
         <div className="project-hero-overlay" />
 
         <div className="container project-hero-container">
-          <div className="project-hero-left">
-            <span className="project-hero-rera-badge">
-              UP RERA: UPRERAPRJ600292/06/2025
-            </span>
-          </div>
-
           <div className="project-hero-title-box">
             <h1 className="project-hero-title">
               SKYOM <span className="accent-serif">Aura</span>
             </h1>
           </div>
 
-          <div className="project-hero-spacer" aria-hidden="true" />
+          <div className="project-hero-rera-box">
+            <span className="project-hero-rera-badge">
+              UP RERA: UPRERAPRJ600292/06/2025
+            </span>
+          </div>
         </div>
       </section>
 

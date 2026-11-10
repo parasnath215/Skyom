@@ -116,19 +116,17 @@ export default function ProjectNovaDetail({ onBack, onOpenEnquiry, onOpenLightbo
         <div className="project-hero-overlay" />
 
         <div className="container project-hero-container">
-          <div className="project-hero-left">
-            <span className="project-hero-rera-badge">
-              UP RERA: UPRERAPRJ960284/10/2026
-            </span>
-          </div>
-
           <div className="project-hero-title-box">
             <h1 className="project-hero-title">
               SKYOM <span className="accent-serif">Nova</span>
             </h1>
           </div>
 
-          <div className="project-hero-spacer" aria-hidden="true" />
+          <div className="project-hero-rera-box">
+            <span className="project-hero-rera-badge">
+              UP RERA: UPRERAPRJ960284/10/2026
+            </span>
+          </div>
         </div>
       </section>
 
