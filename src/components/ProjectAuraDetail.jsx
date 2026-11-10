@@ -171,6 +171,8 @@ export default function ProjectAuraDetail({ onBack, onOpenEnquiry, onOpenLightbo
               SKYOM <span className="accent-serif">Aura</span>
             </h1>
           </div>
+
+          <div className="project-hero-spacer" aria-hidden="true" />
         </div>
       </section>
 

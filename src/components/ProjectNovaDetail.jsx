@@ -127,6 +127,8 @@ export default function ProjectNovaDetail({ onBack, onOpenEnquiry, onOpenLightbo
               SKYOM <span className="accent-serif">Nova</span>
             </h1>
           </div>
+
+          <div className="project-hero-spacer" aria-hidden="true" />
         </div>
       </section>
 
