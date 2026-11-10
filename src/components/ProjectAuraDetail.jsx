@@ -151,47 +151,25 @@ export default function ProjectAuraDetail({ onBack, onOpenEnquiry, onOpenLightbo
   return (
     <div style={{ paddingTop: 'var(--nav-height)', backgroundColor: 'var(--color-bg)', minHeight: '100vh' }}>
       {/* Hero Header */}
-      <section style={{ position: 'relative', width: '100%', minHeight: '62vh', overflow: 'hidden', display: 'flex', alignItems: 'flex-end' }}>
+      <section className="project-hero-clean">
         <img
           src="/assets/Skyom Aura/skyom-aura-hero.webp"
           alt="SKYOM Aura - Neo-Classical Residences"
-          style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }}
+          className="project-hero-bg-img"
         />
-        <div style={{
-          position: 'absolute',
-          inset: 0,
-          background: 'linear-gradient(180deg, rgba(8,8,8,0.25) 0%, rgba(8,8,8,0.88) 100%)'
-        }} />
+        <div className="project-hero-overlay" />
 
-        <div className="container" style={{ position: 'relative', zIndex: 2, paddingBottom: '3.5rem', paddingTop: '6rem' }}>
-          <div className="section-tag" style={{ color: 'var(--color-gold-light)', marginBottom: '0.5rem' }}>
-            Ongoing Residential Landmark
+        <div className="container project-hero-container">
+          <div className="project-hero-left">
+            <span className="project-hero-rera-badge">
+              UP RERA: UPRERAPRJ600292/06/2025
+            </span>
           </div>
-          <h1 style={{ fontFamily: 'var(--font-display)', fontSize: 'clamp(2.5rem, 5.5vw, 4.5rem)', fontWeight: 300, lineHeight: 1.1, color: 'var(--color-ivory)' }}>
-            SKYOM <span className="accent-serif">Aura</span>
-          </h1>
-          <p style={{ maxWidth: '680px', color: 'var(--color-ivory-muted)', fontSize: '1.1rem', marginTop: '0.85rem', lineHeight: 1.7 }}>
-            Mediterranean neo-classical residences blending arched colonnades, warm masonry finishes, and boutique commercial suites within the prestigious 50-acre SKYOM City integrated township.
-          </p>
 
-          <div style={{ display: 'flex', gap: '1rem', marginTop: '2rem', flexWrap: 'wrap' }}>
-            <button 
-              onClick={() => onOpenEnquiry && onOpenEnquiry('SKYOM Aura (Lucknow)')}
-              className="btn-gold"
-            >
-              <span>Enquire for Allotment</span>
-              <ArrowUpRight size={15} />
-            </button>
-            <a 
-              href="/assets/Skyom Aura/20261029-LIG COLOUR OPTIONS STAGE 2.pdf" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="btn-outline-gold"
-              style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}
-            >
-              <Download size={15} />
-              <span>Architectural Lookbook PDF</span>
-            </a>
+          <div className="project-hero-title-box">
+            <h1 className="project-hero-title">
+              SKYOM <span className="accent-serif">Aura</span>
+            </h1>
           </div>
         </div>
       </section>

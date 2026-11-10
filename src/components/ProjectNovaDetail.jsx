@@ -107,53 +107,25 @@ export default function ProjectNovaDetail({ onBack, onOpenEnquiry, onOpenLightbo
   return (
     <div style={{ paddingTop: 'var(--nav-height)', backgroundColor: 'var(--color-bg)', minHeight: '100vh' }}>
       {/* Hero Header */}
-      <section className="nova-hero-section">
+      <section className="project-hero-clean">
         <img
           src="/assets/Skyom Nova/skyom-nova-tower.webp"
           alt="SKYOM Nova - Modern High-Rise Tower"
-          className="nova-hero-bg-img"
+          className="project-hero-bg-img"
         />
-        <div className="nova-hero-overlay" />
+        <div className="project-hero-overlay" />
 
-        <div className="container nova-hero-container">
-          {/* Top Bar: Left Top RERA Number on Mobile, Centered on Desktop */}
-          <div className="nova-hero-top-bar">
-            <span className="nova-rera-badge">
+        <div className="container project-hero-container">
+          <div className="project-hero-left">
+            <span className="project-hero-rera-badge">
               UP RERA: UPRERAPRJ960284/10/2026
             </span>
           </div>
 
-          {/* Heading Block: Right on Mobile, Center on Desktop */}
-          <div className="nova-hero-heading-block">
-            <div className="section-tag nova-hero-tag" style={{ color: 'var(--color-gold-light)' }}>
-              Ongoing High-Rise Landmark
-            </div>
-            <h1 className="nova-hero-title">
+          <div className="project-hero-title-box">
+            <h1 className="project-hero-title">
               SKYOM <span className="accent-serif">Nova</span>
             </h1>
-            <p className="nova-hero-desc">
-              A towering G+9 modern classical residential landmark rising gracefully in SKYOM City. Thoughtfully designed 1 BHK & studio residences with sweeping skyline vistas, dual elevators, and full UP RERA statutory backing.
-            </p>
-
-            <div className="nova-hero-cta-row">
-              <button 
-                onClick={() => onOpenEnquiry && onOpenEnquiry('SKYOM Nova (Lucknow)')}
-                className="btn-gold"
-              >
-                <span>Schedule a Private Site Tour</span>
-                <ArrowUpRight size={15} />
-              </button>
-              <a 
-                href="/assets/Skyom Nova/Skyom Nova_RERA_Reg Cert.pdf" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="btn-outline-gold"
-                style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}
-              >
-                <Download size={15} />
-                <span>Download UP RERA Certificate (PDF)</span>
-              </a>
-            </div>
           </div>
         </div>
       </section>

@@ -1059,107 +1059,81 @@ button {
 }
 
 /* ==========================================================================
-   SKYOM NOVA HERO
+   CLEAN PROJECT HERO (NOVA & AURA)
    ========================================================================== */
 
-.nova-hero-section {
+.project-hero-clean {
   position: relative;
   width: 100%;
-  min-height: 68vh;
+  height: 65vh;
+  min-height: 440px;
   overflow: hidden;
   display: flex;
-  align-items: flex-end;
+  align-items: flex-start;
 }
 
-.nova-hero-bg-img {
+.project-hero-bg-img {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 35%;
+  object-position: center 30%;
 }
 
-.nova-hero-overlay {
+.project-hero-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(8,8,8,0.2) 0%, rgba(8,8,8,0.88) 100%);
+  background: linear-gradient(180deg, rgba(8,8,8,0.72) 0%, rgba(8,8,8,0.1) 40%, rgba(8,8,8,0.55) 100%);
 }
 
-.nova-hero-container {
+.project-hero-container {
   position: relative;
   z-index: 2;
-  padding-bottom: 3.5rem;
-  padding-top: 6rem;
+  padding-top: 2.25rem;
+  padding-bottom: 2rem;
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  width: 100%;
+}
+
+.project-hero-left {
+  flex: 0 0 auto;
+}
+
+.project-hero-title-box {
+  flex: 1 1 auto;
   text-align: center;
-  width: 100%;
 }
 
-.nova-hero-top-bar {
-  margin-bottom: 1.25rem;
-  display: flex;
-  justify-content: center;
-  width: 100%;
+.project-hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.2rem, 5vw, 3.8rem);
+  font-weight: 300;
+  line-height: 1.1;
+  color: var(--color-ivory);
+  margin: 0;
+  letter-spacing: 0.02em;
 }
 
-.nova-rera-badge {
+.project-hero-rera-badge {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.4rem 1rem;
-  background: rgba(200, 169, 126, 0.12);
+  padding: 0.45rem 1.05rem;
+  background: rgba(14, 14, 14, 0.78);
   border: 1px solid var(--color-gold);
   border-radius: 20px;
   font-family: var(--font-numbers);
   font-variant-numeric: lining-nums tabular-nums;
   color: var(--color-gold);
-  font-size: 0.85rem;
+  font-size: 0.82rem;
   font-weight: 600;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.04em;
   backdrop-filter: blur(8px);
-}
-
-.nova-hero-heading-block {
-  text-align: center;
-  max-width: 820px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.nova-hero-tag {
-  justify-content: center;
-  margin-bottom: 0.5rem;
-}
-
-.nova-hero-title {
-  font-family: var(--font-display);
-  font-size: clamp(2.5rem, 5.5vw, 4.5rem);
-  font-weight: 300;
-  line-height: 1.1;
-  color: var(--color-ivory);
-  text-align: center;
-}
-
-.nova-hero-desc {
-  max-width: 680px;
-  color: var(--color-ivory-muted);
-  font-size: 1.1rem;
-  margin: 0.85rem auto 0;
-  line-height: 1.7;
-  text-align: center;
-}
-
-.nova-hero-cta-row {
-  display: flex;
-  gap: 1rem;
-  margin-top: 2rem;
-  flex-wrap: wrap;
-  justify-content: center;
 }
 
 /* ==========================================================================
@@ -2248,64 +2222,42 @@ button {
     gap: 1.75rem !important;
   }
 
-  /* SKYOM Nova Mobile Hero: RERA at left top, Heading of Skyom Nova at right */
-  .nova-hero-section {
-    min-height: 68vh;
+  /* Clean Project Hero on Mobile: Left RERA, Right Heading */
+  .project-hero-clean {
+    height: 55vh;
+    min-height: 380px;
   }
 
-  .nova-hero-container {
-    padding-top: 5rem;
-    padding-bottom: 2.5rem;
-    justify-content: space-between;
-    align-items: stretch !important;
+  .project-hero-container {
+    padding-top: 1.25rem !important;
+    padding-bottom: 1.25rem !important;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    flex-wrap: wrap !important;
+    gap: 0.75rem !important;
   }
 
-  .nova-hero-top-bar {
-    justify-content: flex-start !important;
-    text-align: left !important;
-    margin-bottom: 2rem;
+  .project-hero-left {
+    flex: 0 0 auto;
   }
 
-  .nova-rera-badge {
-    font-size: 0.72rem;
-    padding: 0.35rem 0.75rem;
-  }
-
-  .nova-hero-heading-block {
+  .project-hero-title-box {
     text-align: right !important;
-    align-items: flex-end !important;
-    margin-left: auto !important;
-    margin-right: 0 !important;
-    width: 100%;
+    display: flex;
+    justify-content: flex-end;
   }
 
-  .nova-hero-tag {
-    justify-content: flex-end !important;
-    align-self: flex-end;
-  }
-
-  .nova-hero-title {
+  .project-hero-title {
+    font-size: clamp(1.75rem, 5.5vw, 2.3rem) !important;
     text-align: right !important;
-    font-size: clamp(2.3rem, 8.5vw, 3.4rem);
+    white-space: nowrap;
   }
 
-  .nova-hero-desc {
-    text-align: right !important;
-    font-size: 0.95rem;
-    line-height: 1.6;
-    margin-left: auto;
-    margin-right: 0;
-  }
-
-  .nova-hero-cta-row {
-    justify-content: flex-end !important;
-    width: 100%;
-  }
-
-  .nova-hero-cta-row .btn-gold,
-  .nova-hero-cta-row .btn-outline-gold {
-    width: 100%;
-    justify-content: center;
+  .project-hero-rera-badge {
+    font-size: 0.68rem;
+    padding: 0.35rem 0.65rem;
+    white-space: nowrap;
   }
 }
 
