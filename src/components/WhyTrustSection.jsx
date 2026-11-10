@@ -21,10 +21,10 @@ export default function WhyTrustSection() {
   ];
 
   return (
-    <section style={{ padding: 'clamp(5rem, 8vw, 8rem) 0', background: '#0a0a0a', borderTop: '1px solid var(--color-border)' }}>
+    <section className="why-trust-section" style={{ padding: 'clamp(5rem, 8vw, 8rem) 0', background: '#0a0a0a', borderTop: '1px solid var(--color-border)' }}>
       <div className="container">
         <div style={{ textAlign: 'center', maxWidth: '750px', margin: '0 auto 3.5rem' }}>
-          <div className="section-tag">The SKYOM Assurance</div>
+          <div className="section-tag" style={{ justifyContent: 'center' }}>The SKYOM Assurance</div>
           <h2 className="section-title">
             Why Trust While <span className="accent-serif">Investing?</span>
           </h2>
@@ -33,7 +33,7 @@ export default function WhyTrustSection() {
           </p>
         </div>
 
-        <div style={{
+        <div className="assurance-grid" style={{
           display: 'grid',
           gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
           gap: '2rem'
@@ -43,10 +43,10 @@ export default function WhyTrustSection() {
             return (
               <div 
                 key={idx} 
-                className="glass-card" 
+                className="glass-card assurance-card" 
                 style={{ padding: '2.5rem 2rem' }}
               >
-                <div style={{
+                <div className="assurance-icon-box" style={{
                   width: '50px',
                   height: '50px',
                   borderRadius: '50%',
@@ -60,10 +60,10 @@ export default function WhyTrustSection() {
                 }}>
                   <Icon size={22} />
                 </div>
-                <h4 style={{ fontFamily: 'var(--font-display)', fontSize: '1.5rem', color: 'var(--color-ivory)', marginBottom: '0.75rem' }}>
+                <h4 className="assurance-title" style={{ fontFamily: 'var(--font-display)', fontSize: '1.5rem', color: 'var(--color-ivory)', marginBottom: '0.75rem' }}>
                   {point.title}
                 </h4>
-                <p style={{ color: 'var(--color-ivory-muted)', fontSize: '0.92rem', lineHeight: 1.75 }}>
+                <p className="assurance-desc" style={{ color: 'var(--color-ivory-muted)', fontSize: '0.92rem', lineHeight: 1.75 }}>
                   {point.desc}
                 </p>
               </div>

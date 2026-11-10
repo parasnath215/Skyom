@@ -213,42 +213,6 @@ export default function ProjectCityDetail({ onBack, onOpenLightbox }) {
         </div>
       </section>
 
-      {/* Statutory RERA Banner Strip */}
-      <section style={{ borderBottom: '1px solid var(--color-border)', padding: '2rem 0', background: '#100f0d' }}>
-        <div className="container" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1.5rem' }}>
-          <div>
-            <span style={{ fontSize: '0.72rem', textTransform: 'uppercase', letterSpacing: '0.12em', color: 'var(--color-gold)', fontWeight: 600 }}>
-              Official UP RERA Registration
-            </span>
-            <div style={{ fontFamily: 'var(--font-body)', fontSize: '1.1rem', fontWeight: 600, color: 'var(--color-ivory)', marginTop: '0.2rem' }}>
-              Registration No. UPRERAPRJ600292/06/2025
-            </div>
-          </div>
-
-          <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
-            <button
-              type="button"
-              onClick={() => {
-                setBrochureDownloaded(false);
-                setBrochureModalOpen(true);
-              }}
-              className="btn-outline-gold"
-              style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}
-            >
-              <Download size={15} />
-              <span>Download Brochure</span>
-            </button>
-            <a
-              href="#contact-form-section"
-              className="btn-gold"
-            >
-              <span>Schedule Site Visit</span>
-              <ArrowUpRight size={15} />
-            </a>
-          </div>
-        </div>
-      </section>
-
       {/* Township Vision & Modern Living Showcase Section */}
       <section style={{ padding: 'clamp(4.5rem, 7vw, 6.5rem) 0', background: 'var(--color-bg)', borderBottom: '1px solid var(--color-border)' }}>
         <div className="container" style={{ maxWidth: '1000px', margin: '0 auto', textAlign: 'center' }}>
@@ -575,8 +539,44 @@ export default function ProjectCityDetail({ onBack, onOpenLightbox }) {
         </div>
       </section>
 
+      {/* Statutory RERA Banner Strip */}
+      <section className="city-rera-strip" style={{ borderTop: '1px solid var(--color-border)', borderBottom: '1px solid var(--color-border)', padding: '2.5rem 0', background: '#100f0d' }}>
+        <div className="container" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1.5rem' }}>
+          <div>
+            <span style={{ fontSize: '0.72rem', textTransform: 'uppercase', letterSpacing: '0.12em', color: 'var(--color-gold)', fontWeight: 600 }}>
+              Official UP RERA Registration
+            </span>
+            <div style={{ fontFamily: 'var(--font-body)', fontSize: '1.1rem', fontWeight: 600, color: 'var(--color-ivory)', marginTop: '0.2rem' }}>
+              Registration No. UPRERAPRJ600292/06/2025
+            </div>
+          </div>
+
+          <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+            <button
+              type="button"
+              onClick={() => {
+                setBrochureDownloaded(false);
+                setBrochureModalOpen(true);
+              }}
+              className="btn-outline-gold"
+              style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}
+            >
+              <Download size={15} />
+              <span>Download Brochure</span>
+            </button>
+            <a
+              href="#contact-form-section"
+              className="btn-gold"
+            >
+              <span>Schedule Site Visit</span>
+              <ArrowUpRight size={15} />
+            </a>
+          </div>
+        </div>
+      </section>
+
       {/* Frequently Asked Questions */}
-      <section style={{ padding: 'clamp(5rem, 8vw, 7.5rem) 0', borderTop: '1px solid var(--color-border)' }}>
+      <section style={{ padding: 'clamp(5rem, 8vw, 7.5rem) 0' }}>
         <div className="container" style={{ maxWidth: '850px' }}>
           <div style={{ textAlign: 'center', marginBottom: '3.5rem' }}>
             <div className="section-tag">Frequently Asked</div>

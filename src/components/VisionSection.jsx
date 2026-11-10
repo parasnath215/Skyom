@@ -27,7 +27,7 @@ export default function VisionSection() {
         <h2 className="section-title" style={{ fontSize: 'clamp(2.4rem, 5vw, 4.2rem)', marginBottom: '2rem' }}>
           Where Ambition Meets <span className="accent-serif">Harmony</span>
         </h2>
-        <p style={{
+        <p className="vision-description-text" style={{
           fontSize: 'clamp(1.1rem, 1.8vw, 1.35rem)',
           lineHeight: '1.85',
           color: 'var(--color-ivory-muted)',
@@ -39,7 +39,7 @@ export default function VisionSection() {
         </p>
 
         {/* 3 Pillars Grid */}
-        <div style={{
+        <div className="vision-pillars-cards" style={{
           display: 'grid',
           gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
           gap: '1.75rem',

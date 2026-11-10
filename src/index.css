@@ -1030,6 +1030,34 @@ button {
   line-height: 1.5;
 }
 
+/* Vision Section Pillars & Description */
+.vision-pillars-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.75rem;
+  text-align: left;
+}
+
+/* SKYOM Assurance Cards */
+.assurance-card {
+  text-align: left;
+}
+
+.assurance-icon-box {
+  transition: transform 0.3s ease;
+}
+
+.assurance-card:hover .assurance-icon-box {
+  transform: translateY(-2px);
+}
+
+/* Founders Grid */
+.founders-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2.5rem;
+}
+
 /* ==========================================================================
    PROJECTS SHOWCASE
    ========================================================================== */
@@ -2082,9 +2110,47 @@ button {
   .sticky-action-tooltip {
     display: none !important;
   }
+
+  /* Vision Section: remove Boundless Vision, Grounded Strength, Architectural Mastery boxes on mobile */
+  .vision-pillars-cards {
+    display: none !important;
+  }
+  .vision-description-text {
+    margin-bottom: 0 !important;
+  }
+
+  /* The SKYOM Assurance: center align boxes text and icons on mobile */
+  .assurance-card {
+    text-align: center !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+  }
+  .assurance-card .assurance-icon-box {
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+  .assurance-card .assurance-title,
+  .assurance-card .assurance-desc {
+    text-align: center !important;
+  }
+  .assurance-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Founders Grid on mobile */
+  .founders-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1.75rem !important;
+  }
 }
 
 @media (max-width: 640px) {
+  .city-rera-strip .container {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 1.25rem !important;
+  }
   :root {
     --nav-height: 66px;
     --container-padding: 1.25rem;

@@ -128,7 +128,7 @@ export default function App() {
             <WhyTrustSection />
             <TestimonialsSection />
             <AwardsSection />
-            <AboutSection onOpenEnquiry={openEnquiry} />
+            <AboutSection onOpenEnquiry={openEnquiry} showFounders={false} onNavigate={handleNavigate} />
             <ContactSection />
           </>
         )}
@@ -185,7 +185,7 @@ export default function App() {
         {/* About Page */}
         {activePage === 'about' && (
           <div style={{ paddingTop: 'var(--nav-height)' }}>
-            <AboutSection onOpenEnquiry={openEnquiry} />
+            <AboutSection onOpenEnquiry={openEnquiry} showFounders={true} onNavigate={handleNavigate} />
             <WhyTrustSection />
             <AwardsSection />
             <ContactSection />
