@@ -162,7 +162,7 @@ export default function ProjectAuraDetail({ onBack, onOpenEnquiry, onOpenLightbo
             Mediterranean neo-classical residences blending arched colonnades, warm masonry finishes, and boutique commercial suites in Mohanlalganj, Lucknow.
           </p>
 
-          <div className="project-hero-cta-row">
+          <div className="project-hero-cta-desktop">
             <button 
               onClick={() => onOpenEnquiry && onOpenEnquiry('SKYOM Aura (Lucknow)')}
               className="btn-gold"
@@ -170,21 +170,22 @@ export default function ProjectAuraDetail({ onBack, onOpenEnquiry, onOpenLightbo
               <span>Enquire for Allotment</span>
               <ArrowUpRight size={15} />
             </button>
-            <a 
-              href="#gallery"
-              className="btn-outline-gold"
-            >
-              <span>View Interior Gallery</span>
-            </a>
-            <a 
-              href="#amenities"
-              className="btn-outline-gold"
-            >
-              <span>Project Amenities</span>
-            </a>
           </div>
         </div>
       </section>
+
+      {/* Mobile-only CTA Bar (Below Hero Section) */}
+      <div className="project-hero-mobile-cta-bar">
+        <div className="container">
+          <button 
+            onClick={() => onOpenEnquiry && onOpenEnquiry('SKYOM Aura (Lucknow)')}
+            className="btn-gold project-hero-mobile-btn"
+          >
+            <span>Enquire for Allotment</span>
+            <ArrowUpRight size={16} />
+          </button>
+        </div>
+      </div>
 
       {/* Façade Design Showcase - Tans & Beiges with Day / Night Toggle */}
       <section style={{ padding: 'clamp(4.5rem, 7vw, 7rem) 0', borderBottom: '1px solid var(--color-border)', background: 'linear-gradient(180deg, #0e0e0e 0%, #12110e 100%)' }}>

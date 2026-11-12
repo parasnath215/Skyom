@@ -252,6 +252,17 @@ h1, h2, h3, h4, h5, h6, p, span, a, button {
   margin: 0;
 }
 
+.project-hero-cta-desktop {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.project-hero-mobile-cta-bar {
+  display: none;
+}
+
 @media (max-width: 768px) {
   .residence-gallery-grid {
     grid-template-columns: 1fr;
@@ -262,5 +273,28 @@ h1, h2, h3, h4, h5, h6, p, span, a, button {
   }
   .gallery-room-desc {
     display: none;
+  }
+  .project-hero-cta-desktop {
+    display: none !important;
+  }
+  .project-hero-mobile-cta-bar {
+    display: block !important;
+    background: #0d0c0a;
+    border-bottom: 1px solid rgba(201, 169, 110, 0.25);
+    padding: 1.25rem 0;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  }
+  .project-hero-mobile-cta-bar .hero-cta,
+  .project-hero-mobile-cta-bar .btn-gold {
+    width: 100% !important;
+    justify-content: center !important;
+    padding: 0.95rem 1.5rem !important;
+    font-size: 0.92rem !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.08em !important;
+    display: flex !important;
+    align-items: center !important;
+    text-align: center !important;
+    box-sizing: border-box !important;
   }
 }

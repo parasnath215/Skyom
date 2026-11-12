@@ -13,7 +13,8 @@ import {
   Compass,
   Zap,
   Sparkles,
-  Layers
+  Layers,
+  X
 } from 'lucide-react';
 
 export default function ProjectNovaDetail({ onBack, onOpenEnquiry, onOpenLightbox }) {
@@ -26,6 +27,27 @@ export default function ProjectNovaDetail({ onBack, onOpenEnquiry, onOpenLightbo
   });
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [formLoading, setFormLoading] = useState(false);
+
+  // UP RERA Download Modal State with Lead Capture
+  const [reraModalOpen, setReraModalOpen] = useState(false);
+  const [reraForm, setReraForm] = useState({ name: '', phone: '', email: '' });
+  const [reraDownloaded, setReraDownloaded] = useState(false);
+  const [reraLoading, setReraLoading] = useState(false);
+
+  const handleReraDownload = (e) => {
+    e.preventDefault();
+    setReraLoading(true);
+    setTimeout(() => {
+      setReraLoading(false);
+      setReraDownloaded(true);
+      const link = document.createElement('a');
+      link.href = '/assets/Skyom Nova/Skyom Nova_RERA_Reg Cert.pdf';
+      link.setAttribute('download', 'Skyom_Nova_RERA_Registration_Certificate.pdf');
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }, 600);
+  };
 
   // Curated Interior Room Photos (Generated for Modern High-Rise Tower Residences)
   const galleryImages = [
@@ -145,7 +167,7 @@ export default function ProjectNovaDetail({ onBack, onOpenEnquiry, onOpenLightbo
             A towering G+9 modern classical residential landmark rising gracefully in Mohanlalganj, Lucknow. Thoughtfully designed modern residences with sweeping skyline vistas, dual elevators, and full UP RERA statutory backing.
           </p>
 
-          <div className="project-hero-cta-row">
+          <div className="project-hero-cta-desktop">
             <button 
               onClick={() => onOpenEnquiry && onOpenEnquiry('SKYOM Nova (Lucknow)')}
               className="btn-gold"
@@ -153,31 +175,22 @@ export default function ProjectNovaDetail({ onBack, onOpenEnquiry, onOpenLightbo
               <span>Schedule a Site Tour</span>
               <ArrowUpRight size={15} />
             </button>
-            <a 
-              href="/assets/Skyom Nova/Skyom Nova_RERA_Reg Cert.pdf" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="btn-outline-gold"
-              style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}
-            >
-              <Download size={15} />
-              <span>Download UP RERA Certificate (PDF)</span>
-            </a>
-            <a 
-              href="#gallery"
-              className="btn-outline-gold"
-            >
-              <span>View Interior Gallery</span>
-            </a>
-            <a 
-              href="#amenities"
-              className="btn-outline-gold"
-            >
-              <span>Tower Amenities</span>
-            </a>
           </div>
         </div>
       </section>
+
+      {/* Mobile-only CTA Bar (Below Hero Section) */}
+      <div className="project-hero-mobile-cta-bar">
+        <div className="container">
+          <button 
+            onClick={() => onOpenEnquiry && onOpenEnquiry('SKYOM Nova (Lucknow)')}
+            className="btn-gold project-hero-mobile-btn"
+          >
+            <span>Schedule a Site Tour</span>
+            <ArrowUpRight size={16} />
+          </button>
+        </div>
+      </div>
 
       {/* Tower Architecture & Visual Elevation Showcase */}
       <section style={{ padding: 'clamp(4.5rem, 7vw, 7rem) 0', borderBottom: '1px solid var(--color-border)', background: 'linear-gradient(180deg, #0e0e0e 0%, #12110e 100%)' }}>
@@ -347,6 +360,89 @@ export default function ProjectNovaDetail({ onBack, onOpenEnquiry, onOpenLightbo
         </div>
       </section>
 
+      {/* Official UP RERA Disclosure Section with Statutory Details & Gated Download */}
+      <section style={{ padding: 'clamp(4.5rem, 7vw, 6.5rem) 0', borderTop: '1px solid var(--color-border)', background: '#0c0b0a' }}>
+        <div className="container" style={{ maxWidth: '1150px' }}>
+          <div style={{ textAlign: 'center', maxWidth: '750px', margin: '0 auto 3rem' }}>
+            <div className="section-tag" style={{ justifyContent: 'center' }}>Statutory Verification</div>
+            <h2 className="section-title">
+              UP RERA <span className="accent-serif">Registration</span>
+            </h2>
+            <p className="section-desc" style={{ margin: '1rem auto 0' }}>
+              Verified statutory registration issued by the Uttar Pradesh Real Estate Regulatory Authority.
+            </p>
+          </div>
+
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+            gap: '2.5rem',
+            alignItems: 'center',
+            background: '#141311',
+            border: '1px solid var(--color-border)',
+            borderRadius: '8px',
+            padding: 'clamp(1.5rem, 4vw, 3rem)',
+            boxShadow: '0 20px 45px rgba(0,0,0,0.5)'
+          }}>
+            <div>
+              <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.8rem', color: 'var(--color-ivory)', marginBottom: '0.5rem' }}>
+                Project Registration Details
+              </h3>
+              <p style={{ color: 'var(--color-ivory-muted)', fontSize: '0.9rem', lineHeight: 1.6, marginBottom: '1.5rem' }}>
+                Form C Registration Certificate granted under Section 5 of the Real Estate (Regulation and Development) Act.
+              </p>
+
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.85rem', marginBottom: '2rem' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', borderBottom: '1px solid rgba(255,255,255,0.06)', paddingBottom: '0.6rem' }}>
+                  <span style={{ color: 'var(--color-gold)', fontSize: '0.85rem' }}>Project Registration No:</span>
+                  <span style={{ color: 'var(--color-ivory)', fontWeight: 600, fontSize: '0.85rem' }}>UPRERAPRJ960284/10/2026</span>
+                </div>
+                <div style={{ display: 'flex', justifyContent: 'space-between', borderBottom: '1px solid rgba(255,255,255,0.06)', paddingBottom: '0.6rem' }}>
+                  <span style={{ color: 'var(--color-gold)', fontSize: '0.85rem' }}>Registration Period:</span>
+                  <span style={{ color: 'var(--color-ivory)', fontSize: '0.85rem' }}>24-10-2026 to 24-01-2028</span>
+                </div>
+                <div style={{ display: 'flex', justifyContent: 'space-between', borderBottom: '1px solid rgba(255,255,255,0.06)', paddingBottom: '0.6rem' }}>
+                  <span style={{ color: 'var(--color-gold)', fontSize: '0.85rem' }}>Proposed Completion:</span>
+                  <span style={{ color: '#34d399', fontWeight: 600, fontSize: '0.85rem' }}>24 January 2028</span>
+                </div>
+                <div style={{ display: 'flex', justifyContent: 'space-between', borderBottom: '1px solid rgba(255,255,255,0.06)', paddingBottom: '0.6rem' }}>
+                  <span style={{ color: 'var(--color-gold)', fontSize: '0.85rem' }}>Land Address:</span>
+                  <span style={{ color: 'var(--color-ivory)', fontSize: '0.85rem', textAlign: 'right', maxWidth: '60%' }}>Tehsil- Mohanlalganj, Lucknow</span>
+                </div>
+                <div style={{ display: 'flex', justifyContent: 'space-between', borderBottom: '1px solid rgba(255,255,255,0.06)', paddingBottom: '0.6rem' }}>
+                  <span style={{ color: 'var(--color-gold)', fontSize: '0.85rem' }}>Promoters:</span>
+                  <span style={{ color: 'var(--color-ivory)', fontSize: '0.85rem', textAlign: 'right' }}>Bihani Constructions &amp; Ambalika Construction</span>
+                </div>
+              </div>
+
+              <button
+                onClick={() => {
+                  setReraDownloaded(false);
+                  setReraModalOpen(true);
+                }}
+                className="btn-gold"
+                style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}
+              >
+                <Download size={16} />
+                <span>Download UP RERA Certificate (PDF)</span>
+              </button>
+            </div>
+
+            <div 
+              style={{ textAlign: 'center', background: '#ffffff', padding: '0.75rem', borderRadius: '6px', cursor: 'pointer' }}
+              onClick={() => onOpenLightbox('/assets/Skyom Nova/skyom-nova-rera-cert.webp', 'UP RERA Registration Certificate — SKYOM Nova')}
+              title="Click to view full certificate"
+            >
+              <img 
+                src="/assets/Skyom Nova/skyom-nova-rera-cert.webp" 
+                alt="UP RERA Registration Certificate" 
+                style={{ maxHeight: '420px', width: 'auto', maxWidth: '100%', objectFit: 'contain' }}
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Enquiry / Consultation Section */}
       <section style={{ padding: 'clamp(5rem, 8vw, 7.5rem) 0', borderTop: '1px solid var(--color-border)', background: 'var(--color-bg)' }}>
         <div className="container" style={{ maxWidth: '800px' }}>
@@ -450,6 +546,116 @@ export default function ProjectNovaDetail({ onBack, onOpenEnquiry, onOpenLightbo
           </div>
         </div>
       </section>
+
+      {/* UP RERA Certificate Download Modal with Lead Capture Form */}
+      {reraModalOpen && (
+        <div 
+          className="modal-overlay"
+          onClick={() => setReraModalOpen(false)}
+          style={{ zIndex: 3100, padding: '1rem' }}
+        >
+          <div 
+            className="modal-content"
+            style={{ maxWidth: '480px', width: '100%', padding: 0, overflow: 'hidden', background: '#141311', border: '1px solid var(--color-gold)', borderRadius: '8px' }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '1.25rem 1.5rem', borderBottom: '1px solid var(--color-border)', background: '#0e0d0b' }}>
+              <div>
+                <span className="section-tag" style={{ margin: 0, fontSize: '0.72rem', letterSpacing: '0.12em' }}>Statutory Document</span>
+                <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.45rem', color: 'var(--color-ivory)', margin: '0.2rem 0 0 0' }}>
+                  Download UP RERA Certificate
+                </h3>
+              </div>
+              <button 
+                onClick={() => setReraModalOpen(false)}
+                className="modal-close-btn"
+                aria-label="Close"
+              >
+                <X size={18} />
+              </button>
+            </div>
+
+            {reraDownloaded ? (
+              <div style={{ textAlign: 'center', padding: '2.5rem 1.75rem' }}>
+                <CheckCircle2 size={50} color="var(--color-delivered)" style={{ margin: '0 auto 1.25rem' }} />
+                <h4 style={{ fontFamily: 'var(--font-display)', fontSize: '1.5rem', color: 'var(--color-ivory)', marginBottom: '0.5rem' }}>
+                  Certificate Download Started
+                </h4>
+                <p style={{ color: 'var(--color-ivory-muted)', fontSize: '0.9rem', lineHeight: 1.6, marginBottom: '1.75rem' }}>
+                  Thank you, <strong>{reraForm.name}</strong>. Your copy of the official <strong>Form-C UP RERA Certificate</strong> for SKYOM Nova is downloading.
+                </p>
+                <a 
+                  href="/assets/Skyom Nova/Skyom Nova_RERA_Reg Cert.pdf" 
+                  download="Skyom_Nova_RERA_Registration_Certificate.pdf"
+                  className="btn-outline-gold"
+                  style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}
+                >
+                  <Download size={14} />
+                  <span>Click here if download didn't start</span>
+                </a>
+              </div>
+            ) : (
+              <form onSubmit={handleReraDownload} style={{ padding: '1.5rem' }}>
+                <p style={{ color: 'var(--color-ivory-muted)', fontSize: '0.88rem', lineHeight: 1.6, marginBottom: '1.25rem' }}>
+                  Please enter your contact details to download the authentic UP RERA Form-C Registration Certificate (PDF) for SKYOM Nova.
+                </p>
+
+                <div className="form-group-field">
+                  <label className="form-field-label">Full Name *</label>
+                  <input
+                    type="text"
+                    required
+                    placeholder="e.g. Rahul Sharma"
+                    className="form-input-field"
+                    value={reraForm.name}
+                    onChange={(e) => setReraForm({ ...reraForm, name: e.target.value })}
+                  />
+                </div>
+
+                <div className="form-group-field">
+                  <label className="form-field-label">Phone Number *</label>
+                  <input
+                    type="tel"
+                    required
+                    placeholder="+91 98765 43210"
+                    className="form-input-field"
+                    value={reraForm.phone}
+                    onChange={(e) => setReraForm({ ...reraForm, phone: e.target.value })}
+                  />
+                </div>
+
+                <div className="form-group-field">
+                  <label className="form-field-label">Email Address *</label>
+                  <input
+                    type="email"
+                    required
+                    placeholder="rahul@example.com"
+                    className="form-input-field"
+                    value={reraForm.email}
+                    onChange={(e) => setReraForm({ ...reraForm, email: e.target.value })}
+                  />
+                </div>
+
+                <button
+                  type="submit"
+                  className="btn-gold"
+                  style={{ width: '100%', marginTop: '0.75rem', justifyContent: 'center' }}
+                  disabled={reraLoading}
+                >
+                  {reraLoading ? (
+                    <span>Preparing Official Certificate...</span>
+                  ) : (
+                    <>
+                      <Download size={16} />
+                      <span>Download UP RERA Certificate (PDF)</span>
+                    </>
+                  )}
+                </button>
+              </form>
+            )}
+          </div>
+        </div>
+      )}
     </div>
   );
 }

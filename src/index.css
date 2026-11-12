@@ -1123,11 +1123,16 @@ button {
   margin: 0 0 2rem 0;
 }
 
-.project-hero-cta-row {
+.project-hero-cta-row,
+.project-hero-cta-desktop {
   display: flex;
   gap: 1rem;
   flex-wrap: wrap;
   align-items: center;
+}
+
+.project-hero-mobile-cta-bar {
+  display: none;
 }
 
 .project-hero-rera-badge {
@@ -2373,12 +2378,12 @@ button {
 
   /* Project Hero on Mobile */
   .project-hero-section {
-    min-height: 60vh;
+    min-height: 52vh !important;
   }
 
   .project-hero-container {
-    padding-top: 4.5rem !important;
-    padding-bottom: 2.25rem !important;
+    padding-top: 3.5rem !important;
+    padding-bottom: 2rem !important;
   }
 
   .project-hero-top-row {
@@ -2397,7 +2402,32 @@ button {
   .project-hero-desc {
     font-size: 0.95rem !important;
     line-height: 1.6 !important;
-    margin-bottom: 1.6rem !important;
+    margin-bottom: 0 !important;
+  }
+
+  .project-hero-cta-desktop {
+    display: none !important;
+  }
+
+  .project-hero-mobile-cta-bar {
+    display: block !important;
+    background: #0d0c0a;
+    border-bottom: 1px solid rgba(201, 169, 110, 0.25);
+    padding: 1.25rem 0;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  }
+
+  .project-hero-mobile-btn {
+    width: 100% !important;
+    justify-content: center !important;
+    padding: 0.95rem 1.5rem !important;
+    font-size: 0.92rem !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.08em !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.6rem !important;
+    text-transform: uppercase;
   }
 
   .project-hero-cta-row {

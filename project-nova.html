@@ -176,25 +176,25 @@
                     A towering G+9 modern classical residential landmark rising gracefully in Mohanlalganj, Lucknow. Thoughtfully designed modern residences with sweeping skyline vistas, dual elevators, and full UP RERA statutory backing.
                 </p>
 
-                <div style="display: flex; gap: 1rem; flex-wrap: wrap; align-items: center;">
+                <div class="project-hero-cta-desktop" style="display: flex; gap: 1rem; flex-wrap: wrap; align-items: center;">
                     <a href="#contact" class="hero-cta" style="opacity: 1; padding: 0.9rem 1.8rem; font-size: 0.85rem;">
                         <span class="hero-cta-text">Schedule a Site Tour</span>
                         <span class="hero-cta-arrow">&#8599;</span>
-                    </a>
-                    <a href="assets/Skyom Nova/Skyom Nova_RERA_Reg Cert.pdf" target="_blank" class="hero-cta" style="opacity: 1; padding: 0.9rem 1.8rem; font-size: 0.85rem; border-color: rgba(201,169,110,0.4);">
-                        <span class="hero-cta-text">Download RERA Certificate (PDF)</span>
-                        <span class="hero-cta-arrow">&#8595;</span>
-                    </a>
-                    <a href="#gallery" class="hero-cta" style="opacity: 1; padding: 0.9rem 1.8rem; font-size: 0.85rem; border-color: rgba(201,169,110,0.4);">
-                        <span class="hero-cta-text">View Gallery</span>
-                    </a>
-                    <a href="#amenities" class="hero-cta" style="opacity: 1; padding: 0.9rem 1.8rem; font-size: 0.85rem; border-color: rgba(201,169,110,0.4);">
-                        <span class="hero-cta-text">Amenities</span>
                     </a>
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- Mobile Hero CTA Section (Below Hero Section) -->
+    <div class="project-hero-mobile-cta-bar">
+        <div style="max-width: 1200px; margin: 0 auto; padding: 0 1.5rem;">
+            <a href="#contact" class="hero-cta" style="width: 100%; display: flex; justify-content: center; align-items: center; padding: 0.95rem 1.5rem; font-size: 0.92rem; text-decoration: none; box-sizing: border-box; text-transform: uppercase; font-weight: 600;">
+                <span class="hero-cta-text">Schedule a Site Tour</span>
+                <span class="hero-cta-arrow">&#8599;</span>
+            </a>
+        </div>
+    </div>
 
     <!-- ========== OVERVIEW SECTION ========== -->
     <section id="overview" class="project-overview-v2">
@@ -398,10 +398,10 @@
                     </table>
 
                     <div style="margin-top: 1.75rem;">
-                        <a href="assets/Skyom Nova/Skyom Nova_RERA_Reg Cert.pdf" target="_blank" class="hero-cta" style="display: inline-flex; align-items: center; gap: 0.5rem; text-decoration: none;">
+                        <button onclick="openReraModal(event)" class="hero-cta" style="display: inline-flex; align-items: center; gap: 0.5rem; cursor: pointer; border: none; background: linear-gradient(135deg, #c9a063, #dfc08a); color: #080808; font-weight: 700;">
                             <span class="hero-cta-text">Download Official Form-C PDF</span>
                             <span class="hero-cta-arrow">&#8595;</span>
-                        </a>
+                        </button>
                     </div>
                 </div>
 
@@ -569,10 +569,78 @@
         </a>
     </div>
 
+    <!-- ========== RERA DOWNLOAD MODAL WITH LEAD CAPTURE FORM ========== -->
+    <div id="rera-modal" class="modal" style="display:none; position:fixed; inset:0; z-index:99999; background:rgba(0,0,0,0.85); backdrop-filter:blur(6px); align-items:center; justify-content:center; padding: 1rem;">
+        <div style="background:#141311; padding:32px 28px; border-radius:8px; border:1px solid #c9a063; max-width:440px; width:100%; text-align:center; box-shadow: 0 25px 50px rgba(0,0,0,0.8); position:relative;">
+            <button onclick="closeReraModal()" style="position:absolute; top:12px; right:12px; background:transparent; border:none; color:#a8a59d; font-size:1.4rem; cursor:pointer; line-height:1;">&times;</button>
+            <span class="section-tag" style="color:#c9a063; font-size:0.75rem; letter-spacing:0.12em;">Official UP RERA Document</span>
+            <h3 style="color:#f7f6f2; margin:8px 0 10px; font-family:'Cormorant Garamond',serif; font-size:1.85rem; font-weight:400;">
+                Download UP RERA Certificate
+            </h3>
+            <p style="color:#a8a59d; margin-bottom:20px; font-size:0.88rem; line-height:1.5;">
+                Enter your details to receive and download the official UP RERA Form-C Registration Certificate (PDF) for SKYOM Nova.
+            </p>
+            <form id="rera-download-form" onsubmit="submitReraDownload(event)">
+                <div style="text-align:left; margin-bottom:12px;">
+                    <label style="display:block; font-size:0.75rem; color:#c9a063; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:4px;">Full Name *</label>
+                    <input type="text" id="rera-name" required placeholder="e.g. Rahul Sharma" style="width:100%; padding:10px 12px; background:#1c1b18; border:1px solid #2e2c28; border-radius:4px; color:#f7f6f2; font-size:0.9rem; box-sizing:border-box;">
+                </div>
+                <div style="text-align:left; margin-bottom:12px;">
+                    <label style="display:block; font-size:0.75rem; color:#c9a063; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:4px;">Phone Number *</label>
+                    <input type="tel" id="rera-phone" required placeholder="+91 98765 43210" style="width:100%; padding:10px 12px; background:#1c1b18; border:1px solid #2e2c28; border-radius:4px; color:#f7f6f2; font-size:0.9rem; box-sizing:border-box;">
+                </div>
+                <div style="text-align:left; margin-bottom:18px;">
+                    <label style="display:block; font-size:0.75rem; color:#c9a063; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:4px;">Email Address *</label>
+                    <input type="email" id="rera-email" required placeholder="rahul@example.com" style="width:100%; padding:10px 12px; background:#1c1b18; border:1px solid #2e2c28; border-radius:4px; color:#f7f6f2; font-size:0.9rem; box-sizing:border-box;">
+                </div>
+                <div style="display:flex; gap:10px; justify-content:center;">
+                    <button type="button" onclick="closeReraModal()" style="padding:10px 18px; border:1px solid #2e2c28; color:#a8a59d; cursor:pointer; background:transparent; border-radius:4px; font-size:0.85rem;">Cancel</button>
+                    <button type="submit" style="flex:1; padding:10px 18px; background:linear-gradient(135deg, #c9a063, #dfc08a); color:#080808; border:none; font-weight:700; cursor:pointer; border-radius:4px; font-size:0.85rem; letter-spacing:0.05em;">Download Form-C PDF</button>
+                </div>
+            </form>
+            <div id="rera-success-msg" style="display:none; margin-top:15px; color:#34d399; font-size:0.88rem; line-height:1.5;">
+                &#10003; Verification logged. Your official Form-C PDF is downloading!
+            </div>
+        </div>
+    </div>
+
     <!-- ========== SCRIPTS ========== -->
     <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js"></script>
     <script src="script.js"></script>
+    <script>
+        function openReraModal(e) {
+            if(e) e.preventDefault();
+            document.getElementById('rera-modal').style.display = 'flex';
+        }
+        function closeReraModal() {
+            document.getElementById('rera-modal').style.display = 'none';
+        }
+        function submitReraDownload(e) {
+            e.preventDefault();
+            const name = document.getElementById('rera-name').value.trim();
+            const phone = document.getElementById('rera-phone').value.trim();
+            const email = document.getElementById('rera-email').value.trim();
+            if(name && phone && email) {
+                document.getElementById('rera-download-form').style.display = 'none';
+                document.getElementById('rera-success-msg').style.display = 'block';
+                setTimeout(() => {
+                    const link = document.createElement('a');
+                    link.href = 'assets/Skyom Nova/Skyom Nova_RERA_Reg Cert.pdf';
+                    link.download = 'Skyom_Nova_RERA_Registration_Certificate.pdf';
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                    setTimeout(() => {
+                        closeReraModal();
+                        document.getElementById('rera-download-form').reset();
+                        document.getElementById('rera-download-form').style.display = 'block';
+                        document.getElementById('rera-success-msg').style.display = 'none';
+                    }, 3000);
+                }, 600);
+            }
+        }
+    </script>
 </body>
 </html>

@@ -536,17 +536,38 @@
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js"></script>
     <script src="script.js"></script>
 
-    <!-- Brochure Modal -->
-    <div id="brochure-modal" class="modal" style="display:none; position:fixed; inset:0; z-index:99999; background:rgba(0,0,0,0.8); align-items:center; justify-content:center;">
-        <div style="background:var(--color-bg-elevated); padding:30px; border-radius:8px; border:1px solid var(--color-gold); max-width:400px; width:90%; text-align:center;">
-            <h3 style="color:var(--color-gold); margin-bottom:15px; font-family:var(--font-display); font-size:2rem;">Download Brochure</h3>
-            <p style="color:var(--color-text-secondary); margin-bottom:20px; font-size:0.9rem;">Please enter your email or phone number to download.</p>
-            <input type="text" id="brochure-contact" placeholder="Email or Phone" style="width:100%; padding:10px; margin-bottom:20px; background:transparent; border:1px solid var(--color-border); color:var(--color-text);">
-            <div style="display:flex; gap:10px; justify-content:center;">
-                <button onclick="closeBrochureModal()" style="padding:10px 20px; border:1px solid var(--color-border); color:var(--color-text); cursor:pointer; background:transparent;">Cancel</button>
-                <button onclick="submitBrochure()" style="padding:10px 20px; background:var(--color-gold); color:var(--color-bg); border:none; font-weight:bold; cursor:pointer;">Download</button>
+    <!-- Brochure Modal with Complete Lead Capture Form -->
+    <div id="brochure-modal" class="modal" style="display:none; position:fixed; inset:0; z-index:99999; background:rgba(0,0,0,0.85); backdrop-filter:blur(6px); align-items:center; justify-content:center; padding: 1rem;">
+        <div style="background:#141311; padding:32px 28px; border-radius:8px; border:1px solid #c9a063; max-width:440px; width:100%; text-align:center; box-shadow: 0 25px 50px rgba(0,0,0,0.8); position:relative;">
+            <button onclick="closeBrochureModal()" style="position:absolute; top:12px; right:12px; background:transparent; border:none; color:#a8a59d; font-size:1.4rem; cursor:pointer; line-height:1;">&times;</button>
+            <span class="section-tag" style="color:#c9a063; font-size:0.75rem; letter-spacing:0.12em;">Official Project E-Book</span>
+            <h3 style="color:#f7f6f2; margin:8px 0 10px; font-family:'Cormorant Garamond',serif; font-size:1.85rem; font-weight:400;">
+                Download SKYOM City Brochure
+            </h3>
+            <p style="color:#a8a59d; margin-bottom:20px; font-size:0.88rem; line-height:1.5;">
+                Enter your details to receive the comprehensive 50-Acre SKYOM City Master Plan &amp; Brochure (PDF).
+            </p>
+            <form id="brochure-download-form" onsubmit="submitBrochure(event)">
+                <div style="text-align:left; margin-bottom:12px;">
+                    <label style="display:block; font-size:0.75rem; color:#c9a063; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:4px;">Full Name *</label>
+                    <input type="text" id="brochure-name" required placeholder="e.g. Amit Sharma" style="width:100%; padding:10px 12px; background:#1c1b18; border:1px solid #2e2c28; border-radius:4px; color:#f7f6f2; font-size:0.9rem; box-sizing:border-box;">
+                </div>
+                <div style="text-align:left; margin-bottom:12px;">
+                    <label style="display:block; font-size:0.75rem; color:#c9a063; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:4px;">Phone Number *</label>
+                    <input type="tel" id="brochure-phone" required placeholder="+91 98765 43210" style="width:100%; padding:10px 12px; background:#1c1b18; border:1px solid #2e2c28; border-radius:4px; color:#f7f6f2; font-size:0.9rem; box-sizing:border-box;">
+                </div>
+                <div style="text-align:left; margin-bottom:18px;">
+                    <label style="display:block; font-size:0.75rem; color:#c9a063; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:4px;">Email Address *</label>
+                    <input type="email" id="brochure-email" required placeholder="amit@example.com" style="width:100%; padding:10px 12px; background:#1c1b18; border:1px solid #2e2c28; border-radius:4px; color:#f7f6f2; font-size:0.9rem; box-sizing:border-box;">
+                </div>
+                <div style="display:flex; gap:10px; justify-content:center;">
+                    <button type="button" onclick="closeBrochureModal()" style="padding:10px 18px; border:1px solid #2e2c28; color:#a8a59d; cursor:pointer; background:transparent; border-radius:4px; font-size:0.85rem;">Cancel</button>
+                    <button type="submit" style="flex:1; padding:10px 18px; background:linear-gradient(135deg, #c9a063, #dfc08a); color:#080808; border:none; font-weight:700; cursor:pointer; border-radius:4px; font-size:0.85rem; letter-spacing:0.05em;">Download Brochure (PDF)</button>
+                </div>
+            </form>
+            <div id="brochure-success-msg" style="display:none; margin-top:15px; color:#34d399; font-size:0.88rem; line-height:1.5;">
+                &#10003; Details recorded. Your SKYOM City E-Brochure is downloading!
             </div>
-            <p id="brochure-error" style="color:#ef4444; margin-top:10px; font-size:0.8rem; display:none;">Please enter a valid email or phone number.</p>
         </div>
     </div>
     <script>
@@ -557,21 +578,28 @@
         function closeBrochureModal() {
             document.getElementById('brochure-modal').style.display = 'none';
         }
-        function submitBrochure() {
-            const val = document.getElementById('brochure-contact').value.trim();
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            const phoneRegex = /^\+?[\d\s-]{7,15}$/;
-            if(emailRegex.test(val) || phoneRegex.test(val)) {
-                document.getElementById('brochure-error').style.display = 'none';
-                closeBrochureModal();
-                const link = document.createElement('a');
-                link.href = 'assets/Skyom.webp'; // Placeholder for brochure
-                link.download = 'Skyom_City_Brochure.pdf';
-                document.body.appendChild(link);
-                link.click();
-                document.body.removeChild(link);
-            } else {
-                document.getElementById('brochure-error').style.display = 'block';
+        function submitBrochure(e) {
+            if(e) e.preventDefault();
+            const name = document.getElementById('brochure-name').value.trim();
+            const phone = document.getElementById('brochure-phone').value.trim();
+            const email = document.getElementById('brochure-email').value.trim();
+            if(name && phone && email) {
+                document.getElementById('brochure-download-form').style.display = 'none';
+                document.getElementById('brochure-success-msg').style.display = 'block';
+                setTimeout(() => {
+                    const link = document.createElement('a');
+                    link.href = 'assets/SKYOM CITY E-BOOK.pdf';
+                    link.download = 'SKYOM CITY E-BOOK.pdf';
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                    setTimeout(() => {
+                        closeBrochureModal();
+                        document.getElementById('brochure-download-form').reset();
+                        document.getElementById('brochure-download-form').style.display = 'block';
+                        document.getElementById('brochure-success-msg').style.display = 'none';
+                    }, 3000);
+                }, 600);
             }
         }
     </script>
