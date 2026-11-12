@@ -111,8 +111,8 @@ export default function App() {
   return (
     <div className="skyom-app">
       {/* Header Navigation with original style */}
-      <Navbar 
-        activePage={activePage} 
+      <Navbar
+        activePage={activePage}
         onNavigate={handleNavigate}
         onOpenEnquiry={openEnquiry}
       />
@@ -135,7 +135,7 @@ export default function App() {
 
         {/* Individual Project 1: SKYOM City */}
         {activePage === 'project-city' && (
-          <ProjectCityDetail 
+          <ProjectCityDetail
             onBack={() => handleNavigate('home', 'projects')}
             onOpenLightbox={openLightbox}
           />
@@ -143,7 +143,7 @@ export default function App() {
 
         {/* Individual Project: SKYOM Aura */}
         {activePage === 'project-aura' && (
-          <ProjectAuraDetail 
+          <ProjectAuraDetail
             onBack={() => handleNavigate('home', 'projects')}
             onOpenEnquiry={openEnquiry}
             onOpenLightbox={openLightbox}
@@ -152,7 +152,7 @@ export default function App() {
 
         {/* Individual Project: SKYOM Nova */}
         {activePage === 'project-nova' && (
-          <ProjectNovaDetail 
+          <ProjectNovaDetail
             onBack={() => handleNavigate('home', 'projects')}
             onOpenEnquiry={openEnquiry}
             onOpenLightbox={openLightbox}
@@ -161,7 +161,7 @@ export default function App() {
 
         {/* Individual Project 2: SKYOM Floors */}
         {activePage === 'project-floors' && (
-          <ProjectFloorsDetail 
+          <ProjectFloorsDetail
             onBack={() => handleNavigate('home', 'projects')}
             onOpenEnquiry={openEnquiry}
             onOpenLightbox={openLightbox}
@@ -170,14 +170,14 @@ export default function App() {
 
         {/* Individual Project 3: The Ayodhya Vision */}
         {activePage === 'project-ayodhya' && (
-          <ProjectAyodhyaDetail 
+          <ProjectAyodhyaDetail
             onBack={() => handleNavigate('home', 'projects')}
           />
         )}
 
         {/* Individual Project 4: The Dehradun Retreat */}
         {activePage === 'project-dehradun' && (
-          <ProjectDehradunDetail 
+          <ProjectDehradunDetail
             onBack={() => handleNavigate('home', 'projects')}
           />
         )}
@@ -217,14 +217,14 @@ export default function App() {
       <StickyActions onOpenEnquiry={openEnquiry} />
 
       {/* Enquiry Modal */}
-      <EnquiryModal 
-        isOpen={enquiryModal.isOpen} 
+      <EnquiryModal
+        isOpen={enquiryModal.isOpen}
         onClose={closeEnquiry}
         defaultTopic={enquiryModal.topic}
       />
 
       {/* Lightbox Modal */}
-      <LightboxModal 
+      <LightboxModal
         isOpen={lightbox.isOpen}
         onClose={closeLightbox}
         imageSrc={lightbox.src}
