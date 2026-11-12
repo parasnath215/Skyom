@@ -5,6 +5,8 @@ dist/assets/*.webp
 dist/assets/*.png
 dist/assets/*.jpg
 dist/assets/*.jpeg
+dist/assets/*.pdf
+*.zip
 dist/*.png
 dist/*.ico
 dist/assets/*.ico
