@@ -5,61 +5,22 @@ import {
   ZoomIn, 
   MapPin, 
   Layers, 
-  Download, 
-  FileText, 
   Building2, 
   Sparkles, 
   Clock, 
   ShieldCheck, 
-  Eye, 
   Sun, 
   Moon,
   Send,
-  Lock,
-  X
+  Trees,
+  Dumbbell,
+  Smile,
+  Compass,
+  Zap
 } from 'lucide-react';
 
 export default function ProjectAuraDetail({ onBack, onOpenEnquiry, onOpenLightbox }) {
   const [viewMode, setViewMode] = useState('night'); // 'night' or 'day'
-  const [activeFloorTab, setActiveFloorTab] = useState(0);
-
-  // Floor Plan Blur & Unlock State
-  const [isPlanUnlocked, setIsPlanUnlocked] = useState(() => {
-    try {
-      return typeof window !== 'undefined' && sessionStorage.getItem('skyom_aura_plan_unlocked') === 'true';
-    } catch {
-      return false;
-    }
-  });
-  const [planModalOpen, setPlanModalOpen] = useState(false);
-  const [planForm, setPlanForm] = useState({ name: '', phone: '' });
-  const [planLoading, setPlanLoading] = useState(false);
-  const [planError, setPlanError] = useState('');
-
-  const handleUnlockPlan = (e) => {
-    e.preventDefault();
-    if (!planForm.name.trim()) {
-      setPlanError('Please enter your full name.');
-      return;
-    }
-    const cleanPhone = planForm.phone.replace(/[^0-9]/g, '');
-    if (cleanPhone.length < 10) {
-      setPlanError('Please enter a valid 10-digit phone number.');
-      return;
-    }
-    setPlanError('');
-    setPlanLoading(true);
-    setTimeout(() => {
-      setPlanLoading(false);
-      setIsPlanUnlocked(true);
-      try {
-        sessionStorage.setItem('skyom_aura_plan_unlocked', 'true');
-      } catch (err) {
-        // ignore storage error
-      }
-      setPlanModalOpen(false);
-    }, 500);
-  };
 
   // Form state
   const [formData, setFormData] = useState({
@@ -83,55 +44,77 @@ export default function ProjectAuraDetail({ onBack, onOpenEnquiry, onOpenLightbo
 
   const currentOptionImg = viewMode === 'day' ? facadeInfo.dayImg : facadeInfo.nightImg;
 
-  const floorPlans = [
+  // Curated Interior Room Photos (Generated to match Mediterranean Neo-Classical 2 BHK Floor Plan)
+  const galleryImages = [
     {
-      title: 'Ground Floor Master Plan & Streetscape',
-      subtitle: 'Complete Level Layout with 2 BHK Residences & High-Footfall Retail',
-      src: '/assets/Skyom Aura/skyom-aura-ground-floor-plan.webp',
-      pdf: '/assets/Skyom Aura/LIG BLOCK GROUND FLOOR.pdf',
-      desc: 'Architectural blueprint showcasing dual commercial suites at the street frontage, wide central 1500 mm naturally ventilated corridors, handicap-friendly 1:10 gradient ramps, dual elevators, and spacious 2 BHK residential units.',
-      specs: [
-        { label: 'Building Type', val: 'LIG Mid-Rise Housing Block' },
-        { label: 'Corridor Width', val: '1500 mm (5 Feet Clear)' },
-        { label: 'Vertical Transport', val: 'Dual Passenger & Service Lifts' },
-        { label: 'Accessibility', val: '1:10 Slope Ramps & Wide Entrances' },
-        { label: 'Design Architecture', val: 'Mediterranean Neo-Classical' },
-        { label: 'Township', val: 'SKYOM City, Mohanlalganj, Lucknow' }
-      ]
+      title: 'Mediterranean Drawing Lounge',
+      category: 'Living / Drawing Hall',
+      desc: 'Spacious Mediterranean neo-classical living space with classical arch details, warm beige tones, and natural morning daylight.',
+      src: '/assets/Skyom Aura/aura-living-room.webp'
     },
     {
-      title: 'Typical 2 BHK Luxury Residence',
-      subtitle: 'Efficient & Proportionate Living with Private Sit-Out',
-      src: '/assets/Skyom Aura/skyom-aura-ground-floor-plan.webp',
-      pdf: '/assets/Skyom Aura/LIG BLOCK GROUND FLOOR.pdf',
-      desc: 'Each 2 BHK home is designed with cross-ventilation, generous living spaces, separated bath and WC for maximum hygiene, and a secluded private sit-out balcony overlooking landscaped green pockets.',
-      specs: [
-        { label: 'Drawing / Living Room', val: '3638 x 2935 mm (11\'-11" x 9\'-7.5")' },
-        { label: 'Master Bedroom', val: '3613 x 2935 mm (11\'-10" x 9\'-7.5")' },
-        { label: 'Secondary Bedroom', val: '2780 x 3045 mm (9\'-0.5" x 9\'-10")' },
-        { label: 'Kitchen', val: '1615 x 2195 mm (5\'-3.5" x 7\'-2.5")' },
-        { label: 'Bath & WC', val: 'Bath 1215x2195 mm + WC 1072x1380 mm' },
-        { label: 'Private Sit-Out', val: '1050 mm Wide Balcony' }
-      ]
+      title: 'Serene Master Suite',
+      category: 'Master Bedroom',
+      desc: 'Refined master bedroom with tailored headboard mouldings, natural oak wood flooring, soft cove lighting, and private sit-out access.',
+      src: '/assets/Skyom Aura/aura-master-bedroom.webp'
     },
     {
-      title: 'Ground Level Commercial & Retail Suites',
-      subtitle: 'Dedicated Street-Facing Retail Frontage',
-      src: '/assets/Skyom Aura/skyom-aura-ground-floor-plan.webp',
-      pdf: '/assets/Skyom Aura/LIG BLOCK GROUND FLOOR.pdf',
-      desc: 'Two high-visibility ground floor commercial units positioned directly at the township promenade, ideal for daily convenience stores, pharmacies, cafes, or boutique services.',
-      specs: [
-        { label: 'Shop 1 Area', val: '11.42 SQM (9\'-5" x 10\'-10")' },
-        { label: 'Shop 2 Area', val: '11.42 SQM (9\'-5" x 10\'-10")' },
-        { label: 'Shutter Type', val: 'Full Width Rolling Shutters (R.S)' },
-        { label: 'Footfall', val: 'Integrated Township Access' },
-        { label: 'Service Lift Access', val: 'Direct 1900 x 3050 mm Service Foyer' },
-        { label: 'Safety', val: 'Fire Hydrant Cabinet (FHC) Adjacent' }
-      ]
+      title: 'Contemporary Modular Kitchen',
+      category: 'Modular Kitchen & Breakfast Bar',
+      desc: 'Designer modular kitchen with ivory and reeded oak cabinetry, Calacatta quartz countertops, and built-in chimney.',
+      src: '/assets/Skyom Aura/aura-kitchen.webp'
+    },
+    {
+      title: 'Private Sit-Out Balcony',
+      category: 'Balcony & Veranda',
+      desc: 'Classic wrought iron balustrade veranda opening to expansive fresh air and lush landscaped green surroundings.',
+      src: '/assets/Skyom Aura/aura-balcony.webp'
     }
   ];
 
-  const currentFloor = floorPlans[activeFloorTab];
+  // Comprehensive Project Amenities (No Swimming Pool)
+  const amenities = [
+    {
+      title: 'Landscaped Garden & Parks',
+      desc: 'Manicured green lawns, shaded walking pathways, and tranquil sitting pavilions.',
+      icon: Trees
+    },
+    {
+      title: 'Modern Fitness Gym',
+      desc: 'Fully equipped fitness center with cardio equipment, free weights, and stretching zone.',
+      icon: Dumbbell
+    },
+    {
+      title: 'Children’s Play Arena',
+      desc: 'Dedicated safe outdoor play turf with interactive activity sets and family seating.',
+      icon: Smile
+    },
+    {
+      title: 'Residents Community Lounge',
+      desc: 'Multi-purpose clubhouse hall for family gatherings, indoor recreation, and celebrations.',
+      icon: Building2
+    },
+    {
+      title: '24/7 Multi-Tier Security',
+      desc: 'Gated perimeter with CCTV surveillance, security guard posts, and access control.',
+      icon: ShieldCheck
+    },
+    {
+      title: 'Dual High-Speed Elevators',
+      desc: 'Modern passenger and service elevators with 100% power backup for smooth vertical movement.',
+      icon: Zap
+    },
+    {
+      title: 'Dedicated Resident Parking',
+      desc: 'Organized surface and stilt vehicle parking bays with seamless internal road circulation.',
+      icon: Compass
+    },
+    {
+      title: 'Doorstep Retail Conveniences',
+      desc: 'Ground-level street-facing retail commercial suites for daily groceries and essential services.',
+      icon: Sparkles
+    }
+  ];
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
@@ -144,19 +127,27 @@ export default function ProjectAuraDetail({ onBack, onOpenEnquiry, onOpenLightbo
 
   return (
     <div style={{ paddingTop: 'var(--nav-height)', backgroundColor: 'var(--color-bg)', minHeight: '100vh' }}>
-      {/* Hero Header */}
-      <section className="project-hero-section">
+      {/* Hero Header with Rich Black Gradient & Text Placed at Bottom Like Skyom City */}
+      <section className="project-hero-section" style={{ position: 'relative', width: '100%', minHeight: '65vh', overflow: 'hidden', display: 'flex', alignItems: 'flex-end' }}>
         <img
           src="/assets/Skyom Aura/skyom-aura-hero.webp"
           alt="SKYOM Aura - Neo-Classical Residences"
           className="project-hero-bg-img"
         />
-        <div className="project-hero-overlay" />
+        <div 
+          className="project-hero-overlay" 
+          style={{
+            position: 'absolute',
+            inset: 0,
+            background: 'linear-gradient(180deg, rgba(8,8,8,0.05) 0%, rgba(8,8,8,0.3) 32%, rgba(8,8,8,0.8) 70%, rgba(8,8,8,0.98) 100%)',
+            pointerEvents: 'none'
+          }} 
+        />
 
         <div className="container project-hero-container">
           <div className="project-hero-top-row">
             <div className="section-tag" style={{ color: 'var(--color-gold-light)', margin: 0 }}>
-              Ongoing Residential Landmark
+              Ongoing Residential Landmark • Mohanlalganj, Lucknow
             </div>
             <span className="project-hero-rera-badge">
               UP RERA: UPRERAPRJ600292/06/2025
@@ -168,7 +159,7 @@ export default function ProjectAuraDetail({ onBack, onOpenEnquiry, onOpenLightbo
           </h1>
 
           <p className="project-hero-desc">
-            Mediterranean neo-classical residences blending arched colonnades, warm masonry finishes, and boutique commercial suites within the prestigious 50-acre SKYOM City integrated township.
+            Mediterranean neo-classical residences blending arched colonnades, warm masonry finishes, and boutique commercial suites in Mohanlalganj, Lucknow.
           </p>
 
           <div className="project-hero-cta-row">
@@ -179,6 +170,18 @@ export default function ProjectAuraDetail({ onBack, onOpenEnquiry, onOpenLightbo
               <span>Enquire for Allotment</span>
               <ArrowUpRight size={15} />
             </button>
+            <a 
+              href="#gallery"
+              className="btn-outline-gold"
+            >
+              <span>View Interior Gallery</span>
+            </a>
+            <a 
+              href="#amenities"
+              className="btn-outline-gold"
+            >
+              <span>Project Amenities</span>
+            </a>
           </div>
         </div>
       </section>
@@ -316,210 +319,73 @@ export default function ProjectAuraDetail({ onBack, onOpenEnquiry, onOpenLightbo
         </div>
       </section>
 
-      {/* Floor Plans Section */}
-      <section className="floorplans-section" id="floorplans" style={{ padding: 'clamp(5rem, 8vw, 8rem) 0' }}>
+      {/* NEW: Interior Room Gallery Section */}
+      <section className="residence-gallery-section" id="gallery">
         <div className="container">
-          <div style={{ textAlign: 'center', maxWidth: '750px', margin: '0 auto 3rem' }}>
-            <div className="section-tag">Architectural Blueprints</div>
+          <div style={{ textAlign: 'center', maxWidth: '760px', margin: '0 auto 3rem' }}>
+            <div className="section-tag" style={{ justifyContent: 'center' }}>Interior Living Spaces</div>
             <h2 className="section-title">
-              Floor Plans & <span className="accent-serif">Spatial Layouts</span>
+              Crafted Interiors & <span className="accent-serif">Private Living</span>
             </h2>
             <p className="section-desc" style={{ margin: '1rem auto 0' }}>
-              Detailed CAD drawings from the official Ground Floor Block plan, featuring 2 BHK residences, integrated convenience retail, dual elevator cores, and expansive corridors.
+              Step inside the Mediterranean-inspired residences of SKYOM Aura — thoughtfully planned with expansive living spaces, serene master suites, contemporary modular kitchens, and sunlit private balconies.
             </p>
           </div>
 
-          {/* Floor Tabs */}
-          <div className="floorplan-tabs-bar">
-            {floorPlans.map((fp, idx) => (
-              <button
-                key={idx}
-                className={`plan-tab-btn ${activeFloorTab === idx ? 'active' : ''}`}
-                onClick={() => setActiveFloorTab(idx)}
+          <div className="residence-gallery-grid">
+            {galleryImages.map((img, idx) => (
+              <div 
+                key={idx} 
+                className="gallery-card-item"
+                onClick={() => onOpenLightbox(img.src, `${img.title} — SKYOM Aura`)}
+                title="Click to view full screen"
               >
-                {fp.title.split(' ')[0]} {fp.title.split(' ')[1]} {fp.title.split(' ')[2] || ''}
-              </button>
+                <div className="gallery-img-wrap">
+                  <img src={img.src} alt={img.title} loading="lazy" />
+                  <div className="gallery-overlay-gradient" />
+                  <div className="gallery-card-content">
+                    <div className="gallery-card-text">
+                      <span className="gallery-room-tag">{img.category}</span>
+                      <h3 className="gallery-room-title">{img.title}</h3>
+                      <p className="gallery-room-desc">{img.desc}</p>
+                    </div>
+                    <div className="gallery-zoom-btn">
+                      <ZoomIn size={18} />
+                    </div>
+                  </div>
+                </div>
+              </div>
             ))}
           </div>
+        </div>
+      </section>
 
-          {/* Current Floor Display */}
-          <div className="floorplan-display-grid">
-            <div 
-              className="floorplan-img-container"
-              onClick={() => {
-                if (isPlanUnlocked) {
-                  onOpenLightbox(currentFloor.src, currentFloor.title);
-                } else {
-                  setPlanModalOpen(true);
-                }
-              }}
-              title={isPlanUnlocked ? "Click to zoom floor plan" : "Click to unlock floor plan"}
-              style={{
-                background: '#ffffff',
-                borderRadius: '6px',
-                padding: '1rem',
-                minHeight: '440px',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                position: 'relative',
-                overflow: 'hidden',
-                cursor: isPlanUnlocked ? 'zoom-in' : 'pointer'
-              }}
-            >
-              <img 
-                src={currentFloor.src} 
-                alt={currentFloor.title} 
-                loading="lazy" 
-                style={{
-                  maxHeight: '550px',
-                  width: 'auto',
-                  objectFit: 'contain',
-                  filter: isPlanUnlocked ? 'none' : 'blur(16px)',
-                  transition: 'filter 0.6s cubic-bezier(0.16, 1, 0.3, 1)',
-                  userSelect: 'none'
-                }}
-              />
+      {/* NEW: Project Amenities Section (No Swimming Pool) */}
+      <section className="amenities-section" id="amenities">
+        <div className="container">
+          <div style={{ textAlign: 'center', maxWidth: '780px', margin: '0 auto' }}>
+            <div className="section-tag" style={{ justifyContent: 'center' }}>Curated Project Amenities</div>
+            <h2 className="section-title">
+              Thoughtfully Designed for <span className="accent-serif">Comfort & Community</span>
+            </h2>
+            <p className="section-desc" style={{ margin: '1rem auto 0' }}>
+              SKYOM Aura provides an independent ecosystem of wellness, recreation, and essential conveniences located in Mohanlalganj, Lucknow.
+            </p>
+          </div>
 
-              {/* Blurred Overlay with Unlock Prompt */}
-              {!isPlanUnlocked && (
-                <div
-                  style={{
-                    position: 'absolute',
-                    inset: 0,
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    background: 'rgba(6, 6, 6, 0.72)',
-                    backdropFilter: 'blur(4px)',
-                    borderRadius: '4px',
-                    padding: '1.5rem',
-                    zIndex: 2
-                  }}
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    setPlanModalOpen(true);
-                  }}
-                >
-                  <div style={{
-                    maxWidth: '420px',
-                    width: '100%',
-                    background: '#121212',
-                    border: '1px solid var(--color-gold)',
-                    borderRadius: '8px',
-                    padding: 'clamp(1.75rem, 3.5vw, 2.25rem)',
-                    boxShadow: '0 20px 40px rgba(0,0,0,0.8)',
-                    textAlign: 'center'
-                  }}>
-                    <div style={{
-                      width: '50px',
-                      height: '50px',
-                      borderRadius: '50%',
-                      background: 'var(--color-gold-subtle)',
-                      border: '1px solid var(--color-border)',
-                      color: 'var(--color-gold)',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      margin: '0 auto 1.25rem'
-                    }}>
-                      <Lock size={22} />
-                    </div>
-
-                    <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.55rem', color: 'var(--color-ivory)', marginBottom: '0.4rem' }}>
-                      Unlock Detailed Floor Plan
-                    </h3>
-                    <p style={{ color: 'var(--color-ivory-muted)', fontSize: '0.88rem', lineHeight: 1.6, marginBottom: '1.5rem' }}>
-                      Enter your details to view clear room dimensions and download the high-resolution architectural CAD drawing.
-                    </p>
-
-                    <button
-                      type="button"
-                      className="btn-gold"
-                      style={{ width: '100%', justifyContent: 'center' }}
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        setPlanModalOpen(true);
-                      }}
-                    >
-                      <span>Unlock & View Plan</span>
-                      <ArrowUpRight size={16} />
-                    </button>
+          <div className="amenities-grid">
+            {amenities.map((item, idx) => {
+              const IconComp = item.icon;
+              return (
+                <div key={idx} className="amenity-card-item">
+                  <div className="amenity-icon-ring">
+                    <IconComp size={24} />
                   </div>
+                  <h4 className="amenity-item-title">{item.title}</h4>
+                  <p className="amenity-item-desc">{item.desc}</p>
                 </div>
-              )}
-
-              {/* Unlocked Zoom Hint Badge */}
-              {isPlanUnlocked && (
-                <div className="zoom-hint-badge" style={{ position: 'absolute', bottom: '1.25rem', right: '1.25rem' }}>
-                  <ZoomIn size={14} />
-                  <span>Click to Enlarge CAD Plan</span>
-                </div>
-              )}
-            </div>
-
-            <div className="floorplan-info-col">
-              <div className="section-tag" style={{ marginBottom: '0.4rem' }}>{currentFloor.subtitle}</div>
-              <h3 className="floorplan-info-title">{currentFloor.title}</h3>
-              <p className="floorplan-info-desc">{currentFloor.desc}</p>
-
-              <div className="floorplan-specs-table">
-                {currentFloor.specs.map((s, idx) => (
-                  <div key={idx} className="plan-spec-item">
-                    <span className="plan-spec-lbl">{s.label}</span>
-                    <span className="plan-spec-val">{s.val}</span>
-                  </div>
-                ))}
-              </div>
-
-              {isPlanUnlocked && (
-                <div style={{
-                  marginTop: '1.25rem',
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '0.5rem',
-                  color: 'var(--color-delivered)',
-                  fontSize: '0.88rem'
-                }}>
-                  <CheckCircle2 size={16} />
-                  <span>Floor Plan Unlocked — Click image to view in fullscreen</span>
-                </div>
-              )}
-
-              <div style={{ display: 'flex', gap: '0.75rem', marginTop: '1.5rem', flexWrap: 'wrap' }}>
-                <button 
-                  className="btn-gold" 
-                  style={{ flex: 1, minWidth: '180px' }}
-                  onClick={() => {
-                    if (isPlanUnlocked) {
-                      onOpenLightbox(currentFloor.src, currentFloor.title);
-                    } else {
-                      setPlanModalOpen(true);
-                    }
-                  }}
-                >
-                  <span>{isPlanUnlocked ? 'Enlarge Full Plan' : 'Unlock & View Plan'}</span>
-                  {isPlanUnlocked ? <ZoomIn size={15} /> : <Lock size={15} />}
-                </button>
-                <a 
-                  href={isPlanUnlocked ? currentFloor.pdf : '#'} 
-                  target={isPlanUnlocked ? "_blank" : undefined}
-                  rel={isPlanUnlocked ? "noopener noreferrer" : undefined}
-                  className="btn-outline-gold"
-                  onClick={(e) => {
-                    if (!isPlanUnlocked) {
-                      e.preventDefault();
-                      setPlanModalOpen(true);
-                    }
-                  }}
-                  style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', textDecoration: 'none' }}
-                >
-                  <Download size={15} />
-                  <span>Download CAD PDF</span>
-                </a>
-              </div>
-            </div>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -567,10 +433,10 @@ export default function ProjectAuraDetail({ onBack, onOpenEnquiry, onOpenLightbo
                 <ShieldCheck size={28} />
               </div>
               <h4 style={{ fontFamily: 'var(--font-display)', fontSize: '1.3rem', color: 'var(--color-ivory)', marginBottom: '0.6rem' }}>
-                Integrated Township Amenities
+                Exclusive Residential Amenities
               </h4>
               <p style={{ color: 'var(--color-ivory-muted)', fontSize: '0.9rem', lineHeight: 1.7 }}>
-                Nestled inside the 50-Acre SKYOM City. Residents enjoy seamless access to 24+ landscaped theme parks, sports facilities, and 24/7 security.
+                An independent luxury landmark located in Mohanlalganj, Lucknow. Residents enjoy landscaped gardens, modern fitness gym, 24/7 multi-tier security, and doorstep conveniences.
               </p>
             </div>
           </div>
@@ -586,7 +452,7 @@ export default function ProjectAuraDetail({ onBack, onOpenEnquiry, onOpenLightbo
               Inquire for <span className="accent-serif">SKYOM Aura</span>
             </h2>
             <p className="section-desc" style={{ margin: '1rem auto 0' }}>
-              Register your interest for unit availability, payment plans, and architectural presentations.
+              Register your interest for unit availability, payment plans, and architectural presentations in Mohanlalganj, Lucknow.
             </p>
           </div>
 
@@ -598,7 +464,7 @@ export default function ProjectAuraDetail({ onBack, onOpenEnquiry, onOpenLightbo
                   Enquiry Logged for SKYOM Aura
                 </h3>
                 <p style={{ color: 'var(--color-ivory-muted)', fontSize: '0.95rem', lineHeight: 1.7, marginBottom: '1.5rem' }}>
-                  Thank you, <strong>{formData.name}</strong>. Our residential advisor will connect with you at <strong>{formData.phone}</strong> regarding available 2 BHK residences and commercial retail suites.
+                  Thank you, <strong>{formData.name}</strong>. Our residential advisor will connect with you at <strong>{formData.phone}</strong> regarding available residences and commercial retail suites.
                 </p>
                 <button 
                   className="btn-outline-gold"
@@ -653,7 +519,7 @@ export default function ProjectAuraDetail({ onBack, onOpenEnquiry, onOpenLightbo
                   <label className="form-field-label">Specific Preference / Questions</label>
                   <textarea
                     rows={3}
-                    placeholder="I am interested in 2 BHK residence / ground floor retail shop..."
+                    placeholder="I am interested in residence allotment / ground floor retail shop..."
                     className="form-textarea-field"
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
@@ -680,86 +546,6 @@ export default function ProjectAuraDetail({ onBack, onOpenEnquiry, onOpenLightbo
           </div>
         </div>
       </section>
-
-      {/* Modal: Unlock Floor Plan */}
-      {planModalOpen && (
-        <div
-          className="modal-overlay"
-          onClick={() => setPlanModalOpen(false)}
-          style={{ zIndex: 1050 }}
-        >
-          <div
-            className="modal-content-box"
-            onClick={(e) => e.stopPropagation()}
-            style={{ maxWidth: '480px', padding: 'clamp(1.75rem, 3.5vw, 2.5rem)', position: 'relative' }}
-          >
-            <button
-              className="modal-close-btn"
-              onClick={() => setPlanModalOpen(false)}
-              aria-label="Close"
-            >
-              <X size={18} />
-            </button>
-
-            <div className="section-tag" style={{ marginBottom: '0.5rem' }}>SKYOM Aura</div>
-            <h3 style={{ fontFamily: 'var(--font-display)', fontSize: '1.9rem', color: 'var(--color-ivory)', marginBottom: '0.5rem' }}>
-              Unlock Floor Plan
-            </h3>
-            <p style={{ fontSize: '0.88rem', color: 'var(--color-text-dim)', marginBottom: '1.5rem', lineHeight: 1.6 }}>
-              Please enter your name and phone number to instantly view and download the high-resolution architectural layout.
-            </p>
-
-            <form onSubmit={handleUnlockPlan}>
-              {planError && (
-                <div style={{ color: '#ef4444', fontSize: '0.85rem', marginBottom: '1rem', background: 'rgba(239,68,68,0.1)', padding: '0.6rem 0.8rem', borderRadius: '4px', border: '1px solid rgba(239,68,68,0.2)' }}>
-                  {planError}
-                </div>
-              )}
-
-              <div className="form-group-field">
-                <label className="form-field-label">Full Name *</label>
-                <input
-                  type="text"
-                  required
-                  placeholder="e.g. Ramesh Sharma"
-                  className="form-input-field"
-                  value={planForm.name}
-                  onChange={(e) => setPlanForm({ ...planForm, name: e.target.value })}
-                />
-              </div>
-
-              <div className="form-group-field">
-                <label className="form-field-label">Phone Number *</label>
-                <input
-                  type="tel"
-                  required
-                  placeholder="+91 99999 99999"
-                  className="form-input-field"
-                  value={planForm.phone}
-                  onChange={(e) => setPlanForm({ ...planForm, phone: e.target.value })}
-                />
-              </div>
-
-              <button
-                type="submit"
-                className="btn-gold"
-                style={{ width: '100%', marginTop: '1rem' }}
-                disabled={planLoading}
-              >
-                {planLoading ? (
-                  <span>Unlocking Plan...</span>
-                ) : (
-                  <>
-                    <span>Unlock & View Plan</span>
-                    <ArrowUpRight size={15} />
-                  </>
-                )}
-              </button>
-            </form>
-          </div>
-        </div>
-      )}
     </div>
   );
 }
-

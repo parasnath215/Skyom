@@ -26,8 +26,8 @@ export default function App() {
   const pageTitles = {
     'home': 'SKYOM — Luxury Real Estate Builder | Integrated Townships & Residences',
     'project-city': 'SKYOM City — 50-Acre Integrated Township in Mohanlalganj, Lucknow | SKYOM',
-    'project-aura': 'SKYOM Aura — Neo-Classical Arched Residences & Retail | SKYOM City Lucknow',
-    'project-nova': 'SKYOM Nova — G+9 Modern Classical High-Rise Tower | UP RERA Registered',
+    'project-aura': 'SKYOM Aura — Neo-Classical Arched Residences & Retail | Mohanlalganj, Lucknow',
+    'project-nova': 'SKYOM Nova — G+9 Modern Classical High-Rise Tower | Mohanlalganj, Lucknow',
     'project-floors': 'SKYOM Floors — Delivered Luxury Independent Floors in New Delhi | SKYOM',
     'project-ayodhya': 'The Ayodhya Vision — Sacred Heritage Luxury Residences | SKYOM',
     'project-dehradun': 'The Dehradun Retreat — Himalayan Foothill Luxury Villa Plots | SKYOM',
