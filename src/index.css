@@ -1131,8 +1131,13 @@ button {
   align-items: center;
 }
 
-.project-hero-mobile-cta-bar {
+.project-hero-mobile-cta-bar,
+.project-hero-mobile-block {
   display: none;
+}
+
+.project-hero-desktop-content {
+  display: block;
 }
 
 .project-hero-rera-badge {
@@ -2376,45 +2381,73 @@ button {
     gap: 1.75rem !important;
   }
 
-  /* Project Hero on Mobile */
+  /* Project Hero on Mobile - Clear photo banner without dark overlay */
   .project-hero-section {
-    min-height: 52vh !important;
+    min-height: 44vh !important;
+    height: 44vh !important;
+    max-height: 420px !important;
+    display: block !important;
+    position: relative !important;
   }
 
-  .project-hero-container {
-    padding-top: 3.5rem !important;
-    padding-bottom: 2rem !important;
+  /* Remove all opacity and dark overlay from hero banner on mobile */
+  .project-hero-overlay {
+    opacity: 0 !important;
+    display: none !important;
+    background: transparent !important;
+    pointer-events: none !important;
   }
 
-  .project-hero-top-row {
-    flex-wrap: wrap !important;
-    gap: 0.5rem !important;
-    margin-bottom: 0.65rem !important;
-    justify-content: space-between !important;
+  .project-hero-bg-img {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    object-position: center 25% !important;
+    filter: none !important;
+    opacity: 1 !important;
   }
 
-  .project-hero-title {
-    font-size: clamp(2.1rem, 7.5vw, 2.9rem) !important;
-    line-height: 1.1 !important;
-    margin-bottom: 0.75rem !important;
-  }
-
-  .project-hero-desc {
-    font-size: 0.95rem !important;
-    line-height: 1.6 !important;
-    margin-bottom: 0 !important;
-  }
-
-  .project-hero-cta-desktop {
+  /* Hide the text from inside the hero banner on mobile */
+  .project-hero-desktop-content,
+  .project-hero-section .project-hero-container {
     display: none !important;
   }
 
-  .project-hero-mobile-cta-bar {
+  /* Place text below the hero section and above the button on mobile */
+  .project-hero-mobile-block {
     display: block !important;
-    background: #0d0c0a;
-    border-bottom: 1px solid rgba(201, 169, 110, 0.25);
-    padding: 1.25rem 0;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    background: #0d0c0a !important;
+    border-bottom: 1px solid rgba(201, 169, 110, 0.25) !important;
+    padding: 2rem 0 2.25rem 0 !important;
+  }
+
+  .project-hero-mobile-block .project-hero-top-row {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 0.6rem !important;
+    margin-bottom: 0.85rem !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+  }
+
+  .project-hero-mobile-block .project-hero-title {
+    font-size: clamp(2.2rem, 8vw, 3rem) !important;
+    line-height: 1.12 !important;
+    margin: 0 0 0.85rem 0 !important;
+    color: var(--color-ivory) !important;
+  }
+
+  .project-hero-mobile-block .project-hero-desc {
+    font-size: 0.95rem !important;
+    line-height: 1.65 !important;
+    color: var(--color-ivory-muted) !important;
+    margin: 0 0 1.75rem 0 !important;
+  }
+
+  .project-hero-mobile-cta {
+    width: 100% !important;
   }
 
   .project-hero-mobile-btn {
@@ -2428,6 +2461,15 @@ button {
     align-items: center !important;
     gap: 0.6rem !important;
     text-transform: uppercase;
+    box-sizing: border-box !important;
+  }
+
+  .project-hero-cta-desktop {
+    display: none !important;
+  }
+
+  .project-hero-mobile-cta-bar {
+    display: none !important;
   }
 
   .project-hero-cta-row {

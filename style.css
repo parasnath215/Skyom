@@ -259,8 +259,13 @@ h1, h2, h3, h4, h5, h6, p, span, a, button {
   align-items: center;
 }
 
-.project-hero-mobile-cta-bar {
+.project-hero-mobile-cta-bar,
+.project-hero-mobile-block {
   display: none;
+}
+
+.project-hero-desktop-content {
+  display: block;
 }
 
 @media (max-width: 768px) {
@@ -277,15 +282,71 @@ h1, h2, h3, h4, h5, h6, p, span, a, button {
   .project-hero-cta-desktop {
     display: none !important;
   }
-  .project-hero-mobile-cta-bar {
+
+  /* Clear photo banner on mobile without dark overlay */
+  #banner,
+  .project-hero-section {
+    min-height: 44vh !important;
+    height: 44vh !important;
+    max-height: 420px !important;
+    position: relative !important;
     display: block !important;
-    background: #0d0c0a;
-    border-bottom: 1px solid rgba(201, 169, 110, 0.25);
-    padding: 1.25rem 0;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    background-position: center 25% !important;
   }
-  .project-hero-mobile-cta-bar .hero-cta,
-  .project-hero-mobile-cta-bar .btn-gold {
+
+  /* Remove overlay opacity on mobile */
+  .project-hero-overlay,
+  #banner > div.project-hero-overlay,
+  #banner > div:first-child:not(.project-hero-mobile-block) {
+    opacity: 0 !important;
+    display: none !important;
+    background: transparent !important;
+    pointer-events: none !important;
+  }
+
+  /* Hide banner text inside hero on mobile */
+  .project-hero-desktop-content,
+  .project-hero-section .project-hero-container {
+    display: none !important;
+  }
+
+  /* Place text below hero section and above the button on mobile */
+  .project-hero-mobile-block {
+    display: block !important;
+    background: #0d0c0a !important;
+    border-bottom: 1px solid rgba(201, 169, 110, 0.25) !important;
+    padding: 2rem 0 2.25rem 0 !important;
+  }
+
+  .project-hero-mobile-block .project-hero-top-row {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 0.6rem !important;
+    margin-bottom: 0.85rem !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+  }
+
+  .project-hero-mobile-block .project-hero-title {
+    font-size: clamp(2.2rem, 8vw, 3rem) !important;
+    line-height: 1.12 !important;
+    margin: 0 0 0.85rem 0 !important;
+    color: var(--color-ivory, #f7f6f2) !important;
+  }
+
+  .project-hero-mobile-block .project-hero-desc {
+    font-size: 0.95rem !important;
+    line-height: 1.65 !important;
+    color: var(--color-ivory-muted, rgba(245, 240, 232, 0.75)) !important;
+    margin: 0 0 1.75rem 0 !important;
+  }
+
+  .project-hero-mobile-cta {
+    width: 100% !important;
+  }
+
+  .project-hero-mobile-btn,
+  .project-hero-mobile-block .hero-cta {
     width: 100% !important;
     justify-content: center !important;
     padding: 0.95rem 1.5rem !important;
@@ -294,7 +355,13 @@ h1, h2, h3, h4, h5, h6, p, span, a, button {
     letter-spacing: 0.08em !important;
     display: flex !important;
     align-items: center !important;
+    gap: 0.6rem !important;
     text-align: center !important;
+    text-transform: uppercase !important;
     box-sizing: border-box !important;
+  }
+
+  .project-hero-mobile-cta-bar {
+    display: none !important;
   }
 }

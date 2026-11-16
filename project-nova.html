@@ -155,10 +155,10 @@
         </div>
     </header>
 
-    <!-- ========== HERO BANNER WITH BLACK GRADIENT FROM BELOW & BOTTOM TEXT PLACEMENT (LIKE SKYOM CITY) ========== -->
-    <section id="banner" style="position: relative; width: 100%; min-height: 65vh; height: 65vh; overflow: hidden; background-image: url('assets/Skyom Nova/skyom-nova-tower.webp'); background-size: cover; background-position: center 30%;">
-        <div style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(8,8,8,0.05) 0%, rgba(8,8,8,0.3) 30%, rgba(8,8,8,0.8) 70%, rgba(8,8,8,0.98) 100%); display: flex; align-items: flex-end; padding-bottom: 3.5rem;">
-            <div style="max-width: 1200px; width: 100%; margin: 0 auto; padding: 0 1.5rem; box-sizing: border-box;">
+    <!-- ========== HERO BANNER (DESKTOP OVERLAY & CLEAN MOBILE PHOTO) ========== -->
+    <section id="banner" class="project-hero-section" style="position: relative; width: 100%; min-height: 65vh; height: 65vh; overflow: hidden; background-image: url('assets/Skyom Nova/skyom-nova-tower.webp'); background-size: cover; background-position: center 30%;">
+        <div class="project-hero-overlay" style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(8,8,8,0.05) 0%, rgba(8,8,8,0.3) 30%, rgba(8,8,8,0.8) 70%, rgba(8,8,8,0.98) 100%); display: flex; align-items: flex-end; padding-bottom: 3.5rem;">
+            <div class="container project-hero-container project-hero-desktop-content" style="max-width: 1200px; width: 100%; margin: 0 auto; padding: 0 1.5rem; box-sizing: border-box;">
                 <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 0.85rem;">
                     <div class="section-tag" style="color: var(--color-gold-light, #dfc08a); margin: 0;">
                         Ongoing High-Rise Landmark &bull; Mohanlalganj, Lucknow
@@ -186,13 +186,32 @@
         </div>
     </section>
 
-    <!-- Mobile Hero CTA Section (Below Hero Section) -->
-    <div class="project-hero-mobile-cta-bar">
-        <div style="max-width: 1200px; margin: 0 auto; padding: 0 1.5rem;">
-            <a href="#contact" class="hero-cta" style="width: 100%; display: flex; justify-content: center; align-items: center; padding: 0.95rem 1.5rem; font-size: 0.92rem; text-decoration: none; box-sizing: border-box; text-transform: uppercase; font-weight: 600;">
-                <span class="hero-cta-text">Schedule a Site Tour</span>
-                <span class="hero-cta-arrow">&#8599;</span>
-            </a>
+    <!-- Mobile Hero Text & CTA Block (Below Hero Section & Above Button) -->
+    <div class="project-hero-mobile-block">
+        <div style="max-width: 1200px; margin: 0 auto; padding: 2rem 1.5rem 2.25rem;">
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 0.85rem;">
+                <div class="section-tag" style="color: var(--color-gold-light, #dfc08a); margin: 0; font-size: 0.75rem;">
+                    Ongoing High-Rise Landmark &bull; Mohanlalganj, Lucknow
+                </div>
+                <span style="display: inline-flex; align-items: center; padding: 0.35rem 0.85rem; background: rgba(14, 14, 14, 0.78); border: 1px solid #c9a96e; border-radius: 20px; font-size: 0.75rem; color: #c9a96e;">
+                    UP RERA: UPRERAPRJ960284/10/2026
+                </span>
+            </div>
+            
+            <h1 style="font-family: 'Cormorant Garamond', Georgia, serif; font-size: clamp(2.2rem, 8vw, 3rem); font-weight: 300; line-height: 1.12; color: #f5f0e8; margin: 0 0 0.85rem 0;">
+                SKYOM <span style="font-style: italic; color: #c9a96e;">Nova</span>
+            </h1>
+
+            <p style="color: rgba(245, 240, 232, 0.75); font-size: 0.95rem; line-height: 1.65; margin: 0 0 1.75rem 0;">
+                A towering G+9 modern classical residential landmark rising gracefully in Mohanlalganj, Lucknow. Thoughtfully designed modern residences with sweeping skyline vistas, dual elevators, and full UP RERA statutory backing.
+            </p>
+
+            <div class="project-hero-mobile-cta">
+                <a href="#contact" class="hero-cta" style="width: 100%; display: flex; justify-content: center; align-items: center; padding: 0.95rem 1.5rem; font-size: 0.92rem; text-decoration: none; box-sizing: border-box; text-transform: uppercase; font-weight: 600;">
+                    <span class="hero-cta-text">Schedule a Site Tour</span>
+                    <span class="hero-cta-arrow">&#8599;</span>
+                </a>
+            </div>
         </div>
     </div>
 

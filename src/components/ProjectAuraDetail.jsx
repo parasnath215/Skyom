@@ -127,24 +127,17 @@ export default function ProjectAuraDetail({ onBack, onOpenEnquiry, onOpenLightbo
 
   return (
     <div style={{ paddingTop: 'var(--nav-height)', backgroundColor: 'var(--color-bg)', minHeight: '100vh' }}>
-      {/* Hero Header with Rich Black Gradient & Text Placed at Bottom Like Skyom City */}
-      <section className="project-hero-section" style={{ position: 'relative', width: '100%', minHeight: '65vh', overflow: 'hidden', display: 'flex', alignItems: 'flex-end' }}>
+      {/* Hero Header Banner */}
+      <section className="project-hero-section">
         <img
           src="/assets/Skyom Aura/skyom-aura-hero.webp"
           alt="SKYOM Aura - Neo-Classical Residences"
           className="project-hero-bg-img"
         />
-        <div 
-          className="project-hero-overlay" 
-          style={{
-            position: 'absolute',
-            inset: 0,
-            background: 'linear-gradient(180deg, rgba(8,8,8,0.05) 0%, rgba(8,8,8,0.3) 32%, rgba(8,8,8,0.8) 70%, rgba(8,8,8,0.98) 100%)',
-            pointerEvents: 'none'
-          }} 
-        />
+        <div className="project-hero-overlay" />
 
-        <div className="container project-hero-container">
+        {/* Desktop-only Content overlaid on banner */}
+        <div className="container project-hero-container project-hero-desktop-content">
           <div className="project-hero-top-row">
             <div className="section-tag" style={{ color: 'var(--color-gold-light)', margin: 0 }}>
               Ongoing Residential Landmark • Mohanlalganj, Lucknow
@@ -174,16 +167,35 @@ export default function ProjectAuraDetail({ onBack, onOpenEnquiry, onOpenLightbo
         </div>
       </section>
 
-      {/* Mobile-only CTA Bar (Below Hero Section) */}
-      <div className="project-hero-mobile-cta-bar">
+      {/* Mobile-only Content Block: Text on banner moved below the hero section & above the button */}
+      <div className="project-hero-mobile-block">
         <div className="container">
-          <button 
-            onClick={() => onOpenEnquiry && onOpenEnquiry('SKYOM Aura (Lucknow)')}
-            className="btn-gold project-hero-mobile-btn"
-          >
-            <span>Enquire for Allotment</span>
-            <ArrowUpRight size={16} />
-          </button>
+          <div className="project-hero-top-row">
+            <div className="section-tag" style={{ color: 'var(--color-gold-light)', margin: 0, fontSize: '0.75rem' }}>
+              Ongoing Residential Landmark • Mohanlalganj, Lucknow
+            </div>
+            <span className="project-hero-rera-badge">
+              UP RERA: UPRERAPRJ600292/06/2025
+            </span>
+          </div>
+
+          <h1 className="project-hero-title">
+            SKYOM <span className="accent-serif">Aura</span>
+          </h1>
+
+          <p className="project-hero-desc">
+            Mediterranean neo-classical residences blending arched colonnades, warm masonry finishes, and boutique commercial suites in Mohanlalganj, Lucknow.
+          </p>
+
+          <div className="project-hero-mobile-cta">
+            <button 
+              onClick={() => onOpenEnquiry && onOpenEnquiry('SKYOM Aura (Lucknow)')}
+              className="btn-gold project-hero-mobile-btn"
+            >
+              <span>Enquire for Allotment</span>
+              <ArrowUpRight size={16} />
+            </button>
+          </div>
         </div>
       </div>
 
