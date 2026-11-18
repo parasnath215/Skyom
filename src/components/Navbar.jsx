@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 // Toggle flag: Set to true to re-enable SKYOM Aura & Nova in navbar
-const SHOW_AURA_AND_NOVA = false;
+const SHOW_AURA_AND_NOVA = true;
 
 export default function Navbar({ onNavigate, activePage, onOpenEnquiry }) {
   const [scrolled, setScrolled] = useState(false);

@@ -2,7 +2,7 @@ import React from 'react';
 import { ShieldCheck } from 'lucide-react';
 
 // Toggle flag: Set to true to re-enable SKYOM Aura & Nova in footer
-const SHOW_AURA_AND_NOVA = false;
+const SHOW_AURA_AND_NOVA = true;
 
 export default function Footer({ onNavigate }) {
   return (
