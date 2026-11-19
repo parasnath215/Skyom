@@ -222,7 +222,7 @@ export default function ProjectAuraDetail({ onBack, onOpenEnquiry, onOpenLightbo
             maxWidth: '1080px',
             margin: '0 auto'
           }}>
-            <div style={{ position: 'relative', width: '100%', minHeight: '480px', maxHeight: '680px', overflow: 'hidden', background: '#080808' }}>
+            <div className="aura-facade-preview-frame" style={{ position: 'relative', width: '100%', overflow: 'hidden', background: '#080808' }}>
               <img
                 src={currentOptionImg}
                 alt={facadeInfo.name}
@@ -416,7 +416,7 @@ export default function ProjectAuraDetail({ onBack, onOpenEnquiry, onOpenLightbo
             </p>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '1.5rem' }}>
             <div style={{ background: '#161513', border: '1px solid var(--color-border)', padding: '2rem', borderRadius: '6px' }}>
               <div style={{ color: 'var(--color-gold)', marginBottom: '1rem' }}>
                 <Building2 size={28} />

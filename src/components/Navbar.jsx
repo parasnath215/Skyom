@@ -6,6 +6,7 @@ const SHOW_AURA_AND_NOVA = true;
 export default function Navbar({ onNavigate, activePage, onOpenEnquiry }) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [mobileProjectsOpen, setMobileProjectsOpen] = useState(() => activePage ? activePage.startsWith('project') : false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -14,6 +15,13 @@ export default function Navbar({ onNavigate, activePage, onOpenEnquiry }) {
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  // Ensure projects accordion is open if currently on a project page
+  useEffect(() => {
+    if (activePage && activePage.startsWith('project')) {
+      setMobileProjectsOpen(true);
+    }
+  }, [activePage]);
 
   const handleNavClick = (pageId) => {
     setMobileOpen(false);
@@ -154,21 +162,114 @@ export default function Navbar({ onNavigate, activePage, onOpenEnquiry }) {
       {/* Mobile Menu */}
       <div id="mobile-menu" className={`mobile-menu ${mobileOpen ? 'active' : ''}`}>
         <div className="mobile-menu-links">
-          <button className="mobile-link" onClick={() => handleNavClick('home')}>Home</button>
-          <button className="mobile-link" onClick={() => handleNavClick('project-city')}>SKYOM City</button>
-          {SHOW_AURA_AND_NOVA && (
-            <>
-              <button className="mobile-link" onClick={() => handleNavClick('project-aura')}>SKYOM Aura</button>
-              <button className="mobile-link" onClick={() => handleNavClick('project-nova')}>SKYOM Nova</button>
-            </>
-          )}
-          <button className="mobile-link" onClick={() => handleNavClick('project-floors')}>SKYOM Floors</button>
-          <button className="mobile-link" onClick={() => handleNavClick('project-ayodhya')}>Ayodhya</button>
-          <button className="mobile-link" onClick={() => handleNavClick('project-dehradun')}>Dehradun</button>
-          <button className="mobile-link" onClick={() => handleNavClick('about')}>About Us</button>
-          <button className="mobile-link" onClick={() => handleNavClick('blog')}>Blog</button>
-          <button className="mobile-link" onClick={() => handleNavClick('news')}>News</button>
-          <button className="mobile-link" onClick={() => handleNavClick('contact')}>Contact Us</button>
+          <button 
+            className={`mobile-link ${activePage === 'home' ? 'active' : ''}`} 
+            onClick={() => handleNavClick('home')}
+          >
+            Home
+          </button>
+
+          {/* Grouped Projects Accordion */}
+          <div className="mobile-nav-group">
+            <button 
+              type="button"
+              className={`mobile-link mobile-dropdown-btn ${mobileProjectsOpen ? 'open' : ''} ${activePage.startsWith('project') ? 'active' : ''}`}
+              onClick={() => setMobileProjectsOpen(!mobileProjectsOpen)}
+              aria-expanded={mobileProjectsOpen}
+            >
+              <span>Projects</span>
+              <span className="mobile-arrow">{mobileProjectsOpen ? '▴' : '▾'}</span>
+            </button>
+
+            <div className={`mobile-submenu-panel ${mobileProjectsOpen ? 'open' : ''}`}>
+              {/* Delivered Projects */}
+              <div className="mobile-group-section">
+                <span className="mobile-group-header">Delivered Projects</span>
+                <button 
+                  className={`mobile-sublink ${activePage === 'project-floors' ? 'active' : ''}`}
+                  onClick={() => handleNavClick('project-floors')}
+                >
+                  SKYOM Floors
+                </button>
+              </div>
+
+              {/* Ongoing Projects */}
+              <div className="mobile-group-section">
+                <span className="mobile-group-header">Ongoing Projects</span>
+                <button 
+                  className={`mobile-sublink ${activePage === 'project-city' ? 'active' : ''}`}
+                  onClick={() => handleNavClick('project-city')}
+                >
+                  SKYOM City
+                </button>
+                {SHOW_AURA_AND_NOVA && (
+                  <>
+                    <button 
+                      className={`mobile-sublink ${activePage === 'project-aura' ? 'active' : ''}`}
+                      onClick={() => handleNavClick('project-aura')}
+                    >
+                      SKYOM Aura
+                    </button>
+                    <button 
+                      className={`mobile-sublink ${activePage === 'project-nova' ? 'active' : ''}`}
+                      onClick={() => handleNavClick('project-nova')}
+                    >
+                      SKYOM Nova
+                    </button>
+                  </>
+                )}
+              </div>
+
+              {/* The Future */}
+              <div className="mobile-group-section">
+                <span className="mobile-group-header">The Future</span>
+                <button 
+                  className={`mobile-sublink ${activePage === 'project-ayodhya' ? 'active' : ''}`}
+                  onClick={() => handleNavClick('project-ayodhya')}
+                >
+                  Ayodhya
+                </button>
+                <button 
+                  className={`mobile-sublink ${activePage === 'project-dehradun' ? 'active' : ''}`}
+                  onClick={() => handleNavClick('project-dehradun')}
+                >
+                  Dehradun
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <button 
+            className={`mobile-link ${activePage === 'about' ? 'active' : ''}`} 
+            onClick={() => handleNavClick('about')}
+          >
+            About Us
+          </button>
+          <button 
+            className={`mobile-link ${activePage === 'blog' ? 'active' : ''}`} 
+            onClick={() => handleNavClick('blog')}
+          >
+            Blog
+          </button>
+          <button 
+            className={`mobile-link ${activePage === 'news' ? 'active' : ''}`} 
+            onClick={() => handleNavClick('news')}
+          >
+            News
+          </button>
+          <button 
+            className={`mobile-link ${activePage === 'contact' ? 'active' : ''}`} 
+            onClick={() => handleNavClick('contact')}
+          >
+            Contact Us
+          </button>
+
+          <button 
+            className="mobile-cta-btn"
+            onClick={() => onOpenEnquiry ? onOpenEnquiry('Mobile Menu CTA') : handleNavClick('contact')}
+          >
+            GET IN TOUCH
+          </button>
         </div>
       </div>
     </>

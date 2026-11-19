@@ -275,9 +275,26 @@ h1, h2, h3, h4, h5, h6, p, span, a, button {
   }
   .gallery-card-content {
     padding: 1.15rem 1.25rem;
+    pointer-events: none;
+  }
+  .gallery-card-text {
+    pointer-events: none;
   }
   .gallery-room-desc {
     display: none;
+  }
+  /* Mobile gallery images: remove plus button, entire card/image is clickable */
+  .gallery-zoom-btn {
+    display: none !important;
+  }
+  .gallery-card-item {
+    cursor: pointer !important;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+  .gallery-card-item:active {
+    transform: scale(0.985);
+    transition: transform 0.15s ease;
   }
   .project-hero-cta-desktop {
     display: none !important;
@@ -363,5 +380,229 @@ h1, h2, h3, h4, h5, h6, p, span, a, button {
 
   .project-hero-mobile-cta-bar {
     display: none !important;
+  }
+}
+
+/* ==========================================================================
+   MOBILE MENU PROJECTS ACCORDION & GROUPING (STYLE.CSS)
+   ========================================================================== */
+.mobile-menu {
+  overflow-y: auto !important;
+  -webkit-overflow-scrolling: touch !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  padding: 5.5rem 1.5rem 3rem 1.5rem !important;
+}
+
+.mobile-menu-links {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 1.25rem !important;
+  text-align: center !important;
+  width: 100% !important;
+  max-width: 440px !important;
+  margin: 0 auto !important;
+}
+
+.mobile-link {
+  font-family: var(--font-display) !important;
+  font-size: clamp(1.7rem, 4.5vw, 2.3rem) !important;
+  font-weight: 300 !important;
+  letter-spacing: 0.05em !important;
+  color: var(--color-ivory-muted) !important;
+  transition: color 0.3s ease !important;
+  background: none !important;
+  border: none !important;
+  cursor: pointer !important;
+  padding: 0.2rem 0 !important;
+  text-decoration: none !important;
+  display: inline-block !important;
+}
+
+.mobile-link:hover,
+.mobile-link.active {
+  color: var(--color-gold) !important;
+}
+
+.mobile-nav-group {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.mobile-dropdown-btn {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0.6rem !important;
+  background: none !important;
+  border: none !important;
+  cursor: pointer !important;
+  color: var(--color-ivory-muted) !important;
+  font-family: var(--font-display) !important;
+  font-size: clamp(1.7rem, 4.5vw, 2.3rem) !important;
+  font-weight: 300 !important;
+  letter-spacing: 0.05em !important;
+  transition: color 0.3s ease !important;
+}
+
+.mobile-dropdown-btn:hover,
+.mobile-dropdown-btn.open,
+.mobile-dropdown-btn.active {
+  color: var(--color-gold) !important;
+}
+
+.mobile-arrow {
+  font-size: 0.85rem !important;
+  color: var(--color-gold) !important;
+  transition: transform 0.3s ease !important;
+}
+
+.mobile-submenu-panel {
+  display: none;
+  flex-direction: column;
+  gap: 1.15rem;
+  width: 100%;
+  max-width: 320px;
+  margin: 0.75rem auto 0.25rem auto;
+  padding: 1.15rem 1.25rem;
+  background: rgba(18, 17, 15, 0.88);
+  border: 1px solid rgba(201, 169, 110, 0.22);
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+}
+
+.mobile-submenu-panel.open {
+  display: flex !important;
+  animation: mobileFadeIn 0.3s ease-out;
+}
+
+.mobile-group-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  align-items: center;
+  width: 100%;
+}
+
+.mobile-group-header {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-size: 0.68rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--color-gold);
+  margin-bottom: 0.2rem;
+  padding-bottom: 0.25rem;
+  border-bottom: 1px solid rgba(201, 169, 110, 0.18);
+  width: 100%;
+  text-align: center;
+}
+
+.mobile-sublink {
+  font-family: var(--font-display) !important;
+  font-size: 1.25rem !important;
+  font-weight: 400 !important;
+  color: var(--color-ivory) !important;
+  background: none !important;
+  border: none !important;
+  text-decoration: none !important;
+  cursor: pointer !important;
+  padding: 0.3rem 0.6rem !important;
+  border-radius: 4px;
+  transition: all 0.25s ease !important;
+  display: block !important;
+  text-align: center !important;
+  width: 100% !important;
+}
+
+.mobile-sublink:hover,
+.mobile-sublink.active {
+  color: var(--color-gold) !important;
+  background: rgba(201, 169, 110, 0.1) !important;
+}
+
+.mobile-cta-btn {
+  margin-top: 0.75rem !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 0.85rem 2rem !important;
+  background: var(--color-gold) !important;
+  color: #0a0a0a !important;
+  border: 1px solid var(--color-gold) !important;
+  border-radius: 4px !important;
+  font-family: var(--font-body) !important;
+  font-size: 0.82rem !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.15em !important;
+  text-transform: uppercase !important;
+  text-decoration: none !important;
+  cursor: pointer !important;
+  transition: all 0.3s ease !important;
+}
+
+.mobile-cta-btn:hover {
+  background: var(--color-gold-light) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(201, 169, 110, 0.3);
+}
+
+/* Façade Option Cards Grid Styling */
+.option-card-wrap {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.75rem;
+  margin-top: 2rem;
+}
+
+.option-card {
+  background: #141311;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.45);
+  cursor: pointer;
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.option-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--color-gold);
+}
+
+.option-card img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  display: block;
+}
+
+.option-card-body {
+  padding: 1.25rem 1.5rem;
+}
+
+.option-card-title {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  color: var(--color-gold);
+  margin-bottom: 0.4rem;
+}
+
+.option-card-desc {
+  font-size: 0.88rem;
+  color: var(--color-ivory-muted);
+  line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+  .option-card-wrap {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
   }
 }

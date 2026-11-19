@@ -113,12 +113,37 @@
     </nav>
 
     <!-- Mobile Menu -->
-    <div id="mobile-menu" class="mobile-menu">
+        <div id="mobile-menu" class="mobile-menu">
         <div class="mobile-menu-links">
-            <a href="projects.html" class="mobile-link">Projects</a>
-            <a href="about.html" class="mobile-link">About</a>
-            <a href="vision.html" class="mobile-link">Vision</a>
-            <a href="contact.html" class="mobile-link">Contact</a>
+            <a href="index.html" class="mobile-link">Home</a>
+            <div class="mobile-nav-group">
+                <button type="button" class="mobile-link mobile-dropdown-btn open" onclick="toggleMobileProjects(this)">
+                    <span>Projects</span>
+                    <span class="mobile-arrow">▾</span>
+                </button>
+                <div class="mobile-submenu-panel open">
+                    <div class="mobile-group-section">
+                        <span class="mobile-group-header">Delivered Projects</span>
+                        <a href="project-floors.html" class="mobile-sublink">SKYOM Floors</a>
+                    </div>
+                    <div class="mobile-group-section">
+                        <span class="mobile-group-header">Ongoing Projects</span>
+                        <a href="project-city.html" class="mobile-sublink">SKYOM City</a>
+                        <a href="project-aura.html" class="mobile-sublink">SKYOM Aura</a>
+                        <a href="project-nova.html" class="mobile-sublink">SKYOM Nova</a>
+                    </div>
+                    <div class="mobile-group-section">
+                        <span class="mobile-group-header">The Future</span>
+                        <a href="project-ayodhya.html" class="mobile-sublink">Ayodhya</a>
+                        <a href="project-dehradun.html" class="mobile-sublink">Dehradun</a>
+                    </div>
+                </div>
+            </div>
+            <a href="about.html" class="mobile-link">About Us</a>
+            <a href="blog.html" class="mobile-link">Blog</a>
+            <a href="news.html" class="mobile-link active">News</a>
+            <a href="contact.html" class="mobile-link">Contact Us</a>
+            <a href="contact.html" class="mobile-cta-btn">GET IN TOUCH</a>
         </div>
     </div>
 

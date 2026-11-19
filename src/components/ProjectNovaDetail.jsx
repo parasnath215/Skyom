@@ -332,7 +332,7 @@ export default function ProjectNovaDetail({ onBack, onOpenEnquiry, onOpenLightbo
             </p>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '1.5rem' }}>
             <div style={{ background: '#161513', border: '1px solid var(--color-border)', padding: '2rem', borderRadius: '6px' }}>
               <div style={{ color: 'var(--color-gold)', marginBottom: '1rem' }}>
                 <Building2 size={28} />
@@ -387,7 +387,7 @@ export default function ProjectNovaDetail({ onBack, onOpenEnquiry, onOpenLightbo
 
           <div style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
             gap: '2.5rem',
             alignItems: 'center',
             background: '#141311',

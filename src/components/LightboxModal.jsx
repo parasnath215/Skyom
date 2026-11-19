@@ -41,35 +41,16 @@ export default function LightboxModal({ isOpen, onClose, imageSrc, title }) {
         handleReset();
         onClose();
       }}
-      style={{ zIndex: 3000, padding: '1rem' }}
+      style={{ zIndex: 3000, padding: '0.75rem' }}
     >
       <div 
-        style={{
-          position: 'relative',
-          width: '100%',
-          maxWidth: '1200px',
-          maxHeight: '92vh',
-          display: 'flex',
-          flexDirection: 'column',
-          background: 'rgba(12, 12, 12, 0.95)',
-          border: '1px solid var(--color-border)',
-          borderRadius: '6px',
-          overflow: 'hidden',
-          boxShadow: '0 30px 80px rgba(0,0,0,0.9)'
-        }}
+        className="lightbox-modal-card"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header Bar */}
-        <div style={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          padding: '1rem 1.5rem',
-          borderBottom: '1px solid var(--color-border)',
-          background: '#0a0a0a'
-        }}>
-          <div>
-            <h4 style={{ fontFamily: 'var(--font-display)', fontSize: '1.3rem', color: 'var(--color-ivory)' }}>
+        <div className="lightbox-header">
+          <div className="lightbox-title-box">
+            <h4 className="lightbox-title-text">
               {title || 'Architectural Blueprint'}
             </h4>
             <span style={{ fontSize: '0.72rem', color: 'var(--color-gold)', letterSpacing: '0.08em', textTransform: 'uppercase' }}>
@@ -78,7 +59,7 @@ export default function LightboxModal({ isOpen, onClose, imageSrc, title }) {
           </div>
 
           {/* Controls */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+          <div className="lightbox-controls-row">
             <button 
               onClick={handleZoomIn} 
               className="social-circle-btn" 
@@ -127,17 +108,7 @@ export default function LightboxModal({ isOpen, onClose, imageSrc, title }) {
         </div>
 
         {/* Viewport Area */}
-        <div style={{
-          position: 'relative',
-          flexGrow: 1,
-          overflow: 'auto',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          padding: '2rem',
-          background: '#070707',
-          minHeight: '400px'
-        }}>
+        <div className="lightbox-viewport-area">
           <img
             src={imageSrc}
             alt={title}

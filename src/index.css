@@ -601,16 +601,20 @@ button {
 .mobile-menu {
   position: fixed;
   inset: 0;
-  z-index: 999;
+  z-index: 9999;
   background: rgba(10, 10, 10, 0.98);
   backdrop-filter: blur(30px);
   -webkit-backdrop-filter: blur(30px);
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
+  padding: calc(var(--nav-height, 70px) + 1.25rem) 1.5rem 3rem;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.5s var(--ease-luxury), visibility 0.5s;
+  transition: opacity 0.4s var(--ease-luxury), visibility 0.4s;
 }
 
 .mobile-menu.active {
@@ -621,13 +625,16 @@ button {
 .mobile-menu-links {
   display: flex;
   flex-direction: column;
-  gap: 1.75rem;
+  gap: 1.25rem;
   text-align: center;
+  width: 100%;
+  max-width: 440px;
+  margin: 0 auto;
 }
 
 .mobile-link {
   font-family: var(--font-display);
-  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-size: clamp(1.7rem, 4.5vw, 2.3rem);
   font-weight: 300;
   letter-spacing: 0.05em;
   color: var(--color-ivory-muted);
@@ -635,14 +642,155 @@ button {
   background: none;
   border: none;
   cursor: pointer;
+  padding: 0.2rem 0;
 }
 
-.mobile-link:hover {
+.mobile-link:hover,
+.mobile-link.active {
   color: var(--color-gold);
 }
 
 .mobile-drawer-link:hover, .mobile-drawer-link.active {
   color: var(--color-gold);
+}
+
+/* Mobile Menu Projects Grouping (Matching Desktop Dropdown Structure) */
+.mobile-nav-group {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.mobile-dropdown-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--color-ivory-muted);
+  font-family: var(--font-display);
+  font-size: clamp(1.7rem, 4.5vw, 2.3rem);
+  font-weight: 300;
+  letter-spacing: 0.05em;
+  transition: color 0.3s ease;
+  padding: 0.2rem 0;
+}
+
+.mobile-dropdown-btn:hover,
+.mobile-dropdown-btn.open,
+.mobile-dropdown-btn.active {
+  color: var(--color-gold);
+}
+
+.mobile-arrow {
+  font-size: 0.85rem;
+  color: var(--color-gold);
+  transition: transform 0.3s ease;
+}
+
+.mobile-submenu-panel {
+  display: none;
+  flex-direction: column;
+  gap: 1.15rem;
+  width: 100%;
+  max-width: 320px;
+  margin: 0.75rem auto 0.25rem auto;
+  padding: 1.15rem 1.25rem;
+  background: rgba(18, 17, 15, 0.88);
+  border: 1px solid rgba(201, 169, 110, 0.22);
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+}
+
+.mobile-submenu-panel.open {
+  display: flex;
+  animation: mobileFadeIn 0.3s ease-out;
+}
+
+@keyframes mobileFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.mobile-group-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  align-items: center;
+}
+
+.mobile-group-header {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-size: 0.68rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--color-gold);
+  margin-bottom: 0.2rem;
+  padding-bottom: 0.25rem;
+  border-bottom: 1px solid rgba(201, 169, 110, 0.18);
+  width: 100%;
+  text-align: center;
+}
+
+.mobile-sublink {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 400;
+  color: var(--color-ivory);
+  background: none;
+  border: none;
+  text-decoration: none;
+  cursor: pointer;
+  padding: 0.3rem 0.6rem;
+  border-radius: 4px;
+  transition: all 0.25s ease;
+  display: block;
+  text-align: center;
+  width: 100%;
+}
+
+.mobile-sublink:hover,
+.mobile-sublink.active {
+  color: var(--color-gold);
+  background: rgba(201, 169, 110, 0.1);
+}
+
+.mobile-cta-btn {
+  margin-top: 0.75rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.85rem 2rem;
+  background: var(--color-gold);
+  color: #0a0a0a !important;
+  border: 1px solid var(--color-gold);
+  border-radius: 4px;
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.mobile-cta-btn:hover {
+  background: var(--color-gold-light);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(201, 169, 110, 0.3);
 }
 
 /* ==========================================================================
@@ -1453,9 +1601,110 @@ button {
   }
   .gallery-card-content {
     padding: 1.15rem 1.25rem;
+    pointer-events: none;
+  }
+  .gallery-card-text {
+    pointer-events: none;
   }
   .gallery-room-desc {
     display: none;
+  }
+  /* Mobile gallery images: remove plus button, entire card/image is clickable */
+  .gallery-zoom-btn {
+    display: none !important;
+  }
+  .gallery-card-item {
+    cursor: pointer !important;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+  .gallery-card-item:active {
+    transform: scale(0.985);
+    transition: transform 0.15s ease;
+  }
+  .aura-facade-preview-frame {
+    min-height: 240px !important;
+    max-height: 400px !important;
+  }
+}
+
+/* Lightbox Modal Responsive Styling */
+.lightbox-modal-card {
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  max-height: 92vh;
+  display: flex;
+  flex-direction: column;
+  background: rgba(12, 12, 12, 0.98);
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.9);
+}
+
+.lightbox-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.85rem 1.25rem;
+  border-bottom: 1px solid var(--color-border);
+  background: #0a0a0a;
+  gap: 0.75rem;
+}
+
+.lightbox-title-box {
+  min-width: 0;
+  flex: 1;
+}
+
+.lightbox-title-text {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  color: var(--color-ivory);
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.lightbox-controls-row {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  flex-shrink: 0;
+}
+
+.lightbox-viewport-area {
+  position: relative;
+  flex-grow: 1;
+  overflow: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  background: #070707;
+  min-height: 320px;
+}
+
+@media (max-width: 600px) {
+  .lightbox-header {
+    padding: 0.65rem 0.85rem;
+  }
+  .lightbox-title-text {
+    font-size: 1rem;
+    max-width: 140px;
+  }
+  .lightbox-controls-row {
+    gap: 0.3rem;
+  }
+  .lightbox-controls-row .social-circle-btn {
+    width: 32px;
+    height: 32px;
+  }
+  .lightbox-viewport-area {
+    padding: 0.75rem;
+    min-height: 250px;
   }
 }
 
