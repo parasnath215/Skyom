@@ -138,31 +138,45 @@
                 <span></span>
             </button>
         </nav>
-        <div id="mobile-menu" class="mobile-menu">
-            <div class="mobile-menu-links">
-                <a href="index.html" class="mobile-link">Home</a>
-                <div class="mobile-nav-group">
-                    <button type="button" class="mobile-link mobile-dropdown-btn open" onclick="toggleMobileProjects(this)">
-                        <span>Projects</span>
-                        <span class="mobile-arrow">▾</span>
-                    </button>
-                    <div class="mobile-submenu-panel open">
-                        <div class="mobile-group-section">
-                            <span class="mobile-group-header">Delivered Projects</span>
-                            <a href="project-floors.html" class="mobile-sublink">SKYOM Floors</a>
-                        </div>
-                        <div class="mobile-group-section">
-                            <span class="mobile-group-header">Ongoing Projects</span>
-                            <a href="project-city.html" class="mobile-sublink">SKYOM City</a>
-                            <a href="project-aura.html" class="mobile-sublink">SKYOM Aura</a>
-                            <a href="project-nova.html" class="mobile-sublink active">SKYOM Nova</a>
-                        </div>
-                        <div class="mobile-group-section">
-                            <span class="mobile-group-header">The Future</span>
-                            <a href="project-ayodhya.html" class="mobile-sublink">Ayodhya</a>
-                            <a href="project-dehradun.html" class="mobile-sublink">Dehradun</a>
-                        </div>
+            <div id="mobile-menu" class="mobile-menu" onclick="if(event.target === this) closeMobileMenu();">
+        <button type="button" class="mobile-close-btn" onclick="closeMobileMenu()" aria-label="Close navigation menu">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+        </button>
+        <div class="mobile-menu-links">
+            <a href="index.html" class="mobile-link">Home</a>
+            <div class="mobile-nav-group">
+                <button type="button" class="mobile-link mobile-dropdown-btn open" onclick="toggleMobileProjects(this)">
+                    <span>Projects</span>
+                    <span class="mobile-arrow">▾</span>
+                </button>
+                <div class="mobile-submenu-panel open">
+                    <div class="mobile-group-section">
+                        <span class="mobile-group-header">Delivered Projects</span>
+                        <a href="project-floors.html" class="mobile-sublink">SKYOM Floors</a>
                     </div>
+                    <div class="mobile-group-section">
+                        <span class="mobile-group-header">Ongoing Projects</span>
+                        <a href="project-city.html" class="mobile-sublink">SKYOM City</a>
+                        <a href="project-aura.html" class="mobile-sublink">SKYOM Aura</a>
+                        <a href="project-nova.html" class="mobile-sublink active">SKYOM Nova</a>
+                    </div>
+                    <div class="mobile-group-section">
+                        <span class="mobile-group-header">The Future</span>
+                        <a href="project-ayodhya.html" class="mobile-sublink">Ayodhya</a>
+                        <a href="project-dehradun.html" class="mobile-sublink">Dehradun</a>
+                    </div>
+                </div>
+            </div>
+            <a href="about.html" class="mobile-link">About Us</a>
+            <a href="blog.html" class="mobile-link">Blog</a>
+            <a href="news.html" class="mobile-link">News</a>
+            <a href="contact.html" class="mobile-link">Contact Us</a>
+            <a href="contact.html" class="mobile-cta-btn">GET IN TOUCH</a>
+        </div>
+    </div>
                 </div>
                 <a href="about.html" class="mobile-link">About Us</a>
                 <a href="blog.html" class="mobile-link">Blog</a>
@@ -673,6 +687,12 @@
         function closeImageLightbox() {
             var modal = document.getElementById('image-lightbox-modal');
             if (modal) modal.style.display = 'none';
+        }
+        function closeMobileMenu() {
+            var t = document.getElementById('nav-toggle');
+            var m = document.getElementById('mobile-menu');
+            if (t) t.classList.remove('active');
+            if (m) m.classList.remove('active');
         }
         function toggleMobileProjects(btn) {
             var panel = btn.nextElementSibling;

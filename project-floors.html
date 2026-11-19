@@ -113,7 +113,13 @@
     </nav>
 
     <!-- Mobile Menu -->
-        <div id="mobile-menu" class="mobile-menu">
+            <div id="mobile-menu" class="mobile-menu" onclick="if(event.target === this) closeMobileMenu();">
+        <button type="button" class="mobile-close-btn" onclick="closeMobileMenu()" aria-label="Close navigation menu">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+        </button>
         <div class="mobile-menu-links">
             <a href="index.html" class="mobile-link">Home</a>
             <div class="mobile-nav-group">
@@ -138,6 +144,14 @@
                         <a href="project-dehradun.html" class="mobile-sublink">Dehradun</a>
                     </div>
                 </div>
+            </div>
+            <a href="about.html" class="mobile-link">About Us</a>
+            <a href="blog.html" class="mobile-link">Blog</a>
+            <a href="news.html" class="mobile-link">News</a>
+            <a href="contact.html" class="mobile-link">Contact Us</a>
+            <a href="contact.html" class="mobile-cta-btn">GET IN TOUCH</a>
+        </div>
+    </div>
             </div>
             <a href="about.html" class="mobile-link">About Us</a>
             <a href="blog.html" class="mobile-link">Blog</a>

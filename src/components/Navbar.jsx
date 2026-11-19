@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { X } from 'lucide-react';
 
 // Toggle flag: Set to true to re-enable SKYOM Aura & Nova in navbar
 const SHOW_AURA_AND_NOVA = true;
@@ -160,7 +161,25 @@ export default function Navbar({ onNavigate, activePage, onOpenEnquiry }) {
       </nav>
 
       {/* Mobile Menu */}
-      <div id="mobile-menu" className={`mobile-menu ${mobileOpen ? 'active' : ''}`}>
+      <div 
+        id="mobile-menu" 
+        className={`mobile-menu ${mobileOpen ? 'active' : ''}`}
+        onClick={(e) => {
+          if (e.target.id === 'mobile-menu') {
+            setMobileOpen(false);
+          }
+        }}
+      >
+        {/* Explicit Mobile Menu Close Button */}
+        <button 
+          type="button" 
+          className="mobile-close-btn" 
+          onClick={() => setMobileOpen(false)}
+          aria-label="Close navigation menu"
+        >
+          <X size={24} />
+        </button>
+
         <div className="mobile-menu-links">
           <button 
             className={`mobile-link ${activePage === 'home' ? 'active' : ''}`} 
